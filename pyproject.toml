@@ -1,0 +1,51 @@
+[project]
+name = "privacy-policy-compliance"
+version = "0.1.0"
+description = "GDPR privacy-policy compliance assessment: RAG retrieval, LLM-judge fine-tuning, compliance scoring, and reporting."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+rag = [
+    # retrieval pipeline over GDPR articles + EDPB guidelines
+]
+judge = [
+    # LLM fine-tuning + inference (Qwen open-source model)
+]
+scoring = [
+    # compliance scoring engine
+]
+ui = [
+    # Streamlit or FastAPI+React frontend
+]
+dev = [
+    "black",
+    "ruff",
+    "mypy",
+    "pytest",
+    "pre-commit",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["rag", "judge", "scoring", "ui"]

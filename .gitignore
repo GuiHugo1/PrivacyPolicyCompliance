@@ -1,0 +1,93 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.Python
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# uv
+.uv/
+uv.lock.tmp
+
+# Testing / coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Hugging Face / ML models ---
+*.bin
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.gguf
+*.onnx
+.cache/huggingface/
+huggingface_hub/
+wandb/
+mlruns/
+checkpoints/
+outputs/
+
+# --- Data ---
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.csv
+*.parquet
+*.jsonl
+!eval/benchmarks/**/*.jsonl
+
+# --- Node / frontend (ui/) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+dist/
+build/
+.next/
+.nuxt/
+.turbo/
+
+# --- Reports (LaTeX build artifacts) ---
+reports/**/*.aux
+reports/**/*.log
+reports/**/*.out
+reports/**/*.toc
+reports/**/*.bbl
+reports/**/*.blg
+reports/**/*.synctex.gz
+reports/**/*.fls
+reports/**/*.fdb_latexmk
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
