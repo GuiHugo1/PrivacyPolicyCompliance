@@ -109,7 +109,10 @@ def diagnose_case(
     **retrieve_kwargs: Any,
 ) -> dict[str, Any]:
     clause = item["clause"]
-    gold_articles = [str(a) for a in item["gold_articles"]]
+    # gold_articles is a list of {"article": "<number>", "role": "primary"|"secondary"} --
+    # see eval_retrieval.load_eval_set for the schema.
+    gold_primary = [str(e["article"]) for e in item["gold_articles"] if e["role"] == "primary"]
+    gold_secondary = [str(e["article"]) for e in item["gold_articles"] if e["role"] == "secondary"]
 
     ranked: list[RetrievedChunk] = retrieve(clause, k=k, **retrieve_kwargs)
 
@@ -125,7 +128,9 @@ def diagnose_case(
     ]
 
     gold_hits: dict[str, dict[str, Any]] = {}
-    for gold in gold_articles:
+    for gold, role in [(a, "primary") for a in gold_primary] + [
+        (a, "secondary") for a in gold_secondary
+    ]:
         rank_found = None
         for rank, chunk in enumerate(ranked, start=1):
             if (
@@ -135,6 +140,7 @@ def diagnose_case(
                 rank_found = rank
                 break
         gold_hits[gold] = {
+            "role": role,
             "found_in_top_k": rank_found is not None,
             "rank": rank_found,
             "gold_text_indexed": gold in gold_article_text,
@@ -149,7 +155,8 @@ def diagnose_case(
         "id": item["id"],
         "topic": item.get("topic", ""),
         "clause": clause,
-        "gold_articles": gold_articles,
+        "gold_primary": gold_primary,
+        "gold_secondary": gold_secondary,
         "k": k,
         "n_returned": len(ranked),
         "source_type_counts_in_top_k": source_type_counts,
@@ -203,10 +210,15 @@ def check_recitals_indexed(
 
 def print_case_report(case: dict[str, Any], gold_article_text: dict[str, str]) -> None:
     print("\n" + "=" * 100)
-    print(f"[{case['id']}] topic={case['topic']!r}  gold_articles={case['gold_articles']}")
+    print(
+        f"[{case['id']}] topic={case['topic']!r}  "
+        f"gold_primary={case['gold_primary']}  gold_secondary={case['gold_secondary']}"
+    )
     print(f"clause: {case['clause']}")
-    print(f"top-{case['k']} returned {case['n_returned']} chunks, by source_type: "
-          f"{case['source_type_counts_in_top_k']}")
+    print(
+        f"top-{case['k']} returned {case['n_returned']} chunks, by source_type: "
+        f"{case['source_type_counts_in_top_k']}"
+    )
 
     print("\n-- gold article status in top-{}: --".format(case["k"]))
     for gold, info in case["gold_hits"].items():
@@ -216,14 +228,14 @@ def print_case_report(case: dict[str, Any], gold_article_text: dict[str, str]) -
             status = "NOT FOUND — and not present in the source file at all (corpus gap)"
         else:
             status = f"NOT FOUND in top-{case['k']} (but present in source file)"
-        print(f"  Art {gold}: {status}")
+        print(f"  Art {gold} ({info['role']}): {status}")
 
     print(f"\n-- full ranked list (top-{case['k']}): --")
     for row in case["ranked"]:
         print(f"  [{row['rank']:>2}] score={row['score']:.4f}  {row['label']:<14} id={row['id']}")
 
     print(f"\n-- top-{TOP_N_FOR_TEXT_COMPARE} retrieved chunks vs. gold text, side by side: --")
-    for gold in case["gold_articles"]:
+    for gold in case["gold_primary"] + case["gold_secondary"]:
         gold_text = gold_article_text.get(gold, "(not present in source file)")
         print(f"\n  GOLD Art {gold}:")
         print(_indent(gold_text, 4))
@@ -244,12 +256,16 @@ def print_recital_report(report: dict[str, Any]) -> None:
     for number, info in report["recitals_of_interest"].items():
         print(f"\n  Recital {number}:")
         print(f"    in source file:          {info['in_source_file']}")
-        print(f"    reachable by direct probe: {info['reachable_by_direct_probe']}"
-              + (f" (rank {info['probe_rank']})" if info["probe_rank"] else ""))
+        print(
+            f"    reachable by direct probe: {info['reachable_by_direct_probe']}"
+            + (f" (rank {info['probe_rank']})" if info["probe_rank"] else "")
+        )
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("--eval-set", type=Path, default=DEFAULT_EVAL_SET)
     parser.add_argument(
         "--gdpr-source",
@@ -261,7 +277,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--case-ids",
         default=",".join(DEFAULT_CASE_IDS),
-        help="Comma-separated eval-set ids to diagnose (default: the 7 known failing/partial cases).",
+        help="Comma-separated eval-set ids to diagnose "
+        "(default: the 7 known failing/partial cases).",
     )
     parser.add_argument("--k", type=int, default=DEFAULT_K)
     parser.add_argument(
