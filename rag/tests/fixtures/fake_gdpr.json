@@ -1,0 +1,58 @@
+{
+  "articles": [
+    {
+      "number": "1",
+      "title": "Subject-matter and objectives",
+      "chapter": "I",
+      "paragraphs": [
+        {"number": "1", "text": "This Regulation lays down rules relating to the protection of natural persons with regard to the processing of personal data and rules relating to the free movement of personal data."},
+        {"number": "2", "text": "This Regulation protects fundamental rights and freedoms of natural persons and in particular their right to the protection of personal data."}
+      ]
+    },
+    {
+      "number": "4",
+      "title": "Definitions",
+      "chapter": "I",
+      "paragraphs": [
+        {"number": "1", "text": "'personal data' means any information relating to an identified or identifiable natural person."},
+        {"number": "2", "text": "'processing' means any operation or set of operations which is performed on personal data."}
+      ]
+    },
+    {
+      "number": "6",
+      "title": "Lawfulness of processing",
+      "chapter": "II",
+      "paragraphs": [
+        {"number": "1", "text": "Processing shall be lawful only if and to the extent that at least one of the following applies: the data subject has given consent to the processing of his or her personal data for one or more specific purposes."},
+        {"number": "2", "text": "Member States may maintain or introduce more specific provisions to adapt the application of the rules of this Regulation with regard to processing for compliance with points (c) and (e) of paragraph 1."}
+      ]
+    },
+    {
+      "number": "7",
+      "title": "Conditions for consent",
+      "chapter": "II",
+      "paragraphs": [
+        {"number": "1", "text": "Where processing is based on consent, the controller shall be able to demonstrate that the data subject has consented to processing of his or her personal data."},
+        {"number": "2", "text": "If the data subject's consent is given in the context of a written declaration which also concerns other matters, the request for consent shall be presented in a manner which is clearly distinguishable from the other matters, in an intelligible and easily accessible form, using clear and plain language."},
+        {"number": "3", "text": "The data subject shall have the right to withdraw his or her consent at any time."},
+        {"number": "4", "text": "When assessing whether consent is freely given, utmost account shall be taken of whether, inter alia, the performance of a contract is conditional on consent to the processing of personal data that is not necessary for the performance of that contract."}
+      ]
+    },
+    {
+      "number": "33",
+      "title": "Notification of a personal data breach to the supervisory authority",
+      "chapter": "IV",
+      "paragraphs": [
+        {"number": "1", "text": "In the case of a personal data breach, the controller shall without undue delay and, where feasible, not later than 72 hours after having become aware of it, notify the personal data breach to the supervisory authority competent, unless the personal data breach is unlikely to result in a risk to the rights and freedoms of natural persons."},
+        {"number": "2", "text": "The processor shall notify the controller without undue delay after becoming aware of a personal data breach."},
+        {"number": "3", "text": "The notification referred to in paragraph 1 shall at least describe the nature of the personal data breach including where possible, the categories and approximate number of data subjects concerned and the categories and approximate number of personal data records concerned."},
+        {"number": "4", "text": "Where, and in so far as, it is not possible to provide the information at the same time, the information may be provided in phases without undue further delay."},
+        {"number": "5", "text": "The controller shall document any personal data breaches, comprising the facts relating to the personal data breach, its effects and the remedial action taken."}
+      ]
+    }
+  ],
+  "recitals": [
+    {"number": "1", "text": "The protection of natural persons in relation to the processing of personal data is a fundamental right."},
+    {"number": "39", "text": "Any processing of personal data should be lawful and fair. It should be transparent to natural persons that personal data concerning them are collected, used, consulted or otherwise processed."}
+  ]
+}
