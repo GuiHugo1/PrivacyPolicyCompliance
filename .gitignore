@@ -59,7 +59,7 @@ data/processed/*
 *.csv
 *.parquet
 *.jsonl
-!eval/benchmarks/**/*.jsonl
+!eval/**/*.jsonl
 
 # --- Node / frontend (ui/) ---
 node_modules/
