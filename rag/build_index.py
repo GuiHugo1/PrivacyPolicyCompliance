@@ -43,6 +43,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--reset", action="store_true", help="Drop and recreate the collection before indexing"
     )
     parser.add_argument("--max-tokens", type=int, default=500)
+    parser.add_argument(
+        "--embedding-model",
+        default=None,
+        help="Override the embedding model (default: BAAI/bge-large-en-v1.5, or "
+        "$RAG_EMBEDDING_MODEL). A fine-tuned checkpoint or alternate base model must be "
+        "built with this flag and then queried with the matching --embedding-model on the "
+        "query/eval side -- see rag/embeddings.py.",
+    )
     return parser.parse_args(argv)
 
 
@@ -82,7 +90,12 @@ def main(argv: list[str] | None = None) -> int:
     else:
         collection = get_or_create_collection(args.persist_dir, args.collection)
 
-    embedder = get_embedder()
+    if args.embedding_model:
+        from rag.embeddings import Embedder
+
+        embedder = Embedder(args.embedding_model)
+    else:
+        embedder = get_embedder()
 
     for start in range(0, len(chunks), BATCH_SIZE):
         batch = chunks[start : start + BATCH_SIZE]

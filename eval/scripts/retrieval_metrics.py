@@ -205,3 +205,24 @@ def aggregate_by_difficulty(results: list[ItemResult], k_values: list[int]) -> d
         groups.setdefault(r.difficulty, []).append(r)
 
     return {difficulty: aggregate(items, k_values) for difficulty, items in sorted(groups.items())}
+
+
+def aggregate_by_gold_count(results: list[ItemResult], k_values: list[int]) -> dict[str, dict]:
+    """Recall/hit-rate/MRR split by whether an item has a single AND-required
+    primary gold article ("single") or more than one ("compound").
+
+    A compound item (e.g. a clause naming both its Art 6 legal basis and the
+    Art 21 objection right) needs *every* primary article to be found for
+    strict credit, so it is structurally harder to satisfy from one top-k
+    list than a single-gold item is -- this breakdown exists so a strategy
+    aimed specifically at compound queries (concept-linked chunks, a wider
+    candidate pool before fusion/reranking) can be checked against the
+    group it targets, rather than any effect being averaged away inside one
+    blended number. Reused on top of ``aggregate``, same pattern as
+    ``aggregate_by_difficulty``.
+    """
+    groups: dict[str, list[ItemResult]] = {"single": [], "compound": []}
+    for r in results:
+        groups["compound" if len(r.gold_primary) > 1 else "single"].append(r)
+
+    return {label: aggregate(items, k_values) for label, items in groups.items() if items}

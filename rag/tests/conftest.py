@@ -32,6 +32,26 @@ def fake_embedder() -> FakeEmbedder:
     return FakeEmbedder()
 
 
+class FakeReranker:
+    """Deterministic stand-in for a cross-encoder: scores a (query, text)
+    pair by term overlap, so hybrid/rerank tests can check that reranking
+    actually reorders candidates without downloading a real cross-encoder
+    model."""
+
+    def score(self, query: str, texts: list[str]) -> list[float]:
+        query_terms = set(query.lower().split())
+        scores = []
+        for text in texts:
+            text_terms = set(text.lower().split())
+            scores.append(float(len(query_terms & text_terms)))
+        return scores
+
+
+@pytest.fixture
+def fake_reranker() -> FakeReranker:
+    return FakeReranker()
+
+
 @pytest.fixture
 def fake_gdpr_path() -> Path:
     return FIXTURES_DIR / "fake_gdpr.json"

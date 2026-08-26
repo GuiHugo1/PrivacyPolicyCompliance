@@ -2,7 +2,12 @@ import json
 
 import pytest
 
-from eval.scripts.eval_retrieval import DEFAULT_EVAL_SET, load_eval_set, run_eval
+from eval.scripts.eval_retrieval import (
+    DEFAULT_EVAL_SET,
+    _articles_from_chunk,
+    load_eval_set,
+    run_eval,
+)
 from rag.parsers.gdpr import parse_gdpr_file
 from rag.store import add_chunks
 
@@ -215,6 +220,53 @@ class TestRunEval:
         )
         assert results[0].gold_primary == ["7"]
         assert results[0].gold_secondary == ["6"]
+
+
+class TestArticlesFromChunk:
+    """A gdpr_concept chunk credits every article it links, not a single
+    'article_number' -- see rag.parsers.gdpr.CONCEPT_LINKS."""
+
+    def test_plain_article_chunk_credits_its_own_article(self):
+        meta = {"source_type": "gdpr_article", "article_number": "6"}
+        assert _articles_from_chunk(meta) == ["6"]
+
+    def test_recital_chunk_credits_nothing(self):
+        assert _articles_from_chunk({"source_type": "gdpr_recital", "recital_number": "47"}) == []
+
+    def test_concept_chunk_credits_every_linked_article(self):
+        meta = {"source_type": "gdpr_concept", "concept_articles": "6,21"}
+        assert _articles_from_chunk(meta) == ["6", "21"]
+
+    def test_run_eval_credits_a_compound_item_from_one_concept_chunk(
+        self, in_memory_collection, fake_embedder
+    ):
+        # Full strict credit for a two-primary compound item still needs 2
+        # "article slots" (k>=2) -- that's inherent to requiring 2 gold
+        # articles, concept chunk or not. What the concept chunk buys is
+        # delivering both from a *single retrieved chunk* at rank 1, rather
+        # than needing Art 6 and Art 21 to each separately break into the
+        # top-k on their own merits.
+        from rag.chunk import Chunk
+
+        concept_chunk = Chunk(
+            text="Concept: legitimate_interest_and_right_to_object",
+            metadata={
+                "source_type": "gdpr_concept",
+                "concept_articles": "6,21",
+                "chunk_id": "concept-6-21",
+            },
+        )
+        embeddings = fake_embedder.embed_documents([concept_chunk.text])
+        add_chunks(in_memory_collection, [concept_chunk], embeddings)
+
+        eval_set = [_base_item(id="e1", clause="concept", gold_articles=[_gold("6"), _gold("21")])]
+        results = run_eval(
+            eval_set, k_values=[1, 2], collection=in_memory_collection, embedder=fake_embedder
+        )
+
+        assert results[0].ranked_articles == ["6", "21"]
+        assert results[0].recall_at_k_strict[1] == 0.5  # only 1 of 2 article slots yet
+        assert results[0].recall_at_k_strict[2] == 1.0  # both delivered, from one chunk at rank 1
 
 
 @pytest.fixture(scope="module")

@@ -1,6 +1,7 @@
 from eval.scripts.retrieval_metrics import (
     aggregate,
     aggregate_by_difficulty,
+    aggregate_by_gold_count,
     aggregate_by_topic,
     hit_at_k,
     ranked_article_hits,
@@ -149,6 +150,45 @@ def test_aggregate_by_difficulty_groups_and_averages():
     assert breakdown["easy"]["recall_strict@3"] == 1.0
     assert breakdown["hard"]["n_items"] == 2
     assert breakdown["hard"]["recall_strict@3"] == 0.5
+
+
+def test_aggregate_by_gold_count_splits_single_vs_compound():
+    single_hit = score_item(
+        "a", "t", "c", gold_primary=["6"], gold_secondary=[], ranked_articles=["6"], k_values=[3]
+    )
+    compound_hit = score_item(
+        "b",
+        "t",
+        "c",
+        gold_primary=["6", "21"],
+        gold_secondary=[],
+        ranked_articles=["6", "21"],
+        k_values=[3],
+    )
+    compound_partial = score_item(
+        "c",
+        "t",
+        "c",
+        gold_primary=["24", "32"],
+        gold_secondary=[],
+        ranked_articles=["24"],
+        k_values=[3],
+    )
+
+    breakdown = aggregate_by_gold_count([single_hit, compound_hit, compound_partial], k_values=[3])
+
+    assert breakdown["single"]["n_items"] == 1
+    assert breakdown["single"]["recall_strict@3"] == 1.0
+    assert breakdown["compound"]["n_items"] == 2
+    assert breakdown["compound"]["recall_strict@3"] == 0.75  # 1.0 and 0.5, averaged
+
+
+def test_aggregate_by_gold_count_omits_empty_group():
+    single_only = score_item(
+        "a", "t", "c", gold_primary=["6"], gold_secondary=[], ranked_articles=["6"], k_values=[3]
+    )
+    breakdown = aggregate_by_gold_count([single_only], k_values=[3])
+    assert set(breakdown) == {"single"}
 
 
 def test_score_item_to_dict_round_trips_key_fields():

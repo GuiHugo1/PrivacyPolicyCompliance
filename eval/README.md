@@ -65,6 +65,10 @@ Each line in `gdpr_retrieval_eval_set.jsonl` is one JSON object:
 - `topic` / `notes` — for humans auditing or extending the set, not consumed
   by the scoring code beyond grouping the by-topic breakdown.
 
+An item with more than one co-primary article is a **compound** item (see
+"By gold-article count" below); one with a single primary article is
+**single**.
+
 142 clauses across 45 topics (every topic has at least 3 examples) span the
 provisions most likely to appear in a real privacy policy: lawfulness/consent
 (Art 6–10), the core principles (Art 5), transparency and notice (Art 12–14),
@@ -97,6 +101,49 @@ the end, for the number that goes in the report. `--split` defaults to
 `eval/benchmarks/.held_out_eval_log` and prints a warning if that log already
 has an entry, since re-running the held-out set defeats its purpose as a
 one-time, untouched check.
+
+### By gold-article count (single vs. compound)
+
+Alongside the by-difficulty breakdown, every report also splits items by
+whether they have one AND-required primary gold article ("single") or more
+than one ("compound", e.g. a clause naming both its Art 6 legal basis and
+the Art 21 objection right). A compound item structurally needs a bigger
+top-k article budget than a single-gold item to earn full strict credit, so
+this breakdown is what shows whether a strategy aimed at compound queries
+specifically -- concept-linked chunks (`rag.parsers.gdpr.CONCEPT_LINKS`), a
+wider candidate pool before fusion/reranking -- is actually working on the
+group it targets, rather than any effect being hidden inside one blended
+number. See `retrieval_metrics.aggregate_by_gold_count`.
+
+### Retrieval modes: hybrid and reranking
+
+`eval_retrieval.py` can drive `rag.retriever.retrieve`'s hybrid (dense +
+BM25, reciprocal rank fusion) and cross-encoder reranking modes instead of
+plain dense-only search, so their effect on recall/MRR -- overall, by
+difficulty, and by gold-article count -- can be measured directly rather
+than assumed:
+
+```bash
+# Hybrid retrieval
+python eval/scripts/eval_retrieval.py --hybrid
+
+# Cross-encoder reranking (top-20 candidates by default)
+python eval/scripts/eval_retrieval.py --rerank
+
+# Both, plus a wider candidate pool before fusion/reranking
+python eval/scripts/eval_retrieval.py --hybrid --rerank --fetch-k 100
+
+# Compare an alternate/fine-tuned embedding model on the hard subset --
+# rebuild the index with the same --embedding-model first (see rag/README.md).
+python eval/scripts/eval_retrieval.py --embedding-model my-org/bge-legal-ft
+```
+
+The BM25 index and/or cross-encoder are built/loaded once per run (not once
+per eval item) and reused across the whole eval set. A `gdpr_concept` chunk
+(see `rag.parsers.gdpr.CONCEPT_LINKS`) credits *every* article it links at
+the rank it's retrieved, not just one -- so a compound item can get full
+strict credit from a single concept chunk, without both of its articles
+needing to independently break into the top-k on their own.
 
 ### Wide-k diagnostic pass
 
@@ -147,9 +194,11 @@ The report includes:
   requested k — see "Strict vs. lenient scoring" above.
 - **MRR strict / MRR lenient** — mean reciprocal rank of the first correctly
   retrieved gold article, under each scoring mode.
-- **a by-difficulty breakdown** (easy vs. hard) and **a by-topic breakdown**
-  at the largest requested k, to spot systematically weak topics or a
-  paraphrase-robustness gap rather than just an aggregate number.
+- **a by-difficulty breakdown** (easy vs. hard), **a by-gold-count
+  breakdown** (single vs. compound-primary), and **a by-topic breakdown** at
+  the largest requested k, to spot systematically weak topics, a
+  paraphrase-robustness gap, or a compound-query gap rather than just an
+  aggregate number.
 - **the full list of complete strict misses** (no primary gold article
   retrieved at all) for manual triage — these are the clauses to look at
   first when deciding whether to trust the pipeline.
