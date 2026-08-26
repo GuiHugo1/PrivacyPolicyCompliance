@@ -1,0 +1,4344 @@
+{
+  "retrieval_metrics": {
+    "aggregate": {
+      "n_items": 114,
+      "mrr_strict": 0.6944444444444445,
+      "mrr_lenient": 0.7076023391812866,
+      "recall_strict@1": 0.6535087719298246,
+      "recall_lenient@1": 0.6754385964912281,
+      "hit_rate_strict@1": 0.6578947368421053,
+      "recall_strict@3": 0.7412280701754386,
+      "recall_lenient@3": 0.7543859649122807,
+      "hit_rate_strict@3": 0.7456140350877193,
+      "recall_strict@5": 0.7412280701754386,
+      "recall_lenient@5": 0.7543859649122807,
+      "hit_rate_strict@5": 0.7456140350877193,
+      "recall_strict@10": 0.7412280701754386,
+      "recall_lenient@10": 0.7543859649122807,
+      "hit_rate_strict@10": 0.7456140350877193
+    },
+    "by_topic": {
+      "accountability_principle": {
+        "n_items": 3,
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.3333333333333333
+      },
+      "accuracy_principle": {
+        "n_items": 2,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "automated_decision_making": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "breach_notification_authority": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "breach_notification_data_subject": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "childrens_consent": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "confidentiality_integrity_principle": {
+        "n_items": 3,
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
+      },
+      "consent_clarity": {
+        "n_items": 4,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "consent_withdrawal": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "controller_accountability_measures": {
+        "n_items": 3,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
+      },
+      "controller_contact_details": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "cookies_tracking_consent": {
+        "n_items": 3,
+        "recall_strict@10": 0.16666666666666666,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
+      },
+      "criminal_offence_data": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "data_minimisation": {
+        "n_items": 3,
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
+      },
+      "definitions": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "dpia": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "dpo_designation": {
+        "n_items": 2,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "dpo_position_independence": {
+        "n_items": 2,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "international_transfers_general": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "joint_controllers": {
+        "n_items": 3,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
+      },
+      "lawful_basis_general": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "legitimate_interest_marketing_objection": {
+        "n_items": 3,
+        "recall_strict@10": 0.0,
+        "recall_lenient@10": 0.0,
+        "hit_rate_strict@10": 0.0
+      },
+      "notice_direct_collection": {
+        "n_items": 3,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
+      },
+      "notice_indirect_collection": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "notification_to_recipients": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "privacy_by_design_default": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "processor_obligations": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "purpose_limitation": {
+        "n_items": 3,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
+      },
+      "records_of_processing": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "retention_period_disclosure": {
+        "n_items": 3,
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
+      },
+      "right_of_access": {
+        "n_items": 3,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
+      },
+      "right_to_compensation": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "right_to_data_portability": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "right_to_erasure": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "right_to_lodge_complaint": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "right_to_object_general": {
+        "n_items": 3,
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
+      },
+      "right_to_object_marketing": {
+        "n_items": 2,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "right_to_rectification": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "right_to_restriction": {
+        "n_items": 2,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "security_of_processing": {
+        "n_items": 3,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
+      },
+      "special_category_data": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "storage_limitation_retention": {
+        "n_items": 2,
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
+      },
+      "transfers_adequacy_decision": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "transfers_appropriate_safeguards": {
+        "n_items": 3,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      },
+      "transparency_general": {
+        "n_items": 2,
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
+      }
+    },
+    "by_difficulty": {
+      "easy": {
+        "n_items": 69,
+        "mrr_strict": 0.8526570048309179,
+        "mrr_lenient": 0.8743961352657005,
+        "recall_strict@1": 0.8043478260869565,
+        "recall_lenient@1": 0.8405797101449275,
+        "hit_rate_strict@1": 0.8115942028985508,
+        "recall_strict@3": 0.9057971014492754,
+        "recall_lenient@3": 0.927536231884058,
+        "hit_rate_strict@3": 0.9130434782608695,
+        "recall_strict@5": 0.9057971014492754,
+        "recall_lenient@5": 0.927536231884058,
+        "hit_rate_strict@5": 0.9130434782608695,
+        "recall_strict@10": 0.9057971014492754,
+        "recall_lenient@10": 0.927536231884058,
+        "hit_rate_strict@10": 0.9130434782608695
+      },
+      "hard": {
+        "n_items": 45,
+        "mrr_strict": 0.45185185185185184,
+        "mrr_lenient": 0.45185185185185184,
+        "recall_strict@1": 0.4222222222222222,
+        "recall_lenient@1": 0.4222222222222222,
+        "hit_rate_strict@1": 0.4222222222222222,
+        "recall_strict@3": 0.4888888888888889,
+        "recall_lenient@3": 0.4888888888888889,
+        "hit_rate_strict@3": 0.4888888888888889,
+        "recall_strict@5": 0.4888888888888889,
+        "recall_lenient@5": 0.4888888888888889,
+        "hit_rate_strict@5": 0.4888888888888889,
+        "recall_strict@10": 0.4888888888888889,
+        "recall_lenient@10": 0.4888888888888889,
+        "hit_rate_strict@10": 0.4888888888888889
+      }
+    },
+    "items": [
+      {
+        "id": "eval-001",
+        "topic": "lawful_basis_general",
+        "clause": "We process your personal data only where we have a valid legal basis, including your consent, performance of a contract with you, compliance with a legal obligation, or our legitimate interests.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "6"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "6"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-002",
+        "topic": "consent_withdrawal",
+        "clause": "You have the right to withdraw your consent to any processing based on consent at any time, free of charge, and withdrawal will not affect the lawfulness of processing carried out before you withdrew it.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "7"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-003",
+        "topic": "consent_clarity",
+        "clause": "Where we ask for your consent as part of a broader form or agreement, the request for consent is presented separately, in plain and clear language, so it is clearly distinguishable from other matters.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-004",
+        "topic": "childrens_consent",
+        "clause": "Our services are not directed at children under 16, and where a child under that age wishes to use services that rely on consent, we require the consent or authorisation of a parent or legal guardian.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "8"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "8"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-006",
+        "topic": "criminal_offence_data",
+        "clause": "Any information about criminal convictions or offences is only processed under the control of official authority or where specifically authorised by applicable law, with appropriate safeguards in place.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "10"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "10",
+          "5",
+          "6",
+          "86"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-007",
+        "topic": "purpose_limitation",
+        "clause": "We collect your personal data only for the specified purposes described in this policy and will not further process it in a manner incompatible with those purposes.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "5",
+          "4",
+          "9",
+          "6"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-008",
+        "topic": "data_minimisation",
+        "clause": "We limit the personal data we collect to what is adequate, relevant and necessary for the purposes for which it is processed.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "5"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-009",
+        "topic": "accuracy_principle",
+        "clause": "We take reasonable steps to ensure the personal data we hold about you is accurate and, where necessary, kept up to date, and we will correct or erase inaccurate data without undue delay.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "5",
+          "16",
+          "17"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-010",
+        "topic": "storage_limitation_retention",
+        "clause": "We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected, after which it is securely deleted or anonymised.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "5"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-012",
+        "topic": "accountability_principle",
+        "clause": "We are responsible for, and must be able to demonstrate, compliance with these data protection principles across all of our processing activities.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "24"
+        ],
+        "ranked_articles": [
+          "24"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-013",
+        "topic": "transparency_general",
+        "clause": "We provide information about how we use your personal data in a concise, transparent, intelligible and easily accessible form, using clear and plain language.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "12"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "12",
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-014",
+        "topic": "notice_direct_collection",
+        "clause": "When you provide your personal data to us directly, for example by creating an account, we tell you at that time who we are, why we are processing your data, and who else we may share it with.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-015",
+        "topic": "notice_indirect_collection",
+        "clause": "Where we obtain personal data about you from a source other than you directly, such as a business partner, we provide you with information about the processing within a reasonable period, and no later than one month.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "14"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "14",
+          "13",
+          "12"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-016",
+        "topic": "right_of_access",
+        "clause": "You have the right to request confirmation of whether we process your personal data and, if so, to obtain a copy of that data along with information about the purposes of processing.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "15"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "15",
+          "18",
+          "16"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-017",
+        "topic": "right_to_rectification",
+        "clause": "You have the right to request that we correct any inaccurate personal data we hold about you and complete any personal data that is incomplete.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "16"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "16",
+          "17"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-018",
+        "topic": "right_to_erasure",
+        "clause": "You have the right to request the erasure of your personal data where, for example, it is no longer necessary for the purposes for which it was collected or you withdraw your consent.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "17"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "17"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-020",
+        "topic": "notification_to_recipients",
+        "clause": "Where we correct, erase or restrict your personal data, we notify each recipient to whom the data has been disclosed, unless this proves impossible or involves disproportionate effort.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "19"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "19",
+          "17",
+          "16",
+          "4",
+          "58"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-022",
+        "topic": "right_to_object_general",
+        "clause": "You have the right to object, on grounds relating to your particular situation, to processing of your personal data that is based on our legitimate interests.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "21",
+          "15",
+          "6"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-024",
+        "topic": "automated_decision_making",
+        "clause": "You have the right not to be subject to a decision based solely on automated processing, including profiling, that produces legal effects concerning you or similarly significantly affects you.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "22"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "22",
+          "4",
+          "21",
+          "9",
+          "17",
+          "35"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-025",
+        "topic": "controller_accountability_measures",
+        "clause": "We implement appropriate technical and organisational measures to ensure and be able to demonstrate that our processing complies with applicable data protection law.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "24"
+        ],
+        "gold_secondary": [
+          "32"
+        ],
+        "ranked_articles": [
+          "32",
+          "24"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-026",
+        "topic": "privacy_by_design_default",
+        "clause": "We implement data protection by design and by default, including by ensuring that only personal data necessary for each specific purpose is processed by default.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "25"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "25"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-027",
+        "topic": "joint_controllers",
+        "clause": "Where we determine the purposes and means of processing jointly with another organisation, we set out our respective responsibilities for compliance with data protection obligations in an arrangement between us.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "26"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "26",
+          "6",
+          "28",
+          "24"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-028",
+        "topic": "processor_obligations",
+        "clause": "Where we use third-party service providers to process personal data on our behalf, we enter into a written contract requiring them to process the data only on our documented instructions and to implement appropriate security measures.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "28"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "28",
+          "9",
+          "6",
+          "13",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-029",
+        "topic": "records_of_processing",
+        "clause": "We maintain a record of our processing activities, including the purposes of processing, categories of data subjects and personal data, and the recipients to whom the data has been or will be disclosed.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "30"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "30",
+          "4",
+          "9",
+          "5"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-030",
+        "topic": "security_of_processing",
+        "clause": "We implement appropriate technical and organisational measures, such as encryption and regular testing of our security measures, to ensure a level of security appropriate to the risk to your personal data.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "32"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "32"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-033",
+        "topic": "dpia",
+        "clause": "Before carrying out processing that is likely to result in a high risk to your rights and freedoms, such as large-scale processing of special category data, we carry out a data protection impact assessment.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "35"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "35",
+          "36"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-034",
+        "topic": "dpo_designation",
+        "clause": "We have designated a Data Protection Officer who can be contacted regarding any questions about how we process your personal data.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "37"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "37",
+          "39",
+          "38",
+          "35"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-035",
+        "topic": "dpo_position_independence",
+        "clause": "Our Data Protection Officer is involved in all issues relating to the protection of personal data, reports directly to our highest level of management, and performs their tasks independently.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "38"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "38",
+          "39",
+          "37",
+          "35",
+          "30"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-038",
+        "topic": "transfers_appropriate_safeguards",
+        "clause": "Where we transfer personal data to a country without an adequacy decision, we rely on appropriate safeguards, such as the European Commission's standard contractual clauses, to protect your data.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "46"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "45",
+          "49",
+          "46"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-040",
+        "topic": "right_to_compensation",
+        "clause": "Any person who has suffered material or non-material damage as a result of an infringement of data protection law has the right to receive compensation from the controller or processor for the damage suffered.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "82"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "82",
+          "79",
+          "18",
+          "16"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-041",
+        "topic": "definitions",
+        "clause": "For the purposes of this policy, \"personal data\" means any information relating to an identified or identifiable individual, and \"processing\" means any operation performed on such data.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "4"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "4",
+          "5",
+          "9",
+          "6"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-042",
+        "topic": "legitimate_interest_marketing_objection",
+        "clause": "We may process your contact details on the basis of our legitimate interest to send you marketing communications about similar products; you can object to this processing at any time by using the opt-out link in each communication.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "6",
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-043",
+        "topic": "cookies_tracking_consent",
+        "clause": "We use cookies and similar tracking technologies; where these are not strictly necessary for the service, we only place them on your device after obtaining your consent in line with applicable consent requirements.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "6",
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-045",
+        "topic": "controller_contact_details",
+        "clause": "This policy identifies the name and contact details of the controller responsible for your personal data, and, where applicable, of our representative and Data Protection Officer.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [
+          "14"
+        ],
+        "ranked_articles": [
+          "13",
+          "4",
+          "14",
+          "30",
+          "38",
+          "37",
+          "35",
+          "36"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-003b",
+        "topic": "consent_clarity",
+        "clause": "If you consent to processing as part of accepting our broader terms of service, that consent request will nonetheless be set out as its own distinct section, written in accessible language and not buried within unrelated contractual terms.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "7"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-003c",
+        "topic": "consent_clarity",
+        "clause": "Consent notice: presented separately from other terms; written in plain, intelligible language; easy to tell apart from unrelated provisions in the same document.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-003d",
+        "topic": "consent_clarity",
+        "clause": "We won't bury a request for your permission inside a wall of legal text -- if we need you to say yes to something, we'll make that ask stand out on its own.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "7"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-011b",
+        "topic": "confidentiality_integrity_principle",
+        "clause": "We maintain appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure or destruction.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "32"
+        ],
+        "ranked_articles": [
+          "5",
+          "25"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-011c",
+        "topic": "confidentiality_integrity_principle",
+        "clause": "Keeping your information safe matters to us: our security program is designed to prevent data from being accessed by people who shouldn't see it, changed without authorization, or lost through accident or system failure.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "32"
+        ],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-011d",
+        "topic": "confidentiality_integrity_principle",
+        "clause": "We take data security seriously and have safeguards in place, covering both digital and physical protections, so that your information stays confidential and intact throughout our processing of it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "32"
+        ],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-012b",
+        "topic": "accountability_principle",
+        "clause": "We can demonstrate, upon request, that our processing activities comply with the data protection principles set out in this policy.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "24"
+        ],
+        "ranked_articles": [
+          "5",
+          "24",
+          "6",
+          "88"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-012d",
+        "topic": "accountability_principle",
+        "clause": "Accountability sits at the center of how we handle your data: we don't just follow the principles in this policy, we keep evidence that we do.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "24"
+        ],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-025c",
+        "topic": "controller_accountability_measures",
+        "clause": "Because the risk profile of different processing activities varies, we tailor our compliance measures accordingly -- reviewing and updating them as our processing changes -- so we can always show that what we do matches what the law requires.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "24"
+        ],
+        "gold_secondary": [
+          "32"
+        ],
+        "ranked_articles": [
+          "6",
+          "24"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
+      },
+      {
+        "id": "eval-025d",
+        "topic": "controller_accountability_measures",
+        "clause": "We regularly review our data protection measures to keep pace with how we use personal data, and we can show our work if a regulator or partner asks us to prove it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "24"
+        ],
+        "gold_secondary": [
+          "32"
+        ],
+        "ranked_articles": [
+          "98"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-042b",
+        "topic": "legitimate_interest_marketing_objection",
+        "clause": "Sending you marketing about products similar to ones you've bought is something we do on the basis of our legitimate interest, and you're free to object and opt out of these messages at any time.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "6",
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-042c",
+        "topic": "legitimate_interest_marketing_objection",
+        "clause": "You'll notice an unsubscribe link at the bottom of our marketing emails -- that's not just a courtesy, it's because we rely on legitimate interest rather than your consent to send them, and the law gives you an absolute right to say stop.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "6",
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-043b",
+        "topic": "cookies_tracking_consent",
+        "clause": "Except where strictly necessary, cookies and similar technologies are only set on your device once you have given your consent, which you may withdraw at any time via our cookie settings.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "6",
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "7"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.5,
+          "3": 0.5,
+          "5": 0.5,
+          "10": 0.5
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-043c",
+        "topic": "cookies_tracking_consent",
+        "clause": "Our site uses a few different types of cookies -- some it needs to function, and some it doesn't. For the ones it doesn't need, we'll ask first, and you can change your mind whenever you like.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "6",
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-044b",
+        "topic": "retention_period_disclosure",
+        "clause": "We tell you how long we intend to keep your personal data, or, if we can't give an exact period, the criteria we will use to decide how long to keep it.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [
+          "5"
+        ],
+        "ranked_articles": [
+          "14",
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
+      },
+      {
+        "id": "eval-044c",
+        "topic": "retention_period_disclosure",
+        "clause": "How long we hold onto your data depends on why we collected it in the first place -- where we can state a fixed period upfront we will, and where we can't, we explain the factors that determine when it gets deleted.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [
+          "5"
+        ],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-044d",
+        "topic": "retention_period_disclosure",
+        "clause": "Retention isn't indefinite: we've set out, in the relevant section of this notice, either a specific timeframe or the considerations that guide how long particular data stays with us.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [
+          "5"
+        ],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-001b",
+        "topic": "lawful_basis_general",
+        "clause": "Each time we process your personal data, we rely on one of the legal bases recognised under data protection law, such as your consent, the necessity of a contract, or our legitimate interests.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "6"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "6"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-002c",
+        "topic": "consent_withdrawal",
+        "clause": "Changed your mind? Withdrawing consent is as easy as giving it, and doing so won't undo anything we've already done while your consent was in effect.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "7"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "7"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-004b",
+        "topic": "childrens_consent",
+        "clause": "For users under the age of 16, we require a parent or guardian to consent to any processing carried out on the basis of consent before we act on the child's own agreement.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "8"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "8"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-004c",
+        "topic": "childrens_consent",
+        "clause": "If you're a parent, you may need to authorise certain features on your child's behalf -- anything that relies on consent for users below the applicable age threshold needs a parent or guardian's sign-off first.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "8"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "8"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-005b",
+        "topic": "special_category_data",
+        "clause": "We only process special categories of data, such as health information or data about your sexual orientation, where you have given explicit consent or another legal exemption applies.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "9"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "9"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-005c",
+        "topic": "special_category_data",
+        "clause": "Sensitive information -- the kind that reveals things like your health, religion, or ethnic background -- gets extra protection: we won't touch it unless you've explicitly agreed or the law specifically allows it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "9"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "9",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-006b",
+        "topic": "criminal_offence_data",
+        "clause": "Data relating to criminal convictions or offences is processed only under the control of an official authority, or where specific legal authorisation permits it, with appropriate safeguards.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "10"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "10",
+          "6",
+          "5"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-007b",
+        "topic": "purpose_limitation",
+        "clause": "Personal data collected for one purpose, such as processing an order, is not later used for an unrelated purpose without further notice to you.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "6",
+          "9",
+          "5",
+          "13",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-007c",
+        "topic": "purpose_limitation",
+        "clause": "We don't repurpose your data on a whim -- what we collect it for is what we use it for, unless we tell you otherwise and, where required, get your agreement first.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-008b",
+        "topic": "data_minimisation",
+        "clause": "We only ask for the personal data that is actually needed to provide the service you've requested -- nothing extra.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-008c",
+        "topic": "data_minimisation",
+        "clause": "Before adding a new data field to a form, we ask whether we genuinely need it; if the answer's no, we don't collect it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-009c",
+        "topic": "accuracy_principle",
+        "clause": "Outdated or incorrect records don't just sit there -- when we learn something in our systems is wrong, we fix it or take it out.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "16"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-010c",
+        "topic": "storage_limitation_retention",
+        "clause": "We don't hold onto your information forever -- once there's no longer a reason to keep it, it gets removed from our systems or stripped of anything that could identify you.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-013b",
+        "topic": "transparency_general",
+        "clause": "Information about how we process your personal data is provided in a concise, transparent and easily understood way, using clear language rather than legal jargon.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "12"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "12",
+          "5",
+          "13",
+          "9"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-014b",
+        "topic": "notice_direct_collection",
+        "clause": "When you give us your data directly, such as when signing up for an account, we explain at that point who we are and why we're collecting it.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-014c",
+        "topic": "notice_direct_collection",
+        "clause": "The moment you hand over information to create an account, you'll also get the basics: who's collecting it, what it's for, and who might see it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-015b",
+        "topic": "notice_indirect_collection",
+        "clause": "If we obtain your data from someone other than you, such as a partner company, we provide you with information about that processing within a reasonable time, and no later than one month.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "14"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "14",
+          "12",
+          "61",
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-015c",
+        "topic": "notice_indirect_collection",
+        "clause": "Sometimes we learn about you through a third party rather than from you directly -- when that happens, we'll still make sure you're informed, generally within a month of receiving your data.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "14"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "14",
+          "12",
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-016b",
+        "topic": "right_of_access",
+        "clause": "You may request confirmation of whether we hold personal data about you and, where we do, a copy of that data along with details of how it's processed.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "15"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "15",
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-016c",
+        "topic": "right_of_access",
+        "clause": "Wondering what we have on file for you? You can ask, and we'll confirm whether we're processing your data and hand over a copy along with an explanation of what we're doing with it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "15"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-017b",
+        "topic": "right_to_rectification",
+        "clause": "You have the right to have inaccurate personal data corrected and incomplete data completed.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "16"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "16",
+          "17",
+          "18"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-017c",
+        "topic": "right_to_rectification",
+        "clause": "If something in our records about you is wrong or missing, you can ask us to fix it, and we will.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "16"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "16"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-018c",
+        "topic": "right_to_erasure",
+        "clause": "Sometimes called the 'right to be forgotten,' you can request that we erase your data -- for example, once we no longer have a reason to keep it, or if you pull your consent.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "17"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "17"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-019b",
+        "topic": "right_to_restriction",
+        "clause": "In certain circumstances, such as while we investigate a challenge to the accuracy of your data, you may ask us to restrict our processing of it.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "18"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "18",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-019c",
+        "topic": "right_to_restriction",
+        "clause": "There are situations -- like when you're disputing whether our data about you is even correct -- where you can ask us to pause active use of your data rather than delete it outright.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "18"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-020b",
+        "topic": "notification_to_recipients",
+        "clause": "When personal data is corrected, erased or its processing restricted, we notify each recipient it was disclosed to, unless that proves impossible or disproportionately difficult.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "19"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "19",
+          "17",
+          "16"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-020c",
+        "topic": "notification_to_recipients",
+        "clause": "If we've already shared your data with someone and then fix, delete, or restrict it, we'll let that recipient know too -- unless doing so turns out to be impossible or would take a disproportionate effort.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "19"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "19"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-021b",
+        "topic": "right_to_data_portability",
+        "clause": "Where processing is based on your consent or a contract and is automated, you may request your personal data in a structured, commonly used, machine-readable format, and ask that it be transmitted to another provider.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "20"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "20",
+          "7",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-021c",
+        "topic": "right_to_data_portability",
+        "clause": "If the processing is consent- or contract-based and handled by computer rather than manually, you can take your data with you -- request it in a portable format and, where feasible, we'll send it directly to another provider on your behalf.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "20"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "7",
+          "20"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
+      },
+      {
+        "id": "eval-022b",
+        "topic": "right_to_object_general",
+        "clause": "You may object, on grounds relating to your particular situation, to our processing of your personal data that is based on legitimate interests.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "6",
+          "9"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-022c",
+        "topic": "right_to_object_general",
+        "clause": "If something about your specific circumstances makes you uncomfortable with processing we're doing on the basis of legitimate interest, you can object, and we'll have to justify continuing unless we have compelling grounds.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-023b",
+        "topic": "right_to_object_marketing",
+        "clause": "You may object at any time to our processing of your personal data for direct marketing, and once you do, we will stop.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "4",
+          "9",
+          "21"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-023c",
+        "topic": "right_to_object_marketing",
+        "clause": "Marketing is different from our other legitimate-interest processing -- you can shut it off entirely, at any time, no justification needed on your part, and we have to comply.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-024b",
+        "topic": "automated_decision_making",
+        "clause": "You have the right not to be subject to a decision based solely on automated processing, including profiling, that produces legal effects concerning you or similarly significantly affects you.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "22"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "22",
+          "4",
+          "21",
+          "9",
+          "17",
+          "35"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-024c",
+        "topic": "automated_decision_making",
+        "clause": "We don't let algorithms make consequential decisions about you entirely on their own -- where automated processing, including profiling, would have a legal or similarly significant effect, you can insist on human involvement.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "22"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "22",
+          "4",
+          "35",
+          "9"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-026b",
+        "topic": "privacy_by_design_default",
+        "clause": "We build data protection into our systems from the outset and, by default, only process the personal data necessary for each specific purpose.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "25"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "25"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-026c",
+        "topic": "privacy_by_design_default",
+        "clause": "Privacy isn't bolted on afterward -- it's part of how we design our products, and our default settings are already set to collect the minimum amount of data needed.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "25"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "25"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-027b",
+        "topic": "joint_controllers",
+        "clause": "Where we jointly determine the purposes and means of processing with another organisation, our respective responsibilities are set out in an arrangement between us.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "26"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "26",
+          "61",
+          "62",
+          "28",
+          "24",
+          "88"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-027c",
+        "topic": "joint_controllers",
+        "clause": "Some processing is done together with a partner organisation, in which case we agree between ourselves who handles which compliance responsibilities, and the essence of that arrangement is available to you on request.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "26"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "62",
+          "28",
+          "88",
+          "61"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-028b",
+        "topic": "processor_obligations",
+        "clause": "Any third-party service provider we engage to process personal data on our behalf does so under a written contract requiring them to follow our documented instructions and maintain appropriate security.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "28"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "28",
+          "13",
+          "6",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-029b",
+        "topic": "records_of_processing",
+        "clause": "We maintain internal records of our processing activities, covering the purposes of processing, the categories of data and data subjects involved, and who the data is disclosed to.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "30"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "30",
+          "4",
+          "5",
+          "9"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-029c",
+        "topic": "records_of_processing",
+        "clause": "Behind the scenes, we keep a log of what we process, why, and who it gets shared with -- part of how we stay accountable for our data practices.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "30"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "30"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-030b",
+        "topic": "security_of_processing",
+        "clause": "We implement technical and organisational measures, including encryption and regular security testing, appropriate to the risk posed to your personal data.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "32"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "32"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-030c",
+        "topic": "security_of_processing",
+        "clause": "Security isn't a one-time setup -- we use measures like encryption and run regular tests, scaled to how sensitive the data is and what could go wrong if it were compromised.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "32"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-031b",
+        "topic": "breach_notification_authority",
+        "clause": "If a personal data breach occurs, we notify the relevant supervisory authority without undue delay, and within 72 hours where feasible.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "33"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "33"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-031c",
+        "topic": "breach_notification_authority",
+        "clause": "Should something go wrong and your data is compromised, our first call is to the supervisory authority -- ideally within 72 hours of us finding out, and without delay in any case.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "33"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "33",
+          "61"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-032b",
+        "topic": "breach_notification_data_subject",
+        "clause": "Where a personal data breach is likely to result in a high risk to your rights and freedoms, we will inform you of it without undue delay.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "34"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "34",
+          "33",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-032c",
+        "topic": "breach_notification_data_subject",
+        "clause": "Not every breach warrants telling you directly, but if the risk to you is high enough, we'll reach out as soon as we reasonably can.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "34"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "34"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-033b",
+        "topic": "dpia",
+        "clause": "Before undertaking processing likely to result in a high risk to individuals' rights and freedoms, such as large-scale processing of sensitive data, we conduct a data protection impact assessment.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "35"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "35"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-033c",
+        "topic": "dpia",
+        "clause": "New, higher-risk projects -- think large-scale use of sensitive data or extensive monitoring -- go through a formal impact assessment before we ever start processing.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "35"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "35",
+          "36"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-034c",
+        "topic": "dpo_designation",
+        "clause": "Got a data protection question that goes beyond this notice? Our Data Protection Officer is there specifically to be reached about exactly that.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "37"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "35",
+          "13"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-035c",
+        "topic": "dpo_position_independence",
+        "clause": "We don't second-guess our DPO's judgment calls -- they're looped into every relevant issue, answer directly to the top of the organisation, and operate free of instructions on how to do their job.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "38"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-036b",
+        "topic": "international_transfers_general",
+        "clause": "Personal data is only transferred outside the European Economic Area where the conditions set out in data protection law for such transfers are satisfied.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "44"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "49",
+          "45",
+          "44"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-036c",
+        "topic": "international_transfers_general",
+        "clause": "Moving data across borders, specifically outside the EEA, isn't something we do casually -- it only happens once the legal conditions for that kind of transfer are met.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "44"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "49",
+          "45",
+          "44"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-037b",
+        "topic": "transfers_adequacy_decision",
+        "clause": "Where the European Commission has recognised a destination country as providing an adequate level of data protection, we may transfer personal data there without additional authorisation.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "45"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "45",
+          "48",
+          "46",
+          "49"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-037c",
+        "topic": "transfers_adequacy_decision",
+        "clause": "Some countries have already been given a clean bill of health by the European Commission on data protection -- transfers to those destinations don't need any extra paperwork on our end.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "45"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "45"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-038b",
+        "topic": "transfers_appropriate_safeguards",
+        "clause": "For transfers to countries without an adequacy decision, we rely on appropriate safeguards, such as the European Commission's standard contractual clauses.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "46"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "45",
+          "46"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
+      },
+      {
+        "id": "eval-038c",
+        "topic": "transfers_appropriate_safeguards",
+        "clause": "When a destination hasn't been pre-approved by the European Commission, we don't skip the safeguards -- we put contractual protections, like the Commission's standard clauses, in place first.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "46"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "46"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-039b",
+        "topic": "right_to_lodge_complaint",
+        "clause": "You have the right to lodge a complaint with a supervisory authority, including in the Member State of your habitual residence or place of work, if you believe our processing infringes data protection law.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "77"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "77",
+          "79",
+          "80",
+          "15",
+          "58",
+          "4"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-039c",
+        "topic": "right_to_lodge_complaint",
+        "clause": "If you think we've gotten something wrong with your data, you're not limited to raising it with us -- you can also complain directly to a supervisory authority, including one local to where you live or work.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "77"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "77",
+          "4",
+          "79"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-040b",
+        "topic": "right_to_compensation",
+        "clause": "Anyone who suffers material or non-material damage as a result of an infringement of data protection law has the right to compensation from the controller or processor responsible.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "82"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "82",
+          "79",
+          "28",
+          "18"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-041c",
+        "topic": "definitions",
+        "clause": "A couple of terms come up a lot in this notice: 'personal data' covers anything that relates to you as an identifiable person, and 'processing' covers essentially anything we do with it, from collecting it to deleting it.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "4"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "4",
+          "9",
+          "5"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-045b",
+        "topic": "controller_contact_details",
+        "clause": "This notice identifies the name and contact details of the controller responsible for your personal data, as well as our Data Protection Officer where one has been appointed.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "13"
+        ],
+        "gold_secondary": [
+          "14"
+        ],
+        "ranked_articles": [
+          "13",
+          "14",
+          "35",
+          "4",
+          "37",
+          "36",
+          "38"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      }
+    ]
+  }
+}
