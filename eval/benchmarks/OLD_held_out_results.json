@@ -2,8 +2,8 @@
   "retrieval_metrics": {
     "aggregate": {
       "n_items": 28,
-      "mrr_strict": 0.6785714285714286,
-      "mrr_lenient": 0.7142857142857143,
+      "mrr_strict": 0.7083333333333333,
+      "mrr_lenient": 0.744047619047619,
       "recall_strict@3": 0.75,
       "recall_lenient@3": 0.7857142857142857,
       "hit_rate_strict@3": 0.75,
@@ -187,8 +187,8 @@
     "by_difficulty": {
       "easy": {
         "n_items": 19,
-        "mrr_strict": 0.8157894736842105,
-        "mrr_lenient": 0.868421052631579,
+        "mrr_strict": 0.8333333333333334,
+        "mrr_lenient": 0.8859649122807017,
         "recall_strict@3": 0.8947368421052632,
         "recall_lenient@3": 0.9473684210526315,
         "hit_rate_strict@3": 0.8947368421052632,
@@ -201,8 +201,8 @@
       },
       "hard": {
         "n_items": 9,
-        "mrr_strict": 0.3888888888888889,
-        "mrr_lenient": 0.3888888888888889,
+        "mrr_strict": 0.4444444444444444,
+        "mrr_lenient": 0.4444444444444444,
         "recall_strict@3": 0.4444444444444444,
         "recall_lenient@3": 0.4444444444444444,
         "hit_rate_strict@3": 0.4444444444444444,
@@ -212,36 +212,6 @@
         "recall_strict@10": 0.4444444444444444,
         "recall_lenient@10": 0.4444444444444444,
         "hit_rate_strict@10": 0.4444444444444444
-      }
-    },
-    "by_gold_count": {
-      "single": {
-        "n_items": 26,
-        "mrr_strict": 0.7307692307692307,
-        "mrr_lenient": 0.7692307692307693,
-        "recall_strict@3": 0.8076923076923077,
-        "recall_lenient@3": 0.8461538461538461,
-        "hit_rate_strict@3": 0.8076923076923077,
-        "recall_strict@5": 0.8076923076923077,
-        "recall_lenient@5": 0.8461538461538461,
-        "hit_rate_strict@5": 0.8076923076923077,
-        "recall_strict@10": 0.8076923076923077,
-        "recall_lenient@10": 0.8461538461538461,
-        "hit_rate_strict@10": 0.8076923076923077
-      },
-      "compound": {
-        "n_items": 2,
-        "mrr_strict": 0.0,
-        "mrr_lenient": 0.0,
-        "recall_strict@3": 0.0,
-        "recall_lenient@3": 0.0,
-        "hit_rate_strict@3": 0.0,
-        "recall_strict@5": 0.0,
-        "recall_lenient@5": 0.0,
-        "hit_rate_strict@5": 0.0,
-        "recall_strict@10": 0.0,
-        "recall_lenient@10": 0.0,
-        "hit_rate_strict@10": 0.0
       }
     },
     "items": [
@@ -290,9 +260,9 @@
         ],
         "ranked_articles": [
           "5",
-          "32",
           "4",
-          "9"
+          "9",
+          "6"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -324,7 +294,7 @@
         "gold_secondary": [],
         "ranked_articles": [
           "18",
-          "15"
+          "16"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -357,7 +327,8 @@
         "ranked_articles": [
           "20",
           "28",
-          "7"
+          "7",
+          "15"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -388,9 +359,8 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "18",
           "21",
-          "6"
+          "18"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -407,8 +377,8 @@
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-031",
@@ -421,8 +391,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "33",
-          "34"
+          "33"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -486,9 +455,10 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "49",
           "44",
           "45",
-          "49"
+          "48"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -505,8 +475,8 @@
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-037",
@@ -553,8 +523,10 @@
         "gold_secondary": [],
         "ranked_articles": [
           "77",
-          "15",
-          "79"
+          "79",
+          "80",
+          "58",
+          "15"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -587,11 +559,10 @@
           "5"
         ],
         "ranked_articles": [
-          "15",
           "13",
           "14",
-          "5",
-          "4"
+          "4",
+          "9"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -608,8 +579,8 @@
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-012c",
@@ -624,7 +595,8 @@
           "24"
         ],
         "ranked_articles": [
-          "41"
+          "41",
+          "40"
         ],
         "recall_at_k_strict": {
           "3": 0.0,
@@ -658,7 +630,7 @@
         ],
         "ranked_articles": [
           "32",
-          "35"
+          "25"
         ],
         "recall_at_k_strict": {
           "3": 0.0,
@@ -811,7 +783,8 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "10"
+          "10",
+          "6"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -843,7 +816,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "5",
-          "16"
+          "16",
+          "6"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -876,7 +850,8 @@
         "ranked_articles": [
           "5",
           "4",
-          "9"
+          "9",
+          "89"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -906,7 +881,9 @@
           "12"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "5"
+        ],
         "recall_at_k_strict": {
           "3": 0.0,
           "5": 0.0,
@@ -996,10 +973,46 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "37",
           "39",
           "38",
-          "36"
+          "37",
+          "35"
+        ],
+        "recall_at_k_strict": {
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-035b",
+        "topic": "dpo_position_independence",
+        "clause": "Our Data Protection Officer is involved in all matters relating to data protection, reports directly to senior management, and carries out their role independently.",
+        "difficulty": "easy",
+        "split": "held_out",
+        "gold_primary": [
+          "38"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "38",
+          "39",
+          "37",
+          "35",
+          "75",
+          "30"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -1018,39 +1031,6 @@
         },
         "reciprocal_rank_strict": 1.0,
         "reciprocal_rank_lenient": 1.0
-      },
-      {
-        "id": "eval-035b",
-        "topic": "dpo_position_independence",
-        "clause": "Our Data Protection Officer is involved in all matters relating to data protection, reports directly to senior management, and carries out their role independently.",
-        "difficulty": "easy",
-        "split": "held_out",
-        "gold_primary": [
-          "38"
-        ],
-        "gold_secondary": [],
-        "ranked_articles": [
-          "37",
-          "38",
-          "39"
-        ],
-        "recall_at_k_strict": {
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "recall_at_k_lenient": {
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "hit_at_k_strict": {
-          "3": true,
-          "5": true,
-          "10": true
-        },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-040c",
@@ -1096,7 +1076,8 @@
         "ranked_articles": [
           "4",
           "5",
-          "9"
+          "9",
+          "28"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -1129,9 +1110,11 @@
           "14"
         ],
         "ranked_articles": [
-          "37",
           "13",
-          "35"
+          "35",
+          "14",
+          "36",
+          "26"
         ],
         "recall_at_k_strict": {
           "3": 1.0,
@@ -1148,8 +1131,8 @@
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       }
     ]
   }

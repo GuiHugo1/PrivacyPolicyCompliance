@@ -2,20 +2,17 @@
   "retrieval_metrics": {
     "aggregate": {
       "n_items": 114,
-      "mrr_strict": 0.6885964912280702,
-      "mrr_lenient": 0.7002923976608186,
-      "recall_strict@1": 0.6228070175438597,
-      "recall_lenient@1": 0.6491228070175439,
-      "hit_rate_strict@1": 0.631578947368421,
-      "recall_strict@3": 0.75,
-      "recall_lenient@3": 0.7631578947368421,
-      "hit_rate_strict@3": 0.7543859649122807,
-      "recall_strict@5": 0.75,
-      "recall_lenient@5": 0.7631578947368421,
-      "hit_rate_strict@5": 0.7543859649122807,
-      "recall_strict@10": 0.75,
-      "recall_lenient@10": 0.7631578947368421,
-      "hit_rate_strict@10": 0.7543859649122807
+      "mrr_strict": 0.777046783625731,
+      "mrr_lenient": 0.7814327485380117,
+      "recall_strict@3": 0.8289473684210527,
+      "recall_lenient@3": 0.8333333333333334,
+      "hit_rate_strict@3": 0.8333333333333334,
+      "recall_strict@5": 0.8377192982456141,
+      "recall_lenient@5": 0.8421052631578947,
+      "hit_rate_strict@5": 0.8421052631578947,
+      "recall_strict@10": 0.8377192982456141,
+      "recall_lenient@10": 0.8421052631578947,
+      "hit_rate_strict@10": 0.8421052631578947
     },
     "by_topic": {
       "accountability_principle": {
@@ -56,15 +53,15 @@
       },
       "confidentiality_integrity_principle": {
         "n_items": 3,
-        "recall_strict@10": 0.6666666666666666,
-        "recall_lenient@10": 0.6666666666666666,
-        "hit_rate_strict@10": 0.6666666666666666
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "consent_clarity": {
         "n_items": 4,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 0.75,
+        "recall_lenient@10": 0.75,
+        "hit_rate_strict@10": 0.75
       },
       "consent_withdrawal": {
         "n_items": 2,
@@ -116,9 +113,9 @@
       },
       "dpo_designation": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "dpo_position_independence": {
         "n_items": 2,
@@ -128,9 +125,9 @@
       },
       "international_transfers_general": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "joint_controllers": {
         "n_items": 3,
@@ -194,9 +191,9 @@
       },
       "retention_period_disclosure": {
         "n_items": 3,
-        "recall_strict@10": 0.0,
+        "recall_strict@10": 0.3333333333333333,
         "recall_lenient@10": 0.3333333333333333,
-        "hit_rate_strict@10": 0.0
+        "hit_rate_strict@10": 0.3333333333333333
       },
       "right_of_access": {
         "n_items": 3,
@@ -212,9 +209,9 @@
       },
       "right_to_data_portability": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "right_to_erasure": {
         "n_items": 2,
@@ -236,9 +233,9 @@
       },
       "right_to_object_marketing": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "right_to_rectification": {
         "n_items": 3,
@@ -266,9 +263,9 @@
       },
       "storage_limitation_retention": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "transfers_adequacy_decision": {
         "n_items": 2,
@@ -278,9 +275,9 @@
       },
       "transfers_appropriate_safeguards": {
         "n_items": 3,
-        "recall_strict@10": 0.0,
-        "recall_lenient@10": 0.0,
-        "hit_rate_strict@10": 0.0
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
       },
       "transparency_general": {
         "n_items": 2,
@@ -292,64 +289,52 @@
     "by_difficulty": {
       "easy": {
         "n_items": 69,
-        "mrr_strict": 0.7971014492753623,
-        "mrr_lenient": 0.8164251207729469,
-        "recall_strict@1": 0.717391304347826,
-        "recall_lenient@1": 0.7536231884057971,
-        "hit_rate_strict@1": 0.7246376811594203,
-        "recall_strict@3": 0.8768115942028986,
-        "recall_lenient@3": 0.8985507246376812,
-        "hit_rate_strict@3": 0.8840579710144928,
-        "recall_strict@5": 0.8768115942028986,
-        "recall_lenient@5": 0.8985507246376812,
-        "hit_rate_strict@5": 0.8840579710144928,
-        "recall_strict@10": 0.8768115942028986,
-        "recall_lenient@10": 0.8985507246376812,
-        "hit_rate_strict@10": 0.8840579710144928
+        "mrr_strict": 0.8961352657004831,
+        "mrr_lenient": 0.9033816425120773,
+        "recall_strict@3": 0.9492753623188406,
+        "recall_lenient@3": 0.9565217391304348,
+        "hit_rate_strict@3": 0.9565217391304348,
+        "recall_strict@5": 0.9492753623188406,
+        "recall_lenient@5": 0.9565217391304348,
+        "hit_rate_strict@5": 0.9565217391304348,
+        "recall_strict@10": 0.9492753623188406,
+        "recall_lenient@10": 0.9565217391304348,
+        "hit_rate_strict@10": 0.9565217391304348
       },
       "hard": {
         "n_items": 45,
-        "mrr_strict": 0.5222222222222223,
-        "mrr_lenient": 0.5222222222222223,
-        "recall_strict@1": 0.4777777777777778,
-        "recall_lenient@1": 0.4888888888888889,
-        "hit_rate_strict@1": 0.4888888888888889,
-        "recall_strict@3": 0.5555555555555556,
-        "recall_lenient@3": 0.5555555555555556,
-        "hit_rate_strict@3": 0.5555555555555556,
-        "recall_strict@5": 0.5555555555555556,
-        "recall_lenient@5": 0.5555555555555556,
-        "hit_rate_strict@5": 0.5555555555555556,
-        "recall_strict@10": 0.5555555555555556,
-        "recall_lenient@10": 0.5555555555555556,
-        "hit_rate_strict@10": 0.5555555555555556
+        "mrr_strict": 0.5944444444444444,
+        "mrr_lenient": 0.5944444444444444,
+        "recall_strict@3": 0.6444444444444445,
+        "recall_lenient@3": 0.6444444444444445,
+        "hit_rate_strict@3": 0.6444444444444445,
+        "recall_strict@5": 0.6666666666666666,
+        "recall_lenient@5": 0.6666666666666666,
+        "hit_rate_strict@5": 0.6666666666666666,
+        "recall_strict@10": 0.6666666666666666,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.6666666666666666
       }
     },
     "by_gold_count": {
       "single": {
         "n_items": 108,
-        "mrr_strict": 0.7083333333333334,
-        "mrr_lenient": 0.720679012345679,
-        "recall_strict@1": 0.6481481481481481,
-        "recall_lenient@1": 0.6666666666666666,
-        "hit_rate_strict@1": 0.6481481481481481,
-        "recall_strict@3": 0.7777777777777778,
-        "recall_lenient@3": 0.7870370370370371,
-        "hit_rate_strict@3": 0.7777777777777778,
-        "recall_strict@5": 0.7777777777777778,
-        "recall_lenient@5": 0.7870370370370371,
-        "hit_rate_strict@5": 0.7777777777777778,
-        "recall_strict@10": 0.7777777777777778,
-        "recall_lenient@10": 0.7870370370370371,
-        "hit_rate_strict@10": 0.7777777777777778
+        "mrr_strict": 0.8016975308641975,
+        "mrr_lenient": 0.8063271604938271,
+        "recall_strict@3": 0.8611111111111112,
+        "recall_lenient@3": 0.8611111111111112,
+        "hit_rate_strict@3": 0.8611111111111112,
+        "recall_strict@5": 0.8703703703703703,
+        "recall_lenient@5": 0.8703703703703703,
+        "hit_rate_strict@5": 0.8703703703703703,
+        "recall_strict@10": 0.8703703703703703,
+        "recall_lenient@10": 0.8703703703703703,
+        "hit_rate_strict@10": 0.8703703703703703
       },
       "compound": {
         "n_items": 6,
         "mrr_strict": 0.3333333333333333,
         "mrr_lenient": 0.3333333333333333,
-        "recall_strict@1": 0.16666666666666666,
-        "recall_lenient@1": 0.3333333333333333,
-        "hit_rate_strict@1": 0.3333333333333333,
         "recall_strict@3": 0.25,
         "recall_lenient@3": 0.3333333333333333,
         "hit_rate_strict@3": 0.3333333333333333,
@@ -374,23 +359,21 @@
         "gold_secondary": [],
         "ranked_articles": [
           "6",
+          "9",
           "21",
-          "9"
+          "18"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -412,19 +395,16 @@
           "7"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -442,27 +422,26 @@
           "7"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "7"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-004",
@@ -478,19 +457,16 @@
           "8"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -511,24 +487,19 @@
         "ranked_articles": [
           "10",
           "6",
-          "37",
-          "86",
           "45"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -548,24 +519,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "5",
-          "18",
-          "4",
-          "9"
+          "9",
+          "6"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -584,22 +551,20 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "5"
+          "5",
+          "9"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -619,22 +584,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "5",
-          "16"
+          "16",
+          "17"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -653,22 +616,21 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "5"
+          "5",
+          "17",
+          "89"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -689,29 +651,26 @@
           "24"
         ],
         "ranked_articles": [
-          "24",
           "5",
-          "39"
+          "24",
+          "32"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_strict": 1.0,
         "reciprocal_rank_lenient": 1.0
       },
       {
@@ -728,19 +687,16 @@
           "12"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -759,22 +715,20 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "13"
+          "13",
+          "14"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -794,23 +748,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "14",
-          "13",
-          "12"
+          "13"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -830,23 +780,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "15",
-          "16",
-          "18"
+          "16"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -867,22 +813,19 @@
         "ranked_articles": [
           "16",
           "15",
-          "18"
+          "5"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -905,19 +848,16 @@
           "15"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -938,24 +878,21 @@
         "ranked_articles": [
           "19",
           "58",
-          "5",
           "34",
-          "17"
+          "17",
+          "18"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -974,31 +911,27 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "6",
           "21",
-          "18",
+          "6",
           "15"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-024",
@@ -1012,24 +945,21 @@
         "gold_secondary": [],
         "ranked_articles": [
           "22",
-          "4",
           "35",
+          "21",
           "15"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1051,22 +981,20 @@
         ],
         "ranked_articles": [
           "24",
-          "32"
+          "32",
+          "25"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1088,19 +1016,16 @@
           "25"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1120,23 +1045,21 @@
         "gold_secondary": [],
         "ranked_articles": [
           "26",
+          "28",
           "39",
-          "28"
+          "6"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1156,26 +1079,22 @@
         "gold_secondary": [],
         "ranked_articles": [
           "28",
-          "9",
-          "6",
           "32",
-          "13",
-          "4"
+          "4",
+          "6",
+          "13"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1195,22 +1114,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "30",
-          "4"
+          "9"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1234,19 +1150,16 @@
           "5"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
@@ -1269,19 +1182,16 @@
           "36"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1301,23 +1211,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "37",
-          "39",
-          "36"
+          "38",
+          "39"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1336,30 +1243,27 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "37",
+          "38",
           "39",
-          "38"
+          "37"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.3333333333333333,
-        "reciprocal_rank_lenient": 0.3333333333333333
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-038",
@@ -1372,30 +1276,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "45",
+          "46",
+          "49",
           "14",
-          "49"
+          "45"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-040",
@@ -1413,19 +1315,16 @@
           "18"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1445,23 +1344,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "4",
-          "5",
-          "9"
+          "9",
+          "5"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1485,19 +1381,16 @@
           "21"
         ],
         "recall_at_k_strict": {
-          "1": 0.5,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1518,19 +1411,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -1551,32 +1441,30 @@
           "14"
         ],
         "ranked_articles": [
-          "37",
-          "30",
           "13",
+          "30",
           "14",
-          "4"
+          "38",
+          "37",
+          "39"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.3333333333333333,
-        "reciprocal_rank_lenient": 0.3333333333333333
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-003b",
@@ -1592,19 +1480,16 @@
           "7"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1622,23 +1507,18 @@
           "7"
         ],
         "gold_secondary": [],
-        "ranked_articles": [
-          "4"
-        ],
+        "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -1660,19 +1540,16 @@
           "7"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1693,22 +1570,23 @@
           "32"
         ],
         "ranked_articles": [
-          "5"
+          "5",
+          "24",
+          "32",
+          "34",
+          "25"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1728,27 +1606,27 @@
         "gold_secondary": [
           "32"
         ],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "5",
+          "32"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-011d",
@@ -1766,19 +1644,16 @@
           "5"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1803,19 +1678,16 @@
           "5"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
@@ -1839,19 +1711,16 @@
           "5"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -1872,30 +1741,28 @@
           "32"
         ],
         "ranked_articles": [
-          "6",
           "24",
-          "32"
+          "32",
+          "6",
+          "35"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-025d",
@@ -1911,19 +1778,16 @@
         ],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -1944,19 +1808,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -1977,19 +1838,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2012,19 +1870,16 @@
           "7"
         ],
         "recall_at_k_strict": {
-          "1": 0.5,
           "3": 0.5,
           "5": 0.5,
           "10": 0.5
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2045,19 +1900,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2080,27 +1932,25 @@
         "ranked_articles": [
           "15",
           "14",
+          "13",
           "5"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_strict": 0.3333333333333333,
         "reciprocal_rank_lenient": 0.3333333333333333
       },
       {
@@ -2117,19 +1967,16 @@
         ],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2151,19 +1998,16 @@
         ],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2183,22 +2027,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "6",
+          "21",
           "9"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2220,19 +2062,16 @@
           "7"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2251,22 +2090,20 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "8"
+          "8",
+          "6"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2288,19 +2125,16 @@
           "8"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2320,22 +2154,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "9",
-          "6"
+          "6",
+          "18"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2355,23 +2187,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "9",
-          "4",
-          "18"
+          "4"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2391,22 +2219,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "10",
-          "6"
+          "6",
+          "37"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2425,30 +2251,27 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "13",
           "5",
-          "9",
           "6"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-007c",
@@ -2460,21 +2283,20 @@
           "5"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "13"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2494,19 +2316,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2526,19 +2345,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2561,19 +2377,16 @@
           "16"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2591,27 +2404,26 @@
           "5"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "5"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-013b",
@@ -2624,22 +2436,20 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "12"
+          "12",
+          "5"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2662,19 +2472,16 @@
           "14"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2696,19 +2503,16 @@
           "14"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2728,22 +2532,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "14",
+          "61",
           "12"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2762,29 +2564,26 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "14",
-          "12"
+          "12",
+          "14"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-016b",
@@ -2797,29 +2596,25 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "13",
           "15"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-016c",
@@ -2833,19 +2628,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -2865,25 +2657,22 @@
         "gold_secondary": [],
         "ranked_articles": [
           "16",
+          "5",
           "18",
           "15",
-          "5",
           "17"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2906,19 +2695,16 @@
           "14"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2937,22 +2723,20 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "17"
+          "17",
+          "15"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -2975,19 +2759,16 @@
           "4"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3007,19 +2788,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -3041,22 +2819,20 @@
           "19",
           "58",
           "34",
+          "17",
           "5"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3079,19 +2855,16 @@
           "34"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3112,23 +2885,19 @@
         "ranked_articles": [
           "20",
           "7",
-          "2",
           "4"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3146,27 +2915,27 @@
           "20"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "7",
+          "20"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-022b",
@@ -3181,23 +2950,20 @@
         "ranked_articles": [
           "6",
           "21",
-          "18",
-          "9"
+          "9",
+          "5"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
@@ -3217,23 +2983,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "6",
-          "21",
-          "9"
+          "21"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
@@ -3252,30 +3014,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "21",
+          "6",
           "18",
-          "4",
           "9"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-023c",
@@ -3292,19 +3052,16 @@
           "21"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
@@ -3324,24 +3081,21 @@
         "gold_secondary": [],
         "ranked_articles": [
           "22",
-          "4",
           "35",
+          "21",
           "15"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3361,22 +3115,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "22",
-          "4"
+          "35",
+          "15"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3398,19 +3150,16 @@
           "25"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3432,19 +3181,16 @@
           "25"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3464,22 +3210,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "26",
-          "36"
+          "36",
+          "62"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3497,21 +3241,20 @@
           "26"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "28"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -3530,30 +3273,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "4",
           "28",
-          "13",
+          "46",
           "6"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-029b",
@@ -3567,23 +3308,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "30",
-          "4",
           "9"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3605,19 +3342,16 @@
           "30"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3636,30 +3370,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "5",
           "24",
-          "32"
+          "32",
+          "34",
+          "5"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.3333333333333333,
-        "reciprocal_rank_lenient": 0.3333333333333333
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-030c",
@@ -3673,19 +3405,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -3708,19 +3437,16 @@
           "34"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3740,22 +3466,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "33",
-          "61"
+          "34"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3775,23 +3498,19 @@
         "gold_secondary": [],
         "ranked_articles": [
           "34",
-          "4",
           "33"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3810,28 +3529,26 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "33",
           "34"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-033b",
@@ -3844,22 +3561,20 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "35"
+          "35",
+          "36"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3882,19 +3597,16 @@
           "36"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -3913,29 +3625,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "33",
+          "36",
           "39",
-          "33"
+          "37"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
-          "5": false,
-          "10": false
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 0.25,
+        "reciprocal_rank_lenient": 0.25
       },
       {
         "id": "eval-035c",
@@ -3949,19 +3660,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -3980,30 +3688,26 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "45",
           "44",
-          "49"
+          "45"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-036c",
@@ -4015,27 +3719,26 @@
           "44"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "44"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-037b",
@@ -4049,24 +3752,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "45",
-          "14",
-          "48",
-          "46"
+          "46",
+          "48"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -4088,19 +3787,16 @@
           "45"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -4119,28 +3815,25 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "45"
+          "46"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-038c",
@@ -4154,19 +3847,16 @@
         "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 0.0,
           "5": 0.0,
           "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": false,
           "5": false,
           "10": false
@@ -4186,24 +3876,21 @@
         "gold_secondary": [],
         "ranked_articles": [
           "77",
-          "15",
           "79",
-          "80"
+          "80",
+          "15"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -4223,22 +3910,20 @@
         "gold_secondary": [],
         "ranked_articles": [
           "77",
-          "15"
+          "15",
+          "79"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -4259,23 +3944,20 @@
         "ranked_articles": [
           "82",
           "79",
-          "18",
-          "28"
+          "28",
+          "18"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -4296,23 +3978,20 @@
         "ranked_articles": [
           "4",
           "9",
-          "2",
-          "5"
+          "5",
+          "2"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
           "3": true,
           "5": true,
           "10": true
@@ -4333,28 +4012,24 @@
           "14"
         ],
         "ranked_articles": [
-          "37",
+          "33",
           "13",
           "30",
           "14",
-          "39",
-          "35",
-          "33"
+          "38",
+          "37"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
           "3": true,
           "5": true,
           "10": true

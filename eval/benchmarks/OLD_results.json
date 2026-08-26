@@ -2,33 +2,33 @@
   "retrieval_metrics": {
     "aggregate": {
       "n_items": 114,
-      "mrr_strict": 0.6885964912280702,
-      "mrr_lenient": 0.7002923976608186,
-      "recall_strict@1": 0.6228070175438597,
-      "recall_lenient@1": 0.6491228070175439,
-      "hit_rate_strict@1": 0.631578947368421,
-      "recall_strict@3": 0.75,
-      "recall_lenient@3": 0.7631578947368421,
-      "hit_rate_strict@3": 0.7543859649122807,
-      "recall_strict@5": 0.75,
-      "recall_lenient@5": 0.7631578947368421,
-      "hit_rate_strict@5": 0.7543859649122807,
-      "recall_strict@10": 0.75,
-      "recall_lenient@10": 0.7631578947368421,
-      "hit_rate_strict@10": 0.7543859649122807
+      "mrr_strict": 0.6944444444444445,
+      "mrr_lenient": 0.7076023391812866,
+      "recall_strict@1": 0.6535087719298246,
+      "recall_lenient@1": 0.6754385964912281,
+      "hit_rate_strict@1": 0.6578947368421053,
+      "recall_strict@3": 0.7412280701754386,
+      "recall_lenient@3": 0.7543859649122807,
+      "hit_rate_strict@3": 0.7456140350877193,
+      "recall_strict@5": 0.7412280701754386,
+      "recall_lenient@5": 0.7543859649122807,
+      "hit_rate_strict@5": 0.7456140350877193,
+      "recall_strict@10": 0.7412280701754386,
+      "recall_lenient@10": 0.7543859649122807,
+      "hit_rate_strict@10": 0.7456140350877193
     },
     "by_topic": {
       "accountability_principle": {
         "n_items": 3,
-        "recall_strict@10": 1.0,
-        "recall_lenient@10": 1.0,
-        "hit_rate_strict@10": 1.0
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.6666666666666666,
+        "hit_rate_strict@10": 0.3333333333333333
       },
       "accuracy_principle": {
         "n_items": 2,
-        "recall_strict@10": 1.0,
-        "recall_lenient@10": 1.0,
-        "hit_rate_strict@10": 1.0
+        "recall_strict@10": 0.5,
+        "recall_lenient@10": 0.5,
+        "hit_rate_strict@10": 0.5
       },
       "automated_decision_making": {
         "n_items": 3,
@@ -56,9 +56,9 @@
       },
       "confidentiality_integrity_principle": {
         "n_items": 3,
-        "recall_strict@10": 0.6666666666666666,
-        "recall_lenient@10": 0.6666666666666666,
-        "hit_rate_strict@10": 0.6666666666666666
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
       },
       "consent_clarity": {
         "n_items": 4,
@@ -128,9 +128,9 @@
       },
       "international_transfers_general": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "joint_controllers": {
         "n_items": 3,
@@ -146,9 +146,9 @@
       },
       "legitimate_interest_marketing_objection": {
         "n_items": 3,
-        "recall_strict@10": 0.3333333333333333,
-        "recall_lenient@10": 0.3333333333333333,
-        "hit_rate_strict@10": 0.3333333333333333
+        "recall_strict@10": 0.0,
+        "recall_lenient@10": 0.0,
+        "hit_rate_strict@10": 0.0
       },
       "notice_direct_collection": {
         "n_items": 3,
@@ -194,9 +194,9 @@
       },
       "retention_period_disclosure": {
         "n_items": 3,
-        "recall_strict@10": 0.0,
+        "recall_strict@10": 0.3333333333333333,
         "recall_lenient@10": 0.3333333333333333,
-        "hit_rate_strict@10": 0.0
+        "hit_rate_strict@10": 0.3333333333333333
       },
       "right_of_access": {
         "n_items": 3,
@@ -212,9 +212,9 @@
       },
       "right_to_data_portability": {
         "n_items": 2,
-        "recall_strict@10": 0.5,
-        "recall_lenient@10": 0.5,
-        "hit_rate_strict@10": 0.5
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "right_to_erasure": {
         "n_items": 2,
@@ -230,9 +230,9 @@
       },
       "right_to_object_general": {
         "n_items": 3,
-        "recall_strict@10": 1.0,
-        "recall_lenient@10": 1.0,
-        "hit_rate_strict@10": 1.0
+        "recall_strict@10": 0.3333333333333333,
+        "recall_lenient@10": 0.3333333333333333,
+        "hit_rate_strict@10": 0.3333333333333333
       },
       "right_to_object_marketing": {
         "n_items": 2,
@@ -278,9 +278,9 @@
       },
       "transfers_appropriate_safeguards": {
         "n_items": 3,
-        "recall_strict@10": 0.0,
-        "recall_lenient@10": 0.0,
-        "hit_rate_strict@10": 0.0
+        "recall_strict@10": 1.0,
+        "recall_lenient@10": 1.0,
+        "hit_rate_strict@10": 1.0
       },
       "transparency_general": {
         "n_items": 2,
@@ -292,73 +292,37 @@
     "by_difficulty": {
       "easy": {
         "n_items": 69,
-        "mrr_strict": 0.7971014492753623,
-        "mrr_lenient": 0.8164251207729469,
-        "recall_strict@1": 0.717391304347826,
-        "recall_lenient@1": 0.7536231884057971,
-        "hit_rate_strict@1": 0.7246376811594203,
-        "recall_strict@3": 0.8768115942028986,
-        "recall_lenient@3": 0.8985507246376812,
-        "hit_rate_strict@3": 0.8840579710144928,
-        "recall_strict@5": 0.8768115942028986,
-        "recall_lenient@5": 0.8985507246376812,
-        "hit_rate_strict@5": 0.8840579710144928,
-        "recall_strict@10": 0.8768115942028986,
-        "recall_lenient@10": 0.8985507246376812,
-        "hit_rate_strict@10": 0.8840579710144928
+        "mrr_strict": 0.8526570048309179,
+        "mrr_lenient": 0.8743961352657005,
+        "recall_strict@1": 0.8043478260869565,
+        "recall_lenient@1": 0.8405797101449275,
+        "hit_rate_strict@1": 0.8115942028985508,
+        "recall_strict@3": 0.9057971014492754,
+        "recall_lenient@3": 0.927536231884058,
+        "hit_rate_strict@3": 0.9130434782608695,
+        "recall_strict@5": 0.9057971014492754,
+        "recall_lenient@5": 0.927536231884058,
+        "hit_rate_strict@5": 0.9130434782608695,
+        "recall_strict@10": 0.9057971014492754,
+        "recall_lenient@10": 0.927536231884058,
+        "hit_rate_strict@10": 0.9130434782608695
       },
       "hard": {
         "n_items": 45,
-        "mrr_strict": 0.5222222222222223,
-        "mrr_lenient": 0.5222222222222223,
-        "recall_strict@1": 0.4777777777777778,
-        "recall_lenient@1": 0.4888888888888889,
-        "hit_rate_strict@1": 0.4888888888888889,
-        "recall_strict@3": 0.5555555555555556,
-        "recall_lenient@3": 0.5555555555555556,
-        "hit_rate_strict@3": 0.5555555555555556,
-        "recall_strict@5": 0.5555555555555556,
-        "recall_lenient@5": 0.5555555555555556,
-        "hit_rate_strict@5": 0.5555555555555556,
-        "recall_strict@10": 0.5555555555555556,
-        "recall_lenient@10": 0.5555555555555556,
-        "hit_rate_strict@10": 0.5555555555555556
-      }
-    },
-    "by_gold_count": {
-      "single": {
-        "n_items": 108,
-        "mrr_strict": 0.7083333333333334,
-        "mrr_lenient": 0.720679012345679,
-        "recall_strict@1": 0.6481481481481481,
-        "recall_lenient@1": 0.6666666666666666,
-        "hit_rate_strict@1": 0.6481481481481481,
-        "recall_strict@3": 0.7777777777777778,
-        "recall_lenient@3": 0.7870370370370371,
-        "hit_rate_strict@3": 0.7777777777777778,
-        "recall_strict@5": 0.7777777777777778,
-        "recall_lenient@5": 0.7870370370370371,
-        "hit_rate_strict@5": 0.7777777777777778,
-        "recall_strict@10": 0.7777777777777778,
-        "recall_lenient@10": 0.7870370370370371,
-        "hit_rate_strict@10": 0.7777777777777778
-      },
-      "compound": {
-        "n_items": 6,
-        "mrr_strict": 0.3333333333333333,
-        "mrr_lenient": 0.3333333333333333,
-        "recall_strict@1": 0.16666666666666666,
-        "recall_lenient@1": 0.3333333333333333,
-        "hit_rate_strict@1": 0.3333333333333333,
-        "recall_strict@3": 0.25,
-        "recall_lenient@3": 0.3333333333333333,
-        "hit_rate_strict@3": 0.3333333333333333,
-        "recall_strict@5": 0.25,
-        "recall_lenient@5": 0.3333333333333333,
-        "hit_rate_strict@5": 0.3333333333333333,
-        "recall_strict@10": 0.25,
-        "recall_lenient@10": 0.3333333333333333,
-        "hit_rate_strict@10": 0.3333333333333333
+        "mrr_strict": 0.45185185185185184,
+        "mrr_lenient": 0.45185185185185184,
+        "recall_strict@1": 0.4222222222222222,
+        "recall_lenient@1": 0.4222222222222222,
+        "hit_rate_strict@1": 0.4222222222222222,
+        "recall_strict@3": 0.4888888888888889,
+        "recall_lenient@3": 0.4888888888888889,
+        "hit_rate_strict@3": 0.4888888888888889,
+        "recall_strict@5": 0.4888888888888889,
+        "recall_lenient@5": 0.4888888888888889,
+        "hit_rate_strict@5": 0.4888888888888889,
+        "recall_strict@10": 0.4888888888888889,
+        "recall_lenient@10": 0.4888888888888889,
+        "hit_rate_strict@10": 0.4888888888888889
       }
     },
     "items": [
@@ -373,9 +337,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "6",
-          "21",
-          "9"
+          "6"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -510,10 +472,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "10",
+          "5",
           "6",
-          "37",
-          "86",
-          "45"
+          "86"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -548,9 +509,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "5",
-          "18",
           "4",
-          "9"
+          "9",
+          "6"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -619,7 +580,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "5",
-          "16"
+          "16",
+          "17"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -689,15 +651,13 @@
           "24"
         ],
         "ranked_articles": [
-          "24",
-          "5",
-          "39"
+          "24"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "recall_at_k_lenient": {
           "1": 1.0,
@@ -707,11 +667,11 @@
         },
         "hit_at_k_strict": {
           "1": false,
-          "3": true,
-          "5": true,
-          "10": true
+          "3": false,
+          "5": false,
+          "10": false
         },
-        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_strict": 0.0,
         "reciprocal_rank_lenient": 1.0
       },
       {
@@ -725,7 +685,8 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "12"
+          "12",
+          "13"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -830,8 +791,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "15",
-          "16",
-          "18"
+          "18",
+          "16"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -866,8 +827,7 @@
         "gold_secondary": [],
         "ranked_articles": [
           "16",
-          "15",
-          "18"
+          "17"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -901,8 +861,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "17",
-          "15"
+          "17"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -937,10 +896,10 @@
         "gold_secondary": [],
         "ranked_articles": [
           "19",
-          "58",
-          "5",
-          "34",
-          "17"
+          "17",
+          "16",
+          "4",
+          "58"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -974,31 +933,30 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "6",
           "21",
-          "18",
-          "15"
+          "15",
+          "6"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
+          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-024",
@@ -1013,8 +971,10 @@
         "ranked_articles": [
           "22",
           "4",
-          "35",
-          "15"
+          "21",
+          "9",
+          "17",
+          "35"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1050,11 +1010,11 @@
           "32"
         ],
         "ranked_articles": [
-          "24",
-          "32"
+          "32",
+          "24"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
+          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
@@ -1066,12 +1026,12 @@
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
+          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_strict": 0.5,
         "reciprocal_rank_lenient": 1.0
       },
       {
@@ -1120,8 +1080,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "26",
-          "39",
-          "28"
+          "6",
+          "28",
+          "24"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1158,7 +1119,6 @@
           "28",
           "9",
           "6",
-          "32",
           "13",
           "4"
         ],
@@ -1195,7 +1155,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "30",
-          "4"
+          "4",
+          "9",
+          "5"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1229,30 +1191,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "24",
-          "32",
-          "5"
+          "32"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
+          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-033",
@@ -1302,7 +1262,8 @@
         "ranked_articles": [
           "37",
           "39",
-          "36"
+          "38",
+          "35"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1336,9 +1297,47 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "37",
+          "38",
           "39",
-          "38"
+          "37",
+          "35",
+          "30"
+        ],
+        "recall_at_k_strict": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-038",
+        "topic": "transfers_appropriate_safeguards",
+        "clause": "Where we transfer personal data to a country without an adequacy decision, we rely on appropriate safeguards, such as the European Commission's standard contractual clauses, to protect your data.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "46"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "45",
+          "49",
+          "46"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
@@ -1362,42 +1361,6 @@
         "reciprocal_rank_lenient": 0.3333333333333333
       },
       {
-        "id": "eval-038",
-        "topic": "transfers_appropriate_safeguards",
-        "clause": "Where we transfer personal data to a country without an adequacy decision, we rely on appropriate safeguards, such as the European Commission's standard contractual clauses, to protect your data.",
-        "difficulty": "easy",
-        "split": "train",
-        "gold_primary": [
-          "46"
-        ],
-        "gold_secondary": [],
-        "ranked_articles": [
-          "45",
-          "14",
-          "49"
-        ],
-        "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
-        },
-        "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
-        },
-        "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
-        },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
-      },
-      {
         "id": "eval-040",
         "topic": "right_to_compensation",
         "clause": "Any person who has suffered material or non-material damage as a result of an infringement of data protection law has the right to receive compensation from the controller or processor for the damage suffered.",
@@ -1410,7 +1373,8 @@
         "ranked_articles": [
           "82",
           "79",
-          "18"
+          "18",
+          "16"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1446,7 +1410,8 @@
         "ranked_articles": [
           "4",
           "5",
-          "9"
+          "9",
+          "6"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1480,30 +1445,27 @@
           "21"
         ],
         "gold_secondary": [],
-        "ranked_articles": [
-          "6",
-          "21"
-        ],
+        "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 0.5,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": true,
-          "3": true,
-          "5": true,
-          "10": true
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
       },
       {
         "id": "eval-043",
@@ -1551,32 +1513,35 @@
           "14"
         ],
         "ranked_articles": [
-          "37",
-          "30",
           "13",
+          "4",
           "14",
-          "4"
+          "30",
+          "38",
+          "37",
+          "35",
+          "36"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
+          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.3333333333333333,
-        "reciprocal_rank_lenient": 0.3333333333333333
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-003b",
@@ -1693,7 +1658,8 @@
           "32"
         ],
         "ranked_articles": [
-          "5"
+          "5",
+          "25"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1762,29 +1728,27 @@
         "gold_secondary": [
           "32"
         ],
-        "ranked_articles": [
-          "5"
-        ],
+        "ranked_articles": [],
         "recall_at_k_strict": {
-          "1": 1.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": true,
-          "3": true,
-          "5": true,
-          "10": true
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
       },
       {
         "id": "eval-012b",
@@ -1799,44 +1763,10 @@
           "24"
         ],
         "ranked_articles": [
+          "5",
           "24",
-          "5"
-        ],
-        "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "recall_at_k_lenient": {
-          "1": 1.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "hit_at_k_strict": {
-          "1": false,
-          "3": true,
-          "5": true,
-          "10": true
-        },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 1.0
-      },
-      {
-        "id": "eval-012d",
-        "topic": "accountability_principle",
-        "clause": "Accountability sits at the center of how we handle your data: we don't just follow the principles in this policy, we keep evidence that we do.",
-        "difficulty": "hard",
-        "split": "train",
-        "gold_primary": [
-          "5"
-        ],
-        "gold_secondary": [
-          "24"
-        ],
-        "ranked_articles": [
-          "5"
+          "6",
+          "88"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -1858,6 +1788,40 @@
         },
         "reciprocal_rank_strict": 1.0,
         "reciprocal_rank_lenient": 1.0
+      },
+      {
+        "id": "eval-012d",
+        "topic": "accountability_principle",
+        "clause": "Accountability sits at the center of how we handle your data: we don't just follow the principles in this policy, we keep evidence that we do.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "5"
+        ],
+        "gold_secondary": [
+          "24"
+        ],
+        "ranked_articles": [],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
       },
       {
         "id": "eval-025c",
@@ -1873,8 +1837,7 @@
         ],
         "ranked_articles": [
           "6",
-          "24",
-          "32"
+          "24"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
@@ -1909,7 +1872,9 @@
         "gold_secondary": [
           "32"
         ],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "98"
+        ],
         "recall_at_k_strict": {
           "1": 0.0,
           "3": 0.0,
@@ -2078,15 +2043,14 @@
           "5"
         ],
         "ranked_articles": [
-          "15",
           "14",
-          "5"
+          "13"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
           "1": 0.0,
@@ -2096,12 +2060,12 @@
         },
         "hit_at_k_strict": {
           "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.3333333333333333
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-044c",
@@ -2182,8 +2146,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "6",
-          "9"
+          "6"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2319,8 +2282,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "9",
-          "6"
+          "9"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2355,8 +2317,7 @@
         "gold_secondary": [],
         "ranked_articles": [
           "9",
-          "4",
-          "18"
+          "4"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2391,7 +2352,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "10",
-          "6"
+          "6",
+          "5"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2425,30 +2387,32 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "5",
+          "6",
           "9",
-          "6"
+          "5",
+          "13",
+          "4"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
+          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
+          "1": 0.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": true,
+          "1": false,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
       },
       {
         "id": "eval-007c",
@@ -2460,7 +2424,9 @@
           "5"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "13"
+        ],
         "recall_at_k_strict": {
           "1": 0.0,
           "3": 0.0,
@@ -2557,29 +2523,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "5",
           "16"
         ],
         "recall_at_k_strict": {
-          "1": 1.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "recall_at_k_lenient": {
-          "1": 1.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
         },
         "hit_at_k_strict": {
-          "1": true,
-          "3": true,
-          "5": true,
-          "10": true
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
         },
-        "reciprocal_rank_strict": 1.0,
-        "reciprocal_rank_lenient": 1.0
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
       },
       {
         "id": "eval-010c",
@@ -2624,7 +2589,10 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "12"
+          "12",
+          "5",
+          "13",
+          "9"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2658,8 +2626,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "13",
-          "14"
+          "13"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2692,9 +2659,7 @@
           "13"
         ],
         "gold_secondary": [],
-        "ranked_articles": [
-          "14"
-        ],
+        "ranked_articles": [],
         "recall_at_k_strict": {
           "1": 0.0,
           "3": 0.0,
@@ -2728,7 +2693,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "14",
-          "12"
+          "12",
+          "61",
+          "13"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2763,7 +2730,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "14",
-          "12"
+          "12",
+          "13"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2797,29 +2765,29 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "13",
-          "15"
+          "15",
+          "13"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
+          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-016c",
@@ -2865,10 +2833,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "16",
-          "18",
-          "15",
-          "5",
-          "17"
+          "17",
+          "18"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -2902,8 +2868,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "16",
-          "14"
+          "16"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3039,9 +3004,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "19",
-          "58",
-          "34",
-          "5"
+          "17",
+          "16"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3075,8 +3039,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "19",
-          "34"
+          "19"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3112,7 +3075,6 @@
         "ranked_articles": [
           "20",
           "7",
-          "2",
           "4"
         ],
         "recall_at_k_strict": {
@@ -3146,6 +3108,76 @@
           "20"
         ],
         "gold_secondary": [],
+        "ranked_articles": [
+          "7",
+          "20"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
+      },
+      {
+        "id": "eval-022b",
+        "topic": "right_to_object_general",
+        "clause": "You may object, on grounds relating to your particular situation, to our processing of your personal data that is based on legitimate interests.",
+        "difficulty": "easy",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [
+          "6",
+          "9"
+        ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false
+        },
+        "reciprocal_rank_strict": 0.0,
+        "reciprocal_rank_lenient": 0.0
+      },
+      {
+        "id": "eval-022c",
+        "topic": "right_to_object_general",
+        "clause": "If something about your specific circumstances makes you uncomfortable with processing we're doing on the basis of legitimate interest, you can object, and we'll have to justify continuing unless we have compelling grounds.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
         "ranked_articles": [],
         "recall_at_k_strict": {
           "1": 0.0,
@@ -3169,79 +3201,6 @@
         "reciprocal_rank_lenient": 0.0
       },
       {
-        "id": "eval-022b",
-        "topic": "right_to_object_general",
-        "clause": "You may object, on grounds relating to your particular situation, to our processing of your personal data that is based on legitimate interests.",
-        "difficulty": "easy",
-        "split": "train",
-        "gold_primary": [
-          "21"
-        ],
-        "gold_secondary": [],
-        "ranked_articles": [
-          "6",
-          "21",
-          "18",
-          "9"
-        ],
-        "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "hit_at_k_strict": {
-          "1": false,
-          "3": true,
-          "5": true,
-          "10": true
-        },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
-      },
-      {
-        "id": "eval-022c",
-        "topic": "right_to_object_general",
-        "clause": "If something about your specific circumstances makes you uncomfortable with processing we're doing on the basis of legitimate interest, you can object, and we'll have to justify continuing unless we have compelling grounds.",
-        "difficulty": "hard",
-        "split": "train",
-        "gold_primary": [
-          "21"
-        ],
-        "gold_secondary": [],
-        "ranked_articles": [
-          "6",
-          "21",
-          "9"
-        ],
-        "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "hit_at_k_strict": {
-          "1": false,
-          "3": true,
-          "5": true,
-          "10": true
-        },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
-      },
-      {
         "id": "eval-023b",
         "topic": "right_to_object_marketing",
         "clause": "You may object at any time to our processing of your personal data for direct marketing, and once you do, we will stop.",
@@ -3252,10 +3211,42 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "18",
           "4",
-          "9"
+          "9",
+          "21"
         ],
+        "recall_at_k_strict": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall_at_k_lenient": {
+          "1": 0.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "hit_at_k_strict": {
+          "1": false,
+          "3": true,
+          "5": true,
+          "10": true
+        },
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
+      },
+      {
+        "id": "eval-023c",
+        "topic": "right_to_object_marketing",
+        "clause": "Marketing is different from our other legitimate-interest processing -- you can shut it off entirely, at any time, no justification needed on your part, and we have to comply.",
+        "difficulty": "hard",
+        "split": "train",
+        "gold_primary": [
+          "21"
+        ],
+        "gold_secondary": [],
+        "ranked_articles": [],
         "recall_at_k_strict": {
           "1": 0.0,
           "3": 0.0,
@@ -3278,41 +3269,6 @@
         "reciprocal_rank_lenient": 0.0
       },
       {
-        "id": "eval-023c",
-        "topic": "right_to_object_marketing",
-        "clause": "Marketing is different from our other legitimate-interest processing -- you can shut it off entirely, at any time, no justification needed on your part, and we have to comply.",
-        "difficulty": "hard",
-        "split": "train",
-        "gold_primary": [
-          "21"
-        ],
-        "gold_secondary": [],
-        "ranked_articles": [
-          "6",
-          "21"
-        ],
-        "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 1.0,
-          "5": 1.0,
-          "10": 1.0
-        },
-        "hit_at_k_strict": {
-          "1": false,
-          "3": true,
-          "5": true,
-          "10": true
-        },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
-      },
-      {
         "id": "eval-024b",
         "topic": "automated_decision_making",
         "clause": "You have the right not to be subject to a decision based solely on automated processing, including profiling, that produces legal effects concerning you or similarly significantly affects you.",
@@ -3325,8 +3281,10 @@
         "ranked_articles": [
           "22",
           "4",
-          "35",
-          "15"
+          "21",
+          "9",
+          "17",
+          "35"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3361,7 +3319,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "22",
-          "4"
+          "4",
+          "35",
+          "9"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3464,7 +3424,11 @@
         "gold_secondary": [],
         "ranked_articles": [
           "26",
-          "36"
+          "61",
+          "62",
+          "28",
+          "24",
+          "88"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3497,7 +3461,12 @@
           "26"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "62",
+          "28",
+          "88",
+          "61"
+        ],
         "recall_at_k_strict": {
           "1": 0.0,
           "3": 0.0,
@@ -3532,7 +3501,8 @@
         "ranked_articles": [
           "28",
           "13",
-          "6"
+          "6",
+          "4"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3568,6 +3538,7 @@
         "ranked_articles": [
           "30",
           "4",
+          "5",
           "9"
         ],
         "recall_at_k_strict": {
@@ -3636,30 +3607,28 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "5",
-          "24",
           "32"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
+          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.3333333333333333,
-        "reciprocal_rank_lenient": 0.3333333333333333
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-030c",
@@ -3704,8 +3673,7 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "33",
-          "34"
+          "33"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3775,8 +3743,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "34",
-          "4",
-          "33"
+          "33",
+          "4"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -3913,8 +3881,8 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "39",
-          "33"
+          "35",
+          "13"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
@@ -3980,9 +3948,9 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
+          "49",
           "45",
-          "44",
-          "49"
+          "44"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
@@ -4002,8 +3970,8 @@
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
       },
       {
         "id": "eval-036c",
@@ -4015,27 +3983,31 @@
           "44"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "49",
+          "45",
+          "44"
+        ],
         "recall_at_k_strict": {
           "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
           "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
           "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 0.3333333333333333,
+        "reciprocal_rank_lenient": 0.3333333333333333
       },
       {
         "id": "eval-037b",
@@ -4049,9 +4021,9 @@
         "gold_secondary": [],
         "ranked_articles": [
           "45",
-          "14",
           "48",
-          "46"
+          "46",
+          "49"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -4119,28 +4091,29 @@
         ],
         "gold_secondary": [],
         "ranked_articles": [
-          "45"
+          "45",
+          "46"
         ],
         "recall_at_k_strict": {
           "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
           "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
           "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 0.5,
+        "reciprocal_rank_lenient": 0.5
       },
       {
         "id": "eval-038c",
@@ -4152,27 +4125,29 @@
           "46"
         ],
         "gold_secondary": [],
-        "ranked_articles": [],
+        "ranked_articles": [
+          "46"
+        ],
         "recall_at_k_strict": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
-          "3": 0.0,
-          "5": 0.0,
-          "10": 0.0
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
-          "3": false,
-          "5": false,
-          "10": false
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true
         },
-        "reciprocal_rank_strict": 0.0,
-        "reciprocal_rank_lenient": 0.0
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       },
       {
         "id": "eval-039b",
@@ -4186,9 +4161,11 @@
         "gold_secondary": [],
         "ranked_articles": [
           "77",
-          "15",
           "79",
-          "80"
+          "80",
+          "15",
+          "58",
+          "4"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -4223,7 +4200,8 @@
         "gold_secondary": [],
         "ranked_articles": [
           "77",
-          "15"
+          "4",
+          "79"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -4259,8 +4237,8 @@
         "ranked_articles": [
           "82",
           "79",
-          "18",
-          "28"
+          "28",
+          "18"
         ],
         "recall_at_k_strict": {
           "1": 1.0,
@@ -4296,7 +4274,6 @@
         "ranked_articles": [
           "4",
           "9",
-          "2",
           "5"
         ],
         "recall_at_k_strict": {
@@ -4333,34 +4310,34 @@
           "14"
         ],
         "ranked_articles": [
-          "37",
           "13",
-          "30",
           "14",
-          "39",
           "35",
-          "33"
+          "4",
+          "37",
+          "36",
+          "38"
         ],
         "recall_at_k_strict": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "recall_at_k_lenient": {
-          "1": 0.0,
+          "1": 1.0,
           "3": 1.0,
           "5": 1.0,
           "10": 1.0
         },
         "hit_at_k_strict": {
-          "1": false,
+          "1": true,
           "3": true,
           "5": true,
           "10": true
         },
-        "reciprocal_rank_strict": 0.5,
-        "reciprocal_rank_lenient": 0.5
+        "reciprocal_rank_strict": 1.0,
+        "reciprocal_rank_lenient": 1.0
       }
     ]
   }
