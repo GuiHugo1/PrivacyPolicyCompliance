@@ -60,6 +60,7 @@ data/processed/*
 *.parquet
 *.jsonl
 !eval/**/*.jsonl
+!judge/tests/fixtures/**/*.csv
 
 # --- Node / frontend (ui/) ---
 node_modules/

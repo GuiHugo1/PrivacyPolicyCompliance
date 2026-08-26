@@ -1,0 +1,573 @@
+# OPP-115 category/attribute -> GDPR article mapping.
+#
+# Consumed by judge/mapping.py to turn OPP-115 annotations into heuristic
+# training targets for the compliance-judge SFT dataset (judge/build_sft_dataset.py).
+#
+# THIS IS WEAK SUPERVISION, NOT A LEGAL DETERMINATION. OPP-115 (Wilson et al.
+# 2016) predates GDPR and records *whether a privacy practice is disclosed*,
+# not whether that practice satisfies a specific GDPR article -- see
+# eval/README.md's "Why hand-labeled, not scraped" note, which flags exactly
+# this: OPP-115 uses a "law-agnostic" category scheme, not article-level GDPR
+# labels. The `attribute_rules` below are this project's best-effort proxy
+# for compliance_status, built from the OPP-115 codebook's attribute value
+# vocabulary. Review every rule below before trusting the generated dataset:
+#   1. Check `attribute_rules` values against the actual OPP-115 codebook
+#      (dataset documentation/ dir) -- the value strings here are written
+#      from the published codebook but not verified against your exact
+#      release/version.
+#   2. Adjust `compliance_status` / `confidence` where your judgment differs.
+#   3. `coverage: thin` / `weak_alignment` categories need supplementary
+#      labeled data before the judge should be trusted on them -- see
+#      `gdpr_schema_gaps` below and judge/coverage_report.py.
+#
+# Schema per category:
+#   gdpr_articles:   list of {article, role: primary|secondary, note}.
+#     - "primary" articles are what build_sft_dataset.py actually grounds
+#       training examples on (one example per annotation x primary article).
+#     - "secondary" articles are recorded in each example's `meta` for
+#       traceability/coverage analysis, but are not themselves training
+#       targets -- OPP-115's signal is too indirect for them to carry a
+#       confident compliance_status (mirrors the eval set's primary/
+#       secondary distinction in eval/benchmarks/gdpr_retrieval_eval_set.jsonl).
+#     - Article cites may be pinpoint (e.g. "5(1)(e)") for the verdict's
+#       `article` field; build_sft_dataset.py resolves the *whole-article*
+#       text for grounding via the base article number, from the same
+#       data/raw/gdpr.json rag/build_index.py indexes.
+#   attribute_rules: attribute_name -> attribute_value -> rule overrides.
+#     Matched against the OPP-115 attribute JSON's `"value"` field for that
+#     attribute. A `default` key under an attribute catches any value not
+#     listed explicitly. Attributes are tried in the order listed here;
+#     the first attribute present on the annotation with a matching (or
+#     `default`) rule wins.
+#   default_rule: fallback when no attribute_rules entry matches at all.
+#   coverage: "adequate" | "thin" | "weak_alignment" -- editorial signal,
+#     cross-checked against real annotation counts by coverage_report.py.
+#   thin_notes: GDPR granularity this category's OPP-115 signal cannot
+#     distinguish, even with more data of the same kind.
+#
+# Rule fields: requirement_present (bool), compliance_status
+# (compliant|partial|non_compliant|not_applicable), confidence (0-1),
+# note (str, feeds the generated rationale), exclude (bool, skip generating
+# an example for this annotation entirely -- e.g. boilerplate/intro text).
+
+version: 1
+
+categories:
+
+  First Party Collection/Use:
+    gdpr_articles:
+      - article: "13"
+        role: primary
+        note: >-
+          Art 13 requires disclosing what personal data is collected, for
+          what purpose, and on what legal basis when collected directly
+          from the data subject -- the core of what this category records.
+      - article: "5(1)(b)"
+        role: secondary
+        note: "Purpose limitation -- OPP-115's 'Purpose' attribute is the closest analogue."
+      - article: "5(1)(c)"
+        role: secondary
+        note: "Data minimisation -- not independently verifiable from disclosure text alone."
+      - article: "6"
+        role: secondary
+        note: >-
+          OPP-115 never records *which* Art 6(1) legal basis applies --
+          see gdpr_schema_gaps: legal_basis_granularity.
+    attribute_rules:
+      Does/Does Not:
+        "Does Not":
+          requirement_present: false
+          compliance_status: not_applicable
+          confidence: 0.7
+          note: "Segment states this data/purpose is NOT collected; no Art 13 disclosure obligation is engaged by it."
+        # No `default` here deliberately: when the practice IS disclosed
+        # ("Does"), fall through to `Collection Mode` below for a more
+        # informative compliance_status rather than stopping here.
+      Collection Mode:
+        Implicit:
+          compliance_status: partial
+          confidence: 0.45
+          note: >-
+            Collection is implicit/passive (e.g. via cookies, log files)
+            rather than explicitly itemized -- a weaker transparency
+            signal under Art 13(1)(c)'s specificity requirement.
+        Explicit:
+          compliance_status: compliant
+          confidence: 0.55
+          note: "Collection and its purpose are explicitly and specifically disclosed."
+        default:
+          compliance_status: partial
+          confidence: 0.4
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.4
+      note: "First-party collection/use practice disclosed; specificity of purpose/basis not independently verified."
+    coverage: thin
+    thin_notes:
+      - "legal_basis_granularity: category never records which Art 6(1)(a)-(f) basis applies."
+      - "Does not distinguish Art 13 (collected from subject) vs Art 14 (collected from other sources) -- both are mapped as primary; build_sft_dataset.py grounds each annotation against both."
+
+  Third Party Sharing/Collection:
+    gdpr_articles:
+      - article: "13(1)(e)"
+        role: primary
+        note: "Art 13(1)(e)/14(1)(e): recipients or categories of recipients of personal data must be disclosed."
+      - article: "6"
+        role: secondary
+        note: "Legal basis for the disclosure/sharing itself -- not recorded by OPP-115."
+      - article: "44"
+        role: secondary
+        note: >-
+          If the third party is located outside the EEA this engages
+          Chapter V transfer rules, but OPP-115's 'Third Party Entity'
+          attribute does not record recipient location -- see
+          gdpr_schema_gaps: cross_border_transfer_mechanism.
+      - article: "28"
+        role: secondary
+        note: >-
+          If the 'third party' is actually a processor acting on the
+          controller's instructions (not an independent recipient), Art 28
+          processor-contract terms apply instead -- OPP-115 does not
+          distinguish processor vs. independent third-party recipient.
+    attribute_rules:
+      Does/Does Not:
+        "Does Not":
+          requirement_present: false
+          compliance_status: not_applicable
+          confidence: 0.7
+          note: "Segment states data is NOT shared with this third party/purpose."
+        # No `default` here deliberately: when sharing IS disclosed ("Does"),
+        # fall through to `Choice Type` below for a more informative
+        # compliance_status rather than stopping here.
+      Choice Type:
+        Opt-in:
+          compliance_status: compliant
+          confidence: 0.55
+          note: "Sharing is opt-in, i.e. gated on an affirmative choice, the stronger Art 7-aligned pattern."
+        "Opt-out (link)":
+          compliance_status: partial
+          confidence: 0.45
+          note: "Opt-out mechanism offered, but opt-out is not equivalent to Art 6(1)(a) consent if consent is the stated basis for sharing."
+        "Opt-out via contacting company":
+          compliance_status: partial
+          confidence: 0.4
+        None:
+          compliance_status: non_compliant
+          confidence: 0.5
+          note: "No choice mechanism disclosed for this sharing practice."
+        default:
+          compliance_status: partial
+          confidence: 0.4
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.4
+      note: "Third-party sharing/collection disclosed; recipient categories and legal basis for sharing not independently verified."
+    coverage: thin
+    thin_notes:
+      - "cross_border_transfer_mechanism: 'Third Party Entity' does not record recipient location, so Chapter V (Art 44-49) transfer-mechanism compliance is never directly assessable from this category alone."
+      - "Does not distinguish an independent third-party recipient (Art 13(1)(e)) from a processor under Art 28."
+
+  User Choice/Control:
+    gdpr_articles:
+      - article: "7"
+        role: primary
+        note: "Art 7 conditions for consent -- when Choice Type is consent-shaped (opt-in), this is the closest grounding."
+      - article: "21"
+        role: primary
+        note: "Right to object -- when Choice Type is an opt-out mechanism, closer to Art 21 than to Art 7 consent."
+      - article: "6"
+        role: secondary
+    attribute_rules:
+      # `articles` overrides which of this category's two primaries a given
+      # Choice Type actually grounds -- an opt-in choice is Art 7 consent,
+      # an opt-out choice is Art 21 objection, and they should not both be
+      # asserted from the same clause. Values with no clear consent/object
+      # shape (None, default) ground both, since either could be missing.
+      Choice Type:
+        Opt-in:
+          compliance_status: compliant
+          confidence: 0.5
+          note: "Opt-in choice mechanism aligns with Art 7's affirmative-consent model."
+          articles: ["7"]
+        "Opt-out (dedicated)":
+          compliance_status: compliant
+          confidence: 0.5
+          note: "A dedicated, self-service opt-out mechanism is a reasonably strong Art 21 objection-right implementation."
+          articles: ["21"]
+        "Opt-out (link)":
+          compliance_status: partial
+          confidence: 0.45
+          articles: ["21"]
+        "Opt-out via contacting company":
+          compliance_status: partial
+          confidence: 0.35
+          note: "Requires contacting the company rather than a self-service mechanism -- weaker but not absent."
+          articles: ["21"]
+        "Opt-out via cookie settings":
+          compliance_status: partial
+          confidence: 0.45
+          articles: ["21"]
+        None:
+          compliance_status: non_compliant
+          confidence: 0.5
+          note: "No choice mechanism disclosed -- fails both the Art 7 consent and Art 21 objection grounds."
+        default:
+          compliance_status: partial
+          confidence: 0.35
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.4
+      note: "A user choice/control mechanism is disclosed; whether it satisfies Art 7 consent conditions vs. Art 21 objection depends on the (unrecorded) legal basis it attaches to."
+    coverage: thin
+    thin_notes:
+      - "Cannot distinguish 'withdraw consent' (Art 7(3)) from 'object to legitimate-interest processing' (Art 21) -- both surface as generic opt-out attributes in OPP-115."
+
+  User Access, Edit and Deletion:
+    gdpr_articles:
+      - article: "15"
+        role: primary
+        note: "Right of access -- Access Type 'View'."
+      - article: "16"
+        role: primary
+        note: "Right to rectification -- Access Type 'Edit information'."
+      - article: "17"
+        role: primary
+        note: "Right to erasure -- Access Type 'Delete account (partial)' / 'Delete account (full)'."
+      - article: "20"
+        role: secondary
+        note: "Right to data portability is essentially never distinguishable from generic 'View'/export access in OPP-115 -- see gdpr_schema_gaps: portability."
+    attribute_rules:
+      # `articles` overrides which primary a given Access Type grounds --
+      # a "View" clause is about Art 15 access, not Art 16 rectification or
+      # Art 17 erasure, and generating all three from one View clause would
+      # assert things the clause never actually said.
+      Access Type:
+        View:
+          compliance_status: compliant
+          confidence: 0.5
+          note: "Access/view mechanism disclosed, grounding Art 15."
+          articles: ["15"]
+        "Edit information":
+          compliance_status: compliant
+          confidence: 0.5
+          note: "Edit/correction mechanism disclosed, grounding Art 16."
+          articles: ["16"]
+        "Delete account (full)":
+          compliance_status: compliant
+          confidence: 0.5
+          note: "Full account deletion disclosed, grounding Art 17."
+          articles: ["17"]
+        "Delete account (partial)":
+          compliance_status: partial
+          confidence: 0.4
+          note: "Only partial deletion disclosed -- may not satisfy a full Art 17 erasure request."
+          articles: ["17"]
+        Other:
+          compliance_status: partial
+          confidence: 0.35
+        default:
+          compliance_status: partial
+          confidence: 0.35
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.4
+      note: "An access/edit/deletion mechanism is disclosed; scope and completeness are not independently verified."
+    coverage: thin
+    thin_notes:
+      - "portability: Art 20 (structured, machine-readable export) is not a distinct OPP-115 Access Type -- 'View' covers both plain access and portable export."
+      - "restriction_of_processing: Art 18 (right to restrict rather than erase) has no corresponding Access Type at all."
+
+  Data Retention:
+    gdpr_articles:
+      - article: "5(1)(e)"
+        role: primary
+        note: "Storage limitation -- the underlying retention *practice*."
+      - article: "13(2)(a)"
+        role: primary
+        note: "Duty to disclose the retention period or the criteria used to determine it."
+    attribute_rules:
+      Retention Period:
+        Limited:
+          compliance_status: compliant
+          confidence: 0.55
+          note: "A bounded/limited retention period is disclosed."
+        Stated Period:
+          compliance_status: compliant
+          confidence: 0.6
+          note: "A specific retention period is stated."
+        Indefinitely:
+          compliance_status: non_compliant
+          confidence: 0.55
+          note: "Indefinite retention conflicts with Art 5(1)(e) storage limitation absent a stated justification (e.g. legal obligation, archiving)."
+        Unspecified:
+          compliance_status: non_compliant
+          confidence: 0.4
+          note: "No retention period or criteria disclosed at all -- fails the Art 13(2)(a)/14(2)(a) disclosure duty; the underlying storage-limitation practice itself is simply unknown from this text."
+        default:
+          compliance_status: partial
+          confidence: 0.35
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.4
+      note: "A data-retention practice is disclosed; period/criteria specificity not independently verified."
+    coverage: adequate
+    thin_notes:
+      - "Cannot verify the disclosed period is actually 'necessary for the purposes' (the substantive Art 5(1)(e) test) vs. merely stated -- OPP-115 records disclosure, not necessity."
+
+  Data Security:
+    gdpr_articles:
+      - article: "32"
+        role: primary
+        note: "Security of processing -- appropriate technical/organisational measures."
+      - article: "5(1)(f)"
+        role: secondary
+        note: "Integrity and confidentiality principle -- the Art 32 duty's principle-level counterpart."
+      - article: "24"
+        role: secondary
+        note: "General controller accountability -- see rag.parsers.gdpr.CONCEPT_LINKS accountability_and_security_measures (Art 24 <-> Art 32)."
+      - article: "33"
+        role: secondary
+        note: "Breach notification -- rarely co-located with general security-measure disclosures, kept secondary."
+    attribute_rules:
+      Security Measure:
+        Unspecified:
+          compliance_status: partial
+          confidence: 0.35
+          note: "A general security commitment is stated without describing specific technical/organisational measures, as Art 32(1) requires."
+        default:
+          compliance_status: compliant
+          confidence: 0.5
+          note: "A specific security measure is named."
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.4
+      note: "A security-of-processing statement is disclosed; risk-appropriateness under Art 32(1) cannot be assessed from text alone."
+    coverage: adequate
+
+  Policy Change:
+    gdpr_articles:
+      - article: "13(3)"
+        role: primary
+        note: "Further-processing notice obligation when purposes change -- the closest GDPR analogue to a 'policy change' disclosure."
+      - article: "12(1)"
+        role: secondary
+        note: "General transparency/fair-processing-communication principle."
+    attribute_rules:
+      Notification Type:
+        "General notice in privacy policy":
+          compliance_status: partial
+          confidence: 0.4
+          note: "Passive notice only (buried in the policy itself), weaker than active notification."
+        "Personal notice":
+          compliance_status: compliant
+          confidence: 0.5
+          note: "Users are actively/personally notified of policy changes."
+        "No notification":
+          compliance_status: non_compliant
+          confidence: 0.5
+          note: "No notification mechanism for policy changes disclosed."
+        default:
+          compliance_status: partial
+          confidence: 0.35
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.35
+      note: "A policy-change practice is disclosed; GDPR does not have a dedicated 'policy change' article -- grounded via the general transparency/re-notice duties instead."
+    coverage: weak_alignment
+
+  Do Not Track:
+    gdpr_articles:
+      - article: "21"
+        role: primary
+        note: >-
+          Closest GDPR analogue to a Do-Not-Track disclosure is the right
+          to object to processing/profiling for direct marketing -- but DNT
+          browser signals are primarily an ePrivacy Directive Art 5(3)
+          concept, not a native GDPR mechanism. Treat this grounding as an
+          approximation, not a direct requirement match.
+      - article: "7"
+        role: secondary
+        note: "If tracking is consent-based, honoring/dishonoring DNT bears on consent withdrawal, but this is inferential, not stated."
+    gdpr_native: false
+    attribute_rules:
+      Do Not Track policy:
+        Honored:
+          compliance_status: compliant
+          confidence: 0.4
+        "Not honored":
+          compliance_status: non_compliant
+          confidence: 0.4
+        "Mentioned, unclear if honored":
+          compliance_status: partial
+          confidence: 0.3
+        default:
+          compliance_status: not_applicable
+          confidence: 0.3
+    default_rule:
+      requirement_present: true
+      compliance_status: not_applicable
+      confidence: 0.25
+      note: "Do Not Track is not a GDPR-native concept (see ePrivacy Directive Art 5(3)); this grounding is a weak analogy via Art 21, not a direct requirement match."
+    coverage: weak_alignment
+    thin_notes:
+      - "GDPR has no article directly governing browser DNT signals; this whole category is a weak analogy, not a genuine requirement mapping. Do not train high-confidence verdicts from it."
+
+  International and Specific Audiences:
+    gdpr_articles:
+      - article: "44"
+        role: primary
+        note: >-
+          Cross-border transfer -- engaged when Audience Type indicates a
+          non-EEA/international audience, but the specific mechanism
+          (adequacy decision, SCCs, BCRs) is never recorded -- see
+          gdpr_schema_gaps: cross_border_transfer_mechanism.
+      - article: "8"
+        role: primary
+        note: "Conditions applicable to child's consent -- Audience Type 'Children'."
+      - article: "3"
+        role: secondary
+        note: "Territorial scope, general grounding for any audience-specific carve-out."
+    attribute_rules:
+      # `articles` overrides which primary a given Audience Type grounds --
+      # "Children" is about Art 8 child's-consent conditions, not transfers;
+      # the other, non-child audience types are about Art 44 transfers, not
+      # child consent. Only the unmapped `default` case grounds both, since
+      # an unrecognized audience type's relevance is genuinely ambiguous.
+      Audience Type:
+        Children:
+          compliance_status: partial
+          confidence: 0.4
+          note: "Children's-data provisions disclosed; whether the stated age threshold and parental-consent mechanism satisfy Art 8's specifics (member-state age 13-16) is not verifiable from a generic mention."
+          articles: ["8"]
+        Californians:
+          requirement_present: false
+          compliance_status: not_applicable
+          confidence: 0.6
+          note: "US state-law (CCPA) carve-out, not a GDPR requirement -- excluded from GDPR grounding."
+          articles: ["44"]
+        Europeans:
+          compliance_status: partial
+          confidence: 0.4
+          note: "Audience explicitly addressed as EU/European, but transfer mechanism (if any) is unstated."
+          articles: ["44"]
+        "Citizens from other countries":
+          compliance_status: partial
+          confidence: 0.35
+          note: "International-audience carve-out disclosed without a stated transfer mechanism."
+          articles: ["44"]
+        default:
+          compliance_status: partial
+          confidence: 0.3
+    default_rule:
+      requirement_present: true
+      compliance_status: partial
+      confidence: 0.3
+      note: "An audience-specific practice is disclosed; the GDPR-relevant specifics (transfer mechanism, child consent age/verification) are not independently verifiable."
+    coverage: thin
+    thin_notes:
+      - "cross_border_transfer_mechanism: Audience Type signals *that* an international audience is addressed, never *how* transfers are safeguarded (adequacy/SCCs/BCRs/derogations)."
+      - "child_consent_age_verification: 'Children' audience type does not record the stated age threshold or verification mechanism Art 8 requires."
+
+  Other:
+    gdpr_articles:
+      - article: "13(1)(a)"
+        role: primary
+        note: >-
+          Only the 'Privacy contact information' Other Type subtype grounds
+          a real requirement (controller identity/contact per Art
+          13(1)(a)/14(1)(a)). Every other Other Type value is excluded from
+          generation (see attribute_rules) since it's boilerplate/generic
+          text with no discrete GDPR requirement to ground.
+      - article: "37"
+        role: secondary
+        note: >-
+          If the contact given is specifically a Data Protection Officer,
+          this touches Art 37-39 -- but OPP-115 does not distinguish a DPO
+          contact from a general privacy-inbox contact. See
+          gdpr_schema_gaps: dpo_designation.
+    attribute_rules:
+      Other Type:
+        "Introductory/Generic":
+          exclude: true
+        "Practice not covered":
+          exclude: true
+        "Privacy contact information":
+          requirement_present: true
+          compliance_status: compliant
+          confidence: 0.5
+          note: "Controller contact information is disclosed, grounding Art 13(1)(a)/14(1)(a)'s identity/contact-details requirement. Whether this specific contact is a designated DPO (Art 37) is not distinguishable from a general privacy inbox."
+        Other:
+          exclude: true
+        default:
+          exclude: true
+    default_rule:
+      requirement_present: false
+      compliance_status: not_applicable
+      confidence: 0.0
+      exclude: true
+      note: "Generic/boilerplate 'Other' segment; no discrete GDPR requirement to ground."
+    coverage: thin
+    thin_notes:
+      - "dpo_designation: no attribute distinguishes a designated DPO contact (Art 37-39) from a general privacy-inbox address."
+
+# GDPR requirements OPP-115 structurally cannot express, regardless of how
+# much annotation data is available -- these are schema-level gaps (no
+# OPP-115 category/attribute records the relevant fact at all), not
+# data-volume gaps. Supplementary labeled data (hand-labeled against these
+# specific requirements, the way eval/benchmarks/gdpr_retrieval_eval_set.jsonl
+# is hand-labeled against article text) is needed to cover these, not more
+# OPP-115 annotations. See judge/coverage_report.py.
+gdpr_schema_gaps:
+  - id: legal_basis_granularity
+    articles: ["6(1)(a)", "6(1)(b)", "6(1)(c)", "6(1)(d)", "6(1)(e)", "6(1)(f)"]
+    description: "Which specific Art 6(1)(a)-(f) legal basis applies to a given processing purpose."
+    why_opp115_cant_capture: >-
+      No OPP-115 category or attribute records legal basis at all; "Purpose"
+      (First Party Collection/Use) and "Choice Type" attributes are the
+      nearest proxies but conflate basis with disclosed purpose/choice
+      mechanism, not the basis itself.
+  - id: special_category_data
+    articles: ["9"]
+    description: "Additional Art 9 condition required for special-category data (health, biometric, religious, etc.)."
+    why_opp115_cant_capture: >-
+      "Personal Information Type" has no special-category-specific value
+      set distinguishing Art 9 data from ordinary personal data.
+  - id: dpo_designation
+    articles: ["37", "38", "39"]
+    description: "Whether a Data Protection Officer is designated, and their contact details/tasks."
+    why_opp115_cant_capture: "No attribute distinguishes a DPO contact from a general privacy-inbox contact (see Other category above)."
+  - id: cross_border_transfer_mechanism
+    articles: ["44", "45", "46", "47", "49"]
+    description: "The specific transfer safeguard used for international transfers: adequacy decision, SCCs, BCRs, or a derogation."
+    why_opp115_cant_capture: "'Audience Type' records that an international audience/transfer is addressed, never the mechanism."
+  - id: dpia_requirement
+    articles: ["35"]
+    description: "Whether a Data Protection Impact Assessment was conducted for high-risk processing."
+    why_opp115_cant_capture: "No OPP-115 category corresponds to DPIA/high-risk-processing assessment at all."
+  - id: privacy_by_design_default
+    articles: ["25"]
+    description: "Data protection by design and by default in system/product design."
+    why_opp115_cant_capture: "No OPP-115 category records design-level/default-setting practices, only disclosed data-handling practices."
+  - id: automated_decision_making
+    articles: ["22"]
+    description: "Right not to be subject to a decision based solely on automated processing, including profiling."
+    why_opp115_cant_capture: "No OPP-115 category or attribute addresses automated decision-making/profiling logic."
+  - id: restriction_of_processing
+    articles: ["18"]
+    description: "Right to restrict (rather than erase) processing."
+    why_opp115_cant_capture: "'Access Type' in User Access, Edit and Deletion has no restriction-of-processing value distinct from erasure."
+  - id: breach_notification_specifics
+    articles: ["33", "34"]
+    description: "72-hour supervisory-authority notification timeline and high-risk data-subject notification duty."
+    why_opp115_cant_capture: "OPP-115 has no breach-notification category; Data Security's 'Security Measure' attribute covers preventive measures, not breach response."
+  - id: portability
+    articles: ["20"]
+    description: "Right to receive personal data in a structured, commonly used, machine-readable format and transmit it to another controller."
+    why_opp115_cant_capture: "'Access Type: View' conflates plain access/export with a portable, machine-readable export."
