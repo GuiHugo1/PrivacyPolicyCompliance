@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GDPR Judge Verdict",
+  "description": "The JSON object the fine-tuned judge must emit for one (policy clause, retrieved GDPR article) pair. Mirrors JUDGE_SYSTEM_PROMPT in judge/build_sft_dataset.py and the `target` field of every generated SFT example.",
+  "type": "object",
+  "required": [
+    "article",
+    "requirement_present",
+    "compliance_status",
+    "evidence_span",
+    "rationale",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "article": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The GDPR article the clause was judged against, e.g. \"13(1)(c)\"."
+    },
+    "requirement_present": {
+      "type": "boolean",
+      "description": "Whether the clause addresses the article's requirement at all."
+    },
+    "compliance_status": {
+      "type": "string",
+      "enum": ["compliant", "partial", "non_compliant", "not_applicable"]
+    },
+    "evidence_span": {
+      "type": "string",
+      "description": "Verbatim excerpt from the clause supporting the verdict."
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Short explanation for the compliance_status."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

@@ -123,3 +123,85 @@ Uses a small hand-built OPP-115 fixture (`judge/tests/fixtures/`, two
 policies, multiple annotators per segment to exercise majority voting) and
 a 16-article GDPR fixture, so tests run fast and don't need the real
 `/data/opp115` corpus.
+
+## QLoRA fine-tuning
+
+Once SFT JSONL splits exist (either from `build_sft_dataset.py` above, or
+any dataset following the schema below), `judge/train_qlora.py` QLoRA
+fine-tunes `Qwen2.5-7B-Instruct` on them and `judge/eval_qlora.py` reports
+held-out test-set metrics for the resulting adapter.
+
+- `judge/judge_schema.json` -- JSON Schema for the verdict object the judge
+  must emit (`article`, `requirement_present`, `compliance_status`,
+  `evidence_span`, `rationale`, `confidence`); mirrors `JUDGE_SYSTEM_PROMPT`
+  in `build_sft_dataset.py`.
+- `judge/schema_utils.py` -- dependency-free JSON extraction + schema
+  validation for model output (no `jsonschema` package needed for this
+  flat schema).
+- `judge/eval_metrics.py` -- JSON-validity rate and per-`compliance_status`
+  precision/recall/F1, shared by the training-time eval callback and
+  `eval_qlora.py`.
+- `judge/metrics_logger.py` -- appends metrics to a local JSONL file every
+  eval step; optionally also logs to a local `mlflow` run
+  (`file:judge/mlruns`, no tracking server required).
+- `judge/qlora_data.py` -- loads SFT JSONL records (accepts either this
+  repo's own `messages`-chat-format records, or a plain
+  `instruction`/`input`/`output` shape), and `JudgeSFTCollator`, a data
+  collator that tokenizes prompt + response separately and masks the
+  prompt tokens to `-100` so the loss is computed only on the JSON-verdict
+  tokens.
+- `judge/train_qlora.py` -- config-driven (`judge/config/qlora_judge.yaml`)
+  QLoRA training script: 4-bit `bitsandbytes` quantization, `peft` LoRA
+  adapter, HF `Trainer`. Only the LoRA adapter is saved
+  (`PeftModel.save_pretrained`), not a merged model.
+- `judge/eval_qlora.py` -- loads a saved adapter, generates verdicts for
+  the test split, and writes a JSON report of per-class precision/recall/F1
+  + JSON-validity rate.
+
+### Expected SFT data
+
+```
+/data/judge_sft/train.jsonl
+/data/judge_sft/val.jsonl
+/data/judge_sft/test.jsonl
+```
+
+Each line is either:
+
+```jsonc
+// this repo's own build_sft_dataset.py output
+{"messages": [{"role": "system", ...}, {"role": "user", "content": "Clause:\n...\n\nRetrieved GDPR Article ...:\n..."}, {"role": "assistant", "content": "<json verdict>"}]}
+// or the plain instruction/output shape
+{"instruction": "...", "input": "...", "output": "<json verdict>"}
+```
+
+where `<json verdict>` matches `judge/judge_schema.json`.
+
+### Usage
+
+```bash
+uv sync --group judge
+
+python -m judge.train_qlora --config judge/config/qlora_judge.yaml
+
+python -m judge.eval_qlora \
+    --config judge/config/qlora_judge.yaml \
+    --adapter judge/checkpoints/qwen2.5-7b-qlora-judge \
+    --output judge/metrics/test_eval_report.json
+```
+
+All hyperparameters -- LoRA rank/alpha/target modules, quantization,
+learning rate, epochs, batch size, gradient accumulation -- live in
+`judge/config/qlora_judge.yaml`; edit that file rather than the scripts to
+sweep them. Training metrics (train/val loss + JSON-validity rate) are
+appended to `judge/metrics/training_metrics.jsonl` every eval step.
+
+Note: `judge/tests/test_qlora_data.py`, `test_schema_utils.py`,
+`test_eval_metrics.py`, and `test_metrics_logger.py` are dependency-free
+and always run with `pytest judge/tests`. `test_eval_qlora_report.py`
+additionally exercises `eval_qlora.build_test_report` and is skipped
+unless `uv sync --group judge` has installed `torch`. The training and
+model-loading code paths in `train_qlora.py`/`eval_qlora.py` themselves
+need a GPU and the actual base-model weights, so they aren't covered by
+`pytest` -- validate them by running an actual (even tiny/smoke) training
+job.

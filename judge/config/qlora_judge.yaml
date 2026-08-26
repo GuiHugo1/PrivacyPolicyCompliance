@@ -1,0 +1,72 @@
+# QLoRA fine-tuning config for the GDPR compliance judge (Qwen2.5-7B-Instruct).
+# Edit this file to sweep hyperparameters -- judge/train_qlora.py reads
+# everything from here, no hardcoded values in the training script itself.
+
+model:
+  base_model: Qwen/Qwen2.5-7B-Instruct
+  trust_remote_code: false
+  max_seq_length: 2048
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  # Standard Qwen2 decoder-layer attention + MLP projections.
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+data:
+  train_path: /data/judge_sft/train.jsonl
+  val_path: /data/judge_sft/val.jsonl
+  test_path: /data/judge_sft/test.jsonl
+  schema_path: judge/judge_schema.json
+
+training:
+  output_dir: judge/checkpoints/qwen2.5-7b-qlora-judge
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  max_grad_norm: 0.3
+  logging_steps: 10
+  eval_steps: 50
+  save_steps: 50
+  save_total_limit: 3
+  seed: 42
+  optim: paged_adamw_8bit
+  gradient_checkpointing: true
+  bf16: true
+
+generation:
+  max_new_tokens: 256
+  do_sample: false
+
+metrics:
+  output_dir: judge/metrics
+  metrics_file: training_metrics.jsonl
+  # Set true to also log to a local mlflow run (file:judge/mlruns, no
+  # external tracking server required).
+  use_mlflow: false
+  mlflow_dir: judge/mlruns
+  run_name: qwen2.5-7b-qlora-judge
+  # Val examples are re-generated (not just teacher-forced) at each eval
+  # step to compute JSON-validity rate; cap how many to keep eval fast.
+  max_eval_generate_samples: 50
