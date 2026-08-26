@@ -37,6 +37,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--persist-dir", default=DEFAULT_PERSIST_DIR)
     parser.add_argument("--collection", default=DEFAULT_COLLECTION_NAME)
+    parser.add_argument(
+        "--hybrid", action="store_true", help="Fuse dense cosine search with a BM25 lexical pass."
+    )
+    parser.add_argument(
+        "--rerank", action="store_true", help="Rerank candidates with a cross-encoder."
+    )
+    parser.add_argument("--fetch-k", type=int, default=None)
+    parser.add_argument("--rerank-top-n", type=int, default=20)
+    parser.add_argument("--embedding-model", default=None)
+    parser.add_argument("--reranker-model", default=None)
     return parser.parse_args(argv)
 
 
@@ -44,13 +54,29 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     filter_dict = parse_filter(args.filter)
 
-    results = retrieve(
-        args.query,
-        k=args.k,
-        filter=filter_dict,
-        persist_dir=args.persist_dir,
-        collection_name=args.collection,
-    )
+    retrieve_kwargs: dict = {
+        "k": args.k,
+        "filter": filter_dict,
+        "persist_dir": args.persist_dir,
+        "collection_name": args.collection,
+        "hybrid": args.hybrid,
+        "rerank": args.rerank,
+    }
+    if args.fetch_k:
+        retrieve_kwargs["fetch_k"] = args.fetch_k
+    if args.rerank:
+        retrieve_kwargs["rerank_top_n"] = args.rerank_top_n
+    if args.embedding_model:
+        from rag.embeddings import Embedder
+
+        retrieve_kwargs["embedder"] = Embedder(args.embedding_model)
+    if args.rerank:
+        from rag.rerank import get_reranker
+
+        reranker_kwargs = {"model_name": args.reranker_model} if args.reranker_model else {}
+        retrieve_kwargs["reranker"] = get_reranker(**reranker_kwargs)
+
+    results = retrieve(args.query, **retrieve_kwargs)
 
     if not results:
         print("No results.")

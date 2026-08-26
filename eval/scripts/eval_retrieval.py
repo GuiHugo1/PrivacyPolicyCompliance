@@ -44,12 +44,13 @@ from eval.scripts.retrieval_metrics import (
     ItemResult,
     aggregate,
     aggregate_by_difficulty,
+    aggregate_by_gold_count,
     aggregate_by_topic,
     ranked_article_hits,
     score_item,
 )
 from rag.retriever import retrieve
-from rag.store import DEFAULT_COLLECTION_NAME, DEFAULT_PERSIST_DIR
+from rag.store import DEFAULT_COLLECTION_NAME, DEFAULT_PERSIST_DIR, get_or_create_collection
 
 DEFAULT_EVAL_SET = (
     Path(__file__).resolve().parent.parent / "benchmarks" / "gdpr_retrieval_eval_set.jsonl"
@@ -132,6 +133,21 @@ def _gold_primary_secondary(item: dict) -> tuple[list[str], list[str]]:
     return primary, secondary
 
 
+def _articles_from_chunk(metadata: dict[str, Any]) -> list[str]:
+    """Article number(s) a retrieved chunk counts as a hit for.
+
+    A "gdpr_concept" chunk (see rag.parsers.gdpr.CONCEPT_LINKS) links two or
+    more articles in one chunk under "concept_articles" rather than a single
+    "article_number" -- when one surfaces in the results, it credits every
+    article it links at that same rank, since a compound clause naming both
+    concepts is exactly what such a chunk is meant to satisfy in one shot.
+    """
+    if metadata.get("source_type") == "gdpr_concept":
+        return [a for a in metadata.get("concept_articles", "").split(",") if a]
+    article = metadata.get("article_number")
+    return [str(article)] if article else []
+
+
 def run_eval(
     eval_set: list[dict],
     k_values: list[int],
@@ -145,9 +161,7 @@ def run_eval(
         chunks = retrieve(item["clause"], k=max_k, **retrieve_kwargs)
         retrieved_articles: list[str] = []
         for chunk in chunks:
-            article = chunk.metadata.get("article_number")
-            if article:
-                retrieved_articles.append(str(article))
+            retrieved_articles.extend(_articles_from_chunk(chunk.metadata))
         ranked = ranked_article_hits(retrieved_articles)
         gold_primary, gold_secondary = _gold_primary_secondary(item)
         results.append(
@@ -197,6 +211,15 @@ def print_report(results: list[ItemResult], k_values: list[int], diagnostic: boo
             f"mrr_strict={stats['mrr_strict']:.3f}"
         )
 
+    print("\nBy gold-article count (single- vs compound-primary items):")
+    for label, stats in aggregate_by_gold_count(results, k_values).items():
+        print(
+            f"  {label:<8} n={stats['n_items']:<4} "
+            f"recall_strict@{max_k}={stats[f'recall_strict@{max_k}']:.3f}  "
+            f"recall_lenient@{max_k}={stats[f'recall_lenient@{max_k}']:.3f}  "
+            f"mrr_strict={stats['mrr_strict']:.3f}"
+        )
+
     print(f"\nBy topic (recall_strict@{max_k} / recall_lenient@{max_k}):")
     for topic, stats in aggregate_by_topic(results, max_k).items():
         print(
@@ -230,6 +253,7 @@ def write_json_report(path: str | Path, results: list[ItemResult], k_values: lis
             "aggregate": aggregate(results, k_values),
             "by_topic": aggregate_by_topic(results, max(k_values)),
             "by_difficulty": aggregate_by_difficulty(results, k_values),
+            "by_gold_count": aggregate_by_gold_count(results, k_values),
             "items": [r.to_dict() for r in results],
         }
     }
@@ -287,6 +311,47 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--persist-dir", default=DEFAULT_PERSIST_DIR)
     parser.add_argument("--collection", default=DEFAULT_COLLECTION_NAME)
     parser.add_argument("--output", type=Path, default=None, help="Write full JSON report here")
+    parser.add_argument(
+        "--hybrid",
+        action="store_true",
+        help="Fuse dense cosine search with a BM25 lexical pass (reciprocal rank fusion) "
+        "instead of dense-only ranking. See rag/retriever.py.",
+    )
+    parser.add_argument(
+        "--rerank",
+        action="store_true",
+        help="Re-score the top --rerank-top-n candidates with a cross-encoder before taking "
+        "the final top-k. Combinable with --hybrid.",
+    )
+    parser.add_argument(
+        "--fetch-k",
+        type=int,
+        default=None,
+        help="Candidate pool size fetched/fused before trimming to k (and before reranking). "
+        "Defaults to max(k, 50) whenever --hybrid or --rerank is set.",
+    )
+    parser.add_argument(
+        "--rerank-top-n",
+        type=int,
+        default=20,
+        help="How many fused/dense candidates to feed the cross-encoder when --rerank is set "
+        "(default: 20).",
+    )
+    parser.add_argument(
+        "--embedding-model",
+        default=None,
+        help="Override the embedding model (default: BAAI/bge-large-en-v1.5, or "
+        "$RAG_EMBEDDING_MODEL). Lets a fine-tuned checkpoint or an alternate base model be "
+        "evaluated -- compare recall on the hard-difficulty subset against the default model. "
+        "Must be the same model the index was built with (see rag/build_index.py "
+        "--embedding-model).",
+    )
+    parser.add_argument(
+        "--reranker-model",
+        default=None,
+        help="Override the cross-encoder reranker model (default: BAAI/bge-reranker-base, or "
+        "$RAG_RERANKER_MODEL). Only used when --rerank is set.",
+    )
     return parser.parse_args(argv)
 
 
@@ -318,12 +383,41 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
 
-    results = run_eval(
-        eval_set,
-        k_values,
-        persist_dir=args.persist_dir,
-        collection_name=args.collection,
-    )
+    # Built once (not per-item) since --hybrid/--rerank need a collection
+    # handle to scan the corpus / load a cross-encoder, and re-doing that
+    # per eval item would be needlessly slow -- see run_eval's docstring on
+    # bm25_index/reranker reuse.
+    collection = get_or_create_collection(args.persist_dir, args.collection)
+    retrieve_kwargs: dict[str, Any] = {
+        "collection": collection,
+        "hybrid": args.hybrid,
+        "rerank": args.rerank,
+    }
+    if args.fetch_k:
+        retrieve_kwargs["fetch_k"] = args.fetch_k
+    if args.rerank:
+        retrieve_kwargs["rerank_top_n"] = args.rerank_top_n
+
+    if args.embedding_model:
+        from rag.embeddings import Embedder
+
+        print(f"Loading embedding model '{args.embedding_model}'...", file=sys.stderr)
+        retrieve_kwargs["embedder"] = Embedder(args.embedding_model)
+
+    if args.hybrid:
+        from rag.lexical import BM25Index
+
+        print("Building BM25 lexical index from the collection...", file=sys.stderr)
+        retrieve_kwargs["bm25_index"] = BM25Index.from_collection(collection)
+
+    if args.rerank:
+        from rag.rerank import get_reranker
+
+        reranker_kwargs = {"model_name": args.reranker_model} if args.reranker_model else {}
+        print("Loading cross-encoder reranker...", file=sys.stderr)
+        retrieve_kwargs["reranker"] = get_reranker(**reranker_kwargs)
+
+    results = run_eval(eval_set, k_values, **retrieve_kwargs)
 
     print_report(results, k_values, diagnostic=args.diagnostic)
 

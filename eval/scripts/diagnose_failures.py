@@ -291,6 +291,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--persist-dir", default=DEFAULT_PERSIST_DIR)
     parser.add_argument("--collection", default=DEFAULT_COLLECTION_NAME)
     parser.add_argument("--output", type=Path, default=None, help="Write full JSON dump here")
+    parser.add_argument(
+        "--hybrid", action="store_true", help="Fuse dense cosine search with a BM25 lexical pass."
+    )
+    parser.add_argument(
+        "--rerank", action="store_true", help="Rerank candidates with a cross-encoder."
+    )
+    parser.add_argument("--fetch-k", type=int, default=None)
+    parser.add_argument("--rerank-top-n", type=int, default=20)
     return parser.parse_args(argv)
 
 
@@ -306,7 +314,32 @@ def main(argv: list[str] | None = None) -> int:
 
     gold_article_text, recital_source_text = _gold_lookup(args.gdpr_source)
 
-    retrieve_kwargs = {"persist_dir": args.persist_dir, "collection_name": args.collection}
+    retrieve_kwargs: dict[str, Any] = {
+        "persist_dir": args.persist_dir,
+        "collection_name": args.collection,
+        "hybrid": args.hybrid,
+        "rerank": args.rerank,
+    }
+    if args.fetch_k:
+        retrieve_kwargs["fetch_k"] = args.fetch_k
+    if args.rerank:
+        retrieve_kwargs["rerank_top_n"] = args.rerank_top_n
+
+    if args.hybrid or args.rerank:
+        from rag.store import get_or_create_collection
+
+        collection = get_or_create_collection(args.persist_dir, args.collection)
+        retrieve_kwargs["collection"] = collection
+
+    if args.hybrid:
+        from rag.lexical import BM25Index
+
+        retrieve_kwargs["bm25_index"] = BM25Index.from_collection(collection)
+
+    if args.rerank:
+        from rag.rerank import get_reranker
+
+        retrieve_kwargs["reranker"] = get_reranker()
 
     cases = []
     for case_id in case_ids:
