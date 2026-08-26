@@ -146,7 +146,21 @@ class JsonValidityCallback(TrainerCallback):
         print(f"[metrics] {record}")
 
 
+def resolve_mixed_precision(want_bf16: bool) -> tuple[bool, bool]:
+    """Returns (bf16, fp16), downgrading to fp16 when the GPU can't do bf16.
+
+    ``torch.cuda.is_bf16_supported()`` is False on pre-Ampere GPUs (T4, V100,
+    most GTX/RTX 20-series) even though CUDA itself is available, and HF's
+    ``TrainingArguments`` raises rather than falling back on its own.
+    """
+    if want_bf16 and not (torch.cuda.is_available() and torch.cuda.is_bf16_supported()):
+        print("[train_qlora] bf16 requested but unsupported on this GPU; falling back to fp16.")
+        return False, True
+    return want_bf16, False
+
+
 def build_training_args(t_cfg: dict[str, Any]) -> TrainingArguments:
+    bf16, fp16 = resolve_mixed_precision(t_cfg.get("bf16", True))
     return TrainingArguments(
         output_dir=str(t_cfg["output_dir"]),
         num_train_epochs=t_cfg.get("num_train_epochs", 3),
@@ -167,7 +181,8 @@ def build_training_args(t_cfg: dict[str, Any]) -> TrainingArguments:
         seed=t_cfg.get("seed", 42),
         optim=t_cfg.get("optim", "paged_adamw_8bit"),
         gradient_checkpointing=t_cfg.get("gradient_checkpointing", True),
-        bf16=t_cfg.get("bf16", True),
+        bf16=bf16,
+        fp16=fp16,
         report_to=[],
         remove_unused_columns=False,
         label_names=["labels"],
