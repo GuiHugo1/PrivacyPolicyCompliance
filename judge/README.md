@@ -196,12 +196,38 @@ learning rate, epochs, batch size, gradient accumulation -- live in
 sweep them. Training metrics (train/val loss + JSON-validity rate) are
 appended to `judge/metrics/training_metrics.jsonl` every eval step.
 
+### CPU training (limited)
+
+`judge/config/qlora_judge_cpu.yaml` runs the same `train_qlora.py`/
+`eval_qlora.py` scripts with no GPU:
+
+```bash
+python -m judge.train_qlora --config judge/config/qlora_judge_cpu.yaml
+```
+
+It sets `quantization.enabled: false` (bitsandbytes 4-bit quantization
+needs a CUDA GPU, so `build_bnb_config` returns `None` and the base model
+loads at full precision instead) and swaps the 7B base model for
+`Qwen/Qwen2.5-0.5B-Instruct`, small enough to train on CPU in reasonable
+time. `bf16`/`fp16` are both disabled (`resolve_mixed_precision` falls
+back to plain fp32 whenever no CUDA device is present) and `optim` is
+`adamw_torch` instead of `paged_adamw_8bit`.
+
+This is a documented limitation of the current architecture, not a
+drop-in replacement: the 0.5B model is far weaker than the 7B QLoRA judge
+and this path exists to smoke-test the training pipeline (data loading,
+collator, LoRA wiring, eval callback) on hardware without a GPU. Train on
+`judge/config/qlora_judge.yaml` with a GPU for an actual judge model --
+swapping `model.base_model` to a larger checkpoint and re-enabling
+`quantization.enabled` is the way back to that once GPU hardware is
+available.
+
 Note: `judge/tests/test_qlora_data.py`, `test_schema_utils.py`,
 `test_eval_metrics.py`, and `test_metrics_logger.py` are dependency-free
 and always run with `pytest judge/tests`. `test_eval_qlora_report.py`
 additionally exercises `eval_qlora.build_test_report` and is skipped
 unless `uv sync --group judge` has installed `torch`. The training and
 model-loading code paths in `train_qlora.py`/`eval_qlora.py` themselves
-need a GPU and the actual base-model weights, so they aren't covered by
-`pytest` -- validate them by running an actual (even tiny/smoke) training
-job.
+need the actual base-model weights (and, for the default GPU config, a
+GPU), so they aren't covered by `pytest` -- validate them by running an
+actual (even tiny/smoke) training job, e.g. against the CPU config above.

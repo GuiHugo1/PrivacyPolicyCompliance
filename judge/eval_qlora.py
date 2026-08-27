@@ -46,10 +46,12 @@ def load_model_for_eval(cfg: dict[str, Any], adapter_path: Path) -> tuple[Any, A
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
+    bnb_config = build_bnb_config(cfg["quantization"])
+    device_map = model_cfg.get("device_map", "auto" if bnb_config is not None else None)
     base_model = AutoModelForCausalLM.from_pretrained(
         model_cfg["base_model"],
-        quantization_config=build_bnb_config(cfg["quantization"]),
-        device_map="auto",
+        quantization_config=bnb_config,
+        device_map=device_map,
         trust_remote_code=model_cfg.get("trust_remote_code", False),
     )
     model = PeftModel.from_pretrained(base_model, str(adapter_path))

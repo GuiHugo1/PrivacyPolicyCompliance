@@ -1,0 +1,77 @@
+# CPU-only LoRA fine-tuning config for the GDPR compliance judge.
+#
+# This is NOT a like-for-like substitute for judge/config/qlora_judge.yaml
+# (Qwen2.5-7B-Instruct + 4-bit QLoRA on GPU) -- it's a documented limit of
+# the current architecture: bitsandbytes 4-bit quantization needs a CUDA
+# GPU, so CPU training instead uses a much smaller base model at full
+# precision. Use this to smoke-test the training pipeline (data loading,
+# collator, LoRA wiring, eval callback) on a machine with no GPU. For a
+# real judge model, train on judge/config/qlora_judge.yaml with a GPU.
+
+model:
+  base_model: Qwen/Qwen2.5-0.5B-Instruct
+  trust_remote_code: false
+  max_seq_length: 1024
+  # No accelerate GPU dispatch needed for a single-device CPU load.
+  device_map: cpu
+
+quantization:
+  # bitsandbytes 4-bit quantization requires a CUDA GPU; disable it here
+  # and load the (small) base model at full precision instead.
+  enabled: false
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+data:
+  train_path: data/processed/judge_sft/train.jsonl
+  val_path: data/processed/judge_sft/val.jsonl
+  test_path: data/processed/judge_sft/test.jsonl
+  schema_path: judge/judge_schema.json
+
+training:
+  output_dir: judge/checkpoints/qwen2.5-0.5b-cpu-lora-judge
+  num_train_epochs: 1
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_steps: 0.03
+  weight_decay: 0.0
+  max_grad_norm: 0.3
+  logging_steps: 10
+  eval_steps: 50
+  save_steps: 50
+  save_total_limit: 2
+  seed: 42
+  # paged_adamw_8bit needs bitsandbytes+GPU; plain AdamW runs on CPU.
+  optim: adamw_torch
+  # Not needed at this model size, and CPU-side grad checkpointing mostly
+  # just slows training down without the GPU memory pressure it's for.
+  gradient_checkpointing: false
+  bf16: false
+
+generation:
+  max_new_tokens: 256
+  do_sample: false
+
+metrics:
+  output_dir: judge/metrics
+  metrics_file: training_metrics_cpu.jsonl
+  use_mlflow: false
+  mlflow_dir: judge/mlruns
+  run_name: qwen2.5-0.5b-cpu-lora-judge
+  max_eval_generate_samples: 10
