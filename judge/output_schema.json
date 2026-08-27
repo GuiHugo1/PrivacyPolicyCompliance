@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Privacy Policy Compliance Judgment",
+  "description": "The single JSON object judge/pipeline.py emits for one full privacy-policy text: every segmented clause, one judge verdict per (clause, retrieved-reference) pair, and a policy-level aggregation of those verdicts per GDPR article. This is the stable contract downstream scoring/UI code is built against -- see judge/pipeline.py's module docstring for how each section is produced.",
+  "type": "object",
+  "required": ["meta", "policy", "clauses", "clause_verdicts", "articles"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Provenance for this run: when it ran and which judge model / retrieval configuration produced it.",
+      "required": ["generated_at", "pipeline_version", "judge_model", "retrieval"],
+      "additionalProperties": false,
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "description": "UTC ISO-8601 timestamp the pipeline finished at."
+        },
+        "pipeline_version": { "type": "string" },
+        "judge_model": {
+          "type": "object",
+          "required": ["config", "adapter"],
+          "additionalProperties": false,
+          "properties": {
+            "config": {
+              "type": "string",
+              "description": "Path to the judge/config/qlora_judge*.yaml used (picks the base Qwen model + generation settings)."
+            },
+            "adapter": {
+              "type": "string",
+              "description": "Path to the fine-tuned LoRA adapter directory loaded on top of the base model."
+            }
+          }
+        },
+        "retrieval": {
+          "type": "object",
+          "required": ["k", "hybrid", "rerank"],
+          "additionalProperties": false,
+          "properties": {
+            "k": { "type": "integer", "minimum": 1 },
+            "hybrid": { "type": "boolean" },
+            "rerank": { "type": "boolean" },
+            "fetch_k": { "type": ["integer", "null"] },
+            "rerank_top_n": { "type": ["integer", "null"] }
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "description": "Identifies the input document.",
+      "required": ["source", "n_clauses"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string", "description": "Path (or \"<inline>\") the policy text was read from." },
+        "n_clauses": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "clauses": {
+      "type": "array",
+      "description": "The clause-segmented policy text, in document order.",
+      "items": {
+        "type": "object",
+        "required": ["id", "index", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "index": { "type": "integer", "minimum": 0 },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "clause_verdicts": {
+      "type": "array",
+      "description": "One entry per (clause, retrieved-reference) pair actually judged -- up to `meta.retrieval.k` entries per clause. A `gdpr_concept` chunk (see rag/parsers/gdpr.py) covers two articles at once, so its single judge call produces one entry per article it links, sharing the same `chunk_id`.",
+      "items": { "$ref": "#/$defs/clause_verdict" }
+    },
+    "articles": {
+      "type": "array",
+      "description": "One entry per GDPR article known to the RAG index (see judge/pipeline.py's `known_articles`), aggregating every clause_verdicts entry with that article_number. Includes articles no clause ever retrieved, flagged `not_addressed`.",
+      "items": { "$ref": "#/$defs/article_summary" }
+    }
+  },
+  "$defs": {
+    "compliance_status": {
+      "type": "string",
+      "enum": ["compliant", "partial", "non_compliant", "not_applicable", "needs_review"],
+      "description": "Mirrors judge/judge_schema.json's `compliance_status`, plus `needs_review`: the pipeline's own fallback (never a judge output) for a clause/article the judge could not produce a schema-valid verdict for even after one repair retry -- see `error`/`retry_used` below."
+    },
+    "clause_verdict": {
+      "type": "object",
+      "required": [
+        "clause_id", "article", "article_number", "source_type", "chunk_id",
+        "retrieval_rank", "retrieval_score", "requirement_present",
+        "compliance_status", "evidence_span", "rationale", "confidence",
+        "retry_used", "error"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": { "type": "string", "description": "References `clauses[].id`." },
+        "article": {
+          "type": "string",
+          "description": "Human-readable label for what was retrieved, e.g. \"13\", \"concept:6,21\", \"Recital 47\", or an EDPB guideline section heading."
+        },
+        "article_number": {
+          "type": ["string", "null"],
+          "description": "Base GDPR article number this entry aggregates under in `articles[]`; null for a retrieved recital or EDPB guideline chunk (source_type != gdpr_article/gdpr_concept), which is judged for evidence but isn't itself a GDPR article."
+        },
+        "source_type": {
+          "type": "string",
+          "enum": ["gdpr_article", "gdpr_concept", "gdpr_recital", "edpb_guideline"],
+          "description": "The retrieved chunk's rag.chunk.Chunk.metadata['source_type']."
+        },
+        "chunk_id": { "type": "string", "description": "The retrieved chunk's id in the Chroma collection." },
+        "retrieval_rank": { "type": "integer", "minimum": 1, "description": "1-based rank within this clause's top-k retrieval results." },
+        "retrieval_score": { "type": "number", "description": "rag.retriever.RetrievedChunk.score for this (clause, chunk) pair; not comparable across clauses using different retrieval modes." },
+        "requirement_present": { "type": "boolean" },
+        "compliance_status": { "$ref": "#/$defs/compliance_status" },
+        "evidence_span": { "type": "string" },
+        "rationale": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "retry_used": { "type": "boolean", "description": "True if the first judge generation was invalid JSON and the one repair retry (or its own failure) produced this entry." },
+        "error": {
+          "type": ["string", "null"],
+          "description": "Schema-validation error text when compliance_status is needs_review; null otherwise."
+        }
+      }
+    },
+    "article_summary": {
+      "type": "object",
+      "required": ["article", "clauses_addressing_it", "best_compliance_status", "evidence", "rationale"],
+      "additionalProperties": false,
+      "properties": {
+        "article": { "type": "string", "description": "Base GDPR article number, e.g. \"13\"." },
+        "clauses_addressing_it": {
+          "type": "array",
+          "description": "Every clause_verdicts entry whose article_number is this article, regardless of its compliance_status (including not_applicable). Empty exactly when best_compliance_status is not_addressed.",
+          "items": {
+            "type": "object",
+            "required": ["clause_id", "compliance_status", "requirement_present", "evidence_span", "confidence"],
+            "additionalProperties": false,
+            "properties": {
+              "clause_id": { "type": "string" },
+              "compliance_status": { "$ref": "#/$defs/compliance_status" },
+              "requirement_present": { "type": "boolean" },
+              "evidence_span": { "type": "string" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "best_compliance_status": {
+          "type": "string",
+          "enum": ["compliant", "partial", "non_compliant", "not_applicable", "not_addressed", "needs_review"],
+          "description": "not_addressed means no clause in the policy ever retrieved this article (clauses_addressing_it is empty) -- distinct from not_applicable, where at least one clause was checked against the article and the judge determined it doesn't apply. Otherwise the most favorable status among clauses_addressing_it, ranked compliant > partial > not_applicable > needs_review > non_compliant (see judge/pipeline.py's _STATUS_RANK) -- a convenience default; a scoring engine that wants a different rule can recompute one from the full clauses_addressing_it list."
+        },
+        "evidence": { "type": "string", "description": "evidence_span of the clause that produced best_compliance_status; empty for not_addressed." },
+        "rationale": { "type": "string", "description": "rationale of the clause that produced best_compliance_status; a fixed explanatory string for not_addressed." }
+      }
+    }
+  }
+}
