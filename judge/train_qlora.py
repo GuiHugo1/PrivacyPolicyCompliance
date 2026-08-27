@@ -44,7 +44,15 @@ def load_config(path: Path | str) -> dict[str, Any]:
     return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
 
 
-def build_bnb_config(quant_cfg: dict[str, Any]) -> BitsAndBytesConfig:
+def build_bnb_config(quant_cfg: dict[str, Any]) -> BitsAndBytesConfig | None:
+    """Returns ``None`` when ``quantization.enabled`` is false.
+
+    CPU training can't use bitsandbytes 4-bit quantization, so the CPU
+    config (``judge/config/qlora_judge_cpu.yaml``) sets ``enabled: false``
+    to fall back to a plain full-precision LoRA load.
+    """
+    if not quant_cfg.get("enabled", True):
+        return None
     return BitsAndBytesConfig(
         load_in_4bit=quant_cfg.get("load_in_4bit", True),
         bnb_4bit_quant_type=quant_cfg.get("bnb_4bit_quant_type", "nf4"),
@@ -61,13 +69,18 @@ def build_model_and_tokenizer(cfg: dict[str, Any]) -> tuple[Any, Any]:
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
+    bnb_config = build_bnb_config(cfg["quantization"])
+    # "auto" (accelerate GPU dispatch) only makes sense for a quantized
+    # load; a CPU config sets model.device_map explicitly (e.g. "cpu").
+    device_map = model_cfg.get("device_map", "auto" if bnb_config is not None else None)
     model = AutoModelForCausalLM.from_pretrained(
         model_cfg["base_model"],
-        quantization_config=build_bnb_config(cfg["quantization"]),
-        device_map="auto",
+        quantization_config=bnb_config,
+        device_map=device_map,
         trust_remote_code=model_cfg.get("trust_remote_code", False),
     )
-    model = prepare_model_for_kbit_training(model)
+    if bnb_config is not None:
+        model = prepare_model_for_kbit_training(model)
 
     lora_cfg = cfg["lora"]
     peft_config = LoraConfig(
@@ -150,8 +163,16 @@ def resolve_mixed_precision(want_bf16: bool) -> tuple[bool, bool]:
 
     ``torch.cuda.is_bf16_supported()`` is False on pre-Ampere GPUs (T4, V100, most GTX/RTX 20-series) even though CUDA itself is available, and HF's
     ``TrainingArguments`` raises rather than falling back on its own.
+
+    fp16 needs a CUDA device (it isn't a supported autocast dtype for CPU
+    training), so with no GPU present at all this always falls back to
+    plain fp32 rather than fp16.
     """
-    if want_bf16 and not (torch.cuda.is_available() and torch.cuda.is_bf16_supported()):
+    if not torch.cuda.is_available():
+        if want_bf16:
+            print("[train_qlora] bf16 requested but no GPU available; training in fp32 on CPU.")
+        return False, False
+    if want_bf16 and not torch.cuda.is_bf16_supported():
         print("[train_qlora] bf16 requested but unsupported on this GPU; falling back to fp16.")
         return False, True
     return want_bf16, False
