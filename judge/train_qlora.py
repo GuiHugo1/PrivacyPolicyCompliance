@@ -44,11 +44,8 @@ def load_config(path: Path | str) -> dict[str, Any]:
     return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
 
 
-# Backends that surface through torch's CUDA API. A ROCm-built torch
-# reports an AMD GPU via the same `torch.cuda.*` calls CUDA uses, so
-# "rocm" is just a label for "I expect torch.cuda to be ROCm-backed" --
-# the detection/dispatch code is identical to "cuda".
-_CUDA_LIKE_BACKENDS = ("cuda", "rocm")
+# Backends that surface through torch's CUDA API.
+_CUDA_LIKE_BACKENDS = ("cuda",)
 
 
 def resolve_device_backend(want_backend: str = "auto") -> tuple[str, "torch.device"]:
@@ -56,18 +53,9 @@ def resolve_device_backend(want_backend: str = "auto") -> tuple[str, "torch.devi
 
     Options:
 
-    - ``"cuda"``/``"rocm"`` -- an NVIDIA (CUDA) or AMD (ROCm) GPU, detected
-      via ``torch.cuda.is_available()``. ROCm has no Windows build, so on
-      Windows this only ever succeeds for an NVIDIA card; an AMD card on
-      Windows needs ``"directml"`` instead.
-    - ``"directml"`` -- AMD/Intel GPU acceleration on Windows via the
-      separate ``torch-directml`` package. Training support through HF
-      ``Trainer`` is best-effort (bitsandbytes 4-bit quantization and
-      bf16/fp16 autocast aren't available on this backend), so this is
-      most useful for the smaller, unquantized configs.
+    - ``"cuda"`` -- an NVIDIA GPU, detected via ``torch.cuda.is_available()``.
     - ``"cpu"`` -- force CPU, ignoring any GPU present.
-    - ``"auto"`` (default) -- try CUDA/ROCm, then DirectML, then fall back
-      to CPU.
+    - ``"auto"`` (default) -- try CUDA, then fall back to CPU.
 
     Raises ``RuntimeError``/``ValueError`` for an explicitly requested
     backend that isn't actually available, so a typo'd config fails loudly
@@ -77,38 +65,20 @@ def resolve_device_backend(want_backend: str = "auto") -> tuple[str, "torch.devi
         if not torch.cuda.is_available():
             raise RuntimeError(
                 f"device.backend: {want_backend} was requested but torch.cuda.is_available() "
-                "is False -- no CUDA/ROCm GPU visible to torch. On Windows with an AMD GPU, "
-                "use device.backend: directml instead (ROCm has no Windows build)."
+                "is False -- no CUDA GPU visible to torch."
             )
         return want_backend, torch.device("cuda")
-
-    if want_backend == "directml":
-        try:
-            import torch_directml
-        except ImportError as exc:
-            raise RuntimeError(
-                "device.backend: directml was requested but the `torch-directml` package "
-                "isn't installed. Install it with `pip install torch-directml` (Windows only)."
-            ) from exc
-        return "directml", torch_directml.device()
 
     if want_backend == "cpu":
         return "cpu", torch.device("cpu")
 
     if want_backend != "auto":
         raise ValueError(
-            f"Unknown device.backend: {want_backend!r} (expected one of "
-            "'auto', 'cuda', 'rocm', 'directml', 'cpu')"
+            f"Unknown device.backend: {want_backend!r} (expected one of 'auto', 'cuda', 'cpu')"
         )
 
     if torch.cuda.is_available():
         return "cuda", torch.device("cuda")
-    try:
-        import torch_directml
-
-        return "directml", torch_directml.device()
-    except ImportError:
-        pass
     return "cpu", torch.device("cpu")
 
 
@@ -116,12 +86,10 @@ def build_bnb_config(quant_cfg: dict[str, Any], backend: str = "cuda") -> BitsAn
     """Returns ``None`` when ``quantization.enabled`` is false, or when the
     resolved device ``backend`` can't run bitsandbytes 4-bit quantization.
 
-    bitsandbytes 4-bit quantization only supports CUDA/ROCm GPUs. CPU
-    training (``judge/config/qlora_judge_cpu.yaml``) and DirectML training
-    (``judge/config/qlora_judge_amd.yaml``) both set ``enabled: false``
+    bitsandbytes 4-bit quantization only supports CUDA GPUs. CPU training
+    (``judge/config/qlora_judge_cpu.yaml``) sets ``enabled: false``
     explicitly, but this also guards against a config that leaves
-    quantization enabled while pointing ``device.backend`` at ``cpu`` or
-    ``directml``.
+    quantization enabled while pointing ``device.backend`` at ``cpu``.
     """
     if not quant_cfg.get("enabled", True):
         return None
@@ -151,7 +119,7 @@ def build_model_and_tokenizer(
 
     bnb_config = build_bnb_config(cfg["quantization"], backend)
     # "auto" (accelerate GPU dispatch) only makes sense for a quantized
-    # CUDA/ROCm load; every other case picks a single explicit device below
+    # CUDA load; every other case picks a single explicit device below
     # (a CPU config can still override via model.device_map, e.g. "cpu").
     device_map = model_cfg.get("device_map")
     if device_map is None:
@@ -164,10 +132,7 @@ def build_model_and_tokenizer(
     )
     if bnb_config is not None:
         model = prepare_model_for_kbit_training(model)
-    elif device_map is None and backend not in ("cpu",):
-        # DirectML (and any future non-accelerate-aware backend) has no
-        # `device_map="auto"` dispatch support, so place the whole model on
-        # the resolved device explicitly instead.
+    elif device_map is None and backend != "cpu":
         model = model.to(device)
 
     lora_cfg = cfg["lora"]
@@ -252,9 +217,8 @@ def resolve_mixed_precision(want_bf16: bool, backend: str) -> tuple[bool, bool]:
     ``torch.cuda.is_bf16_supported()`` is False on pre-Ampere GPUs (T4, V100, most GTX/RTX 20-series) even though CUDA itself is available, and HF's
     ``TrainingArguments`` raises rather than falling back on its own.
 
-    Both bf16 and fp16 autocast need a CUDA/ROCm device; CPU and DirectML
-    training always fall back to plain fp32 regardless of what the config
-    requests.
+    Both bf16 and fp16 autocast need a CUDA device; CPU training always
+    falls back to plain fp32 regardless of what the config requests.
     """
     if backend not in _CUDA_LIKE_BACKENDS:
         if want_bf16:
@@ -267,10 +231,9 @@ def resolve_mixed_precision(want_bf16: bool, backend: str) -> tuple[bool, bool]:
 
 def build_training_args(t_cfg: dict[str, Any], backend: str) -> TrainingArguments:
     bf16, fp16 = resolve_mixed_precision(t_cfg.get("bf16", True), backend)
-    # Pinned host memory only speeds up transfers to a CUDA/ROCm device --
-    # on CPU/DirectML it does nothing but trips PyTorch's "pin_memory is
-    # set but no accelerator is found" warning, so only request it when a
-    # CUDA-like backend is actually in use.
+    # Pinned host memory only speeds up transfers to a CUDA device -- on CPU
+    # it does nothing but trips PyTorch's "pin_memory is set but no
+    # accelerator is found" warning, so only request it when CUDA is in use.
     is_cuda_like = backend in _CUDA_LIKE_BACKENDS
     return TrainingArguments(
         output_dir=str(t_cfg["output_dir"]),
@@ -312,14 +275,6 @@ def main(argv: list[str] | None = None) -> int:
 
     backend, device = resolve_device_backend(cfg.get("device", {}).get("backend", "auto"))
     print(f"[train_qlora] using device backend: {backend} ({device})")
-    if backend == "directml":
-        print(
-            "[train_qlora] DirectML training via HF Trainer is best-effort: whether the "
-            "model actually stays on the DirectML device (rather than being moved back to "
-            "CPU by Trainer's own device dispatch) depends on your installed `accelerate` "
-            "version. If training errors out or silently runs on CPU, fall back to "
-            "device.backend: cpu."
-        )
 
     model, tokenizer = build_model_and_tokenizer(cfg, backend, device)
 
