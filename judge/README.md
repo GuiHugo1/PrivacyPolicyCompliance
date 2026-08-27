@@ -153,7 +153,10 @@ held-out test-set metrics for the resulting adapter.
 - `judge/train_qlora.py` -- config-driven (`judge/config/qlora_judge.yaml`)
   QLoRA training script: 4-bit `bitsandbytes` quantization, `peft` LoRA
   adapter, HF `Trainer`. Only the LoRA adapter is saved
-  (`PeftModel.save_pretrained`), not a merged model.
+  (`PeftModel.save_pretrained`), not a merged model. `resolve_device_backend`
+  resolves the config's `device.backend` (`auto`/`cuda`/`rocm`/`directml`/
+  `cpu`) to a concrete device -- see "Choosing a device backend" below --
+  and gates quantization/bf16/fp16/`dataloader_pin_memory` on it.
 - `judge/eval_qlora.py` -- loads a saved adapter, generates verdicts for
   the test split, and writes a JSON report of per-class precision/recall/F1
   + JSON-validity rate.
@@ -195,6 +198,55 @@ learning rate, epochs, batch size, gradient accumulation -- live in
 `judge/config/qlora_judge.yaml`; edit that file rather than the scripts to
 sweep them. Training metrics (train/val loss + JSON-validity rate) are
 appended to `judge/metrics/training_metrics.jsonl` every eval step.
+
+### Choosing a device backend
+
+`train_qlora.py`/`eval_qlora.py` pick a compute device from the config's
+`device.backend` key rather than assuming CUDA:
+
+| `device.backend` | Hardware | Quantization / bf16-fp16 | Config |
+| --- | --- | --- | --- |
+| `auto` (default) | tries CUDA/ROCm, then DirectML, then CPU | depends on what's found | `qlora_judge.yaml` |
+| `cuda` | NVIDIA GPU | 4-bit QLoRA + bf16/fp16 | `qlora_judge.yaml` |
+| `rocm` | AMD GPU, **Linux/WSL2 only** | 4-bit QLoRA + bf16/fp16 | `qlora_judge.yaml` (`backend: rocm`) |
+| `directml` | AMD/Intel GPU, **native Windows** | neither (full precision, `adamw_torch`) | `qlora_judge_amd.yaml` |
+| `cpu` | no GPU | neither (full precision, `adamw_torch`) | `qlora_judge_cpu.yaml` |
+
+An explicitly requested backend that isn't actually available fails fast
+with a clear error (e.g. `backend: cuda` on a machine with no CUDA/ROCm
+GPU), rather than silently training on the wrong device.
+
+**AMD GPU on Windows.** ROCm (the AMD equivalent of CUDA) has no Windows
+build, so a native Windows install can't use `backend: rocm`. The two
+options:
+
+1. **WSL2 + ROCm (recommended for real training).** Install a ROCm-built
+   `torch` inside WSL2, then just use `qlora_judge.yaml` unmodified (or set
+   `device.backend: rocm` explicitly) -- a ROCm `torch` reports the AMD GPU
+   through the exact same `torch.cuda.*` calls CUDA uses, so no other code
+   change is needed, and 4-bit quantization + bf16/fp16 both work.
+2. **DirectML on native Windows (no WSL2).** Install the extra dependency
+   and use the dedicated AMD config:
+
+   ```bash
+   uv sync --group judge-amd
+   python -m judge.train_qlora --config judge/config/qlora_judge_amd.yaml
+   ```
+
+   This is more limited than ROCm: bitsandbytes 4-bit quantization needs
+   CUDA/ROCm, so `qlora_judge_amd.yaml` disables it and uses the same small
+   `Qwen2.5-0.5B-Instruct` base model as the CPU config, at full precision
+   (no bf16/fp16). HF `Trainer`'s automatic device placement was also
+   written for CUDA/ROCm/XPU, not DirectML, so whether training actually
+   runs on the GPU (versus silently falling back to CPU) depends on your
+   installed `accelerate` version -- `train_qlora.py` prints which backend
+   and device it resolved to at startup so you can check. If it doesn't
+   pick up the GPU, fall back to `qlora_judge_cpu.yaml`.
+
+This is also what fixes PyTorch's `UserWarning: 'pin_memory' argument is
+set as true but no accelerator is found`: `TrainingArguments.dataloader_pin_memory`
+is now only enabled for `cuda`/`rocm` backends, since pinned host memory
+only speeds up transfers to those devices and does nothing on CPU/DirectML.
 
 ### CPU training (limited)
 

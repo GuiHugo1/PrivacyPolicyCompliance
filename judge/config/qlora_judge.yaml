@@ -7,6 +7,17 @@ model:
   trust_remote_code: false
   max_seq_length: 2048
 
+device:
+  # auto | cuda | rocm | directml | cpu -- see judge/README.md's "Choosing
+  # a device backend" for what each does. "auto" picks CUDA/ROCm (an
+  # AMD GPU on Linux with ROCm-built torch reports through the same
+  # torch.cuda API as NVIDIA) if available, else falls back further.
+  # Quantization and bf16/fp16 below only take effect on cuda/rocm; use
+  # judge/config/qlora_judge_amd.yaml or qlora_judge_cpu.yaml on hardware
+  # without a CUDA/ROCm GPU instead of overriding this to directml/cpu
+  # here, since this config's 7B base model isn't sized for those paths.
+  backend: auto
+
 quantization:
   enabled: true
   load_in_4bit: true

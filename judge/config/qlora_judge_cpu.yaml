@@ -15,6 +15,11 @@ model:
   # No accelerate GPU dispatch needed for a single-device CPU load.
   device_map: cpu
 
+device:
+  # Forces CPU even if a GPU is visible -- see judge/README.md's "Choosing
+  # a device backend". Use qlora_judge_amd.yaml instead for an AMD GPU.
+  backend: cpu
+
 quantization:
   # bitsandbytes 4-bit quantization requires a CUDA GPU; disable it here
   # and load the (small) base model at full precision instead.

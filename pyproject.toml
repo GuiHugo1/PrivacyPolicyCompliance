@@ -23,6 +23,14 @@ judge = [
     "datasets>=3.0.0",
     "mlflow>=2.16.0",  # optional: local file-tracking-uri runs, no server required
 ]
+judge-amd = [
+    # Extra dependency for device.backend: directml (native Windows, AMD/Intel
+    # GPU) -- see judge/README.md's "Choosing a device backend" and
+    # judge/config/qlora_judge_amd.yaml. Not needed for ROCm (Linux/WSL2),
+    # which uses a ROCm-built `torch` instead and needs no extra package.
+    {include-group = "judge"},
+    "torch-directml>=0.2.0; sys_platform == 'win32'",
+]
 scoring = [
     # compliance scoring engine
 ]

@@ -37,7 +37,7 @@ from judge.eval_metrics import (
 )
 from judge.qlora_data import load_prompt_response_pairs
 from judge.schema_utils import DEFAULT_SCHEMA_PATH, extract_json_object, load_schema
-from judge.train_qlora import build_bnb_config, load_config
+from judge.train_qlora import build_bnb_config, load_config, resolve_device_backend
 
 
 def load_model_for_eval(cfg: dict[str, Any], adapter_path: Path) -> tuple[Any, Any]:
@@ -46,14 +46,21 @@ def load_model_for_eval(cfg: dict[str, Any], adapter_path: Path) -> tuple[Any, A
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    bnb_config = build_bnb_config(cfg["quantization"])
-    device_map = model_cfg.get("device_map", "auto" if bnb_config is not None else None)
+    backend, device = resolve_device_backend(cfg.get("device", {}).get("backend", "auto"))
+    print(f"[eval_qlora] using device backend: {backend} ({device})")
+
+    bnb_config = build_bnb_config(cfg["quantization"], backend)
+    device_map = model_cfg.get("device_map")
+    if device_map is None:
+        device_map = "auto" if bnb_config is not None else None
     base_model = AutoModelForCausalLM.from_pretrained(
         model_cfg["base_model"],
         quantization_config=bnb_config,
         device_map=device_map,
         trust_remote_code=model_cfg.get("trust_remote_code", False),
     )
+    if bnb_config is None and device_map is None and backend != "cpu":
+        base_model = base_model.to(device)
     model = PeftModel.from_pretrained(base_model, str(adapter_path))
     model.eval()
     return model, tokenizer
