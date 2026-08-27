@@ -1,0 +1,101 @@
+# AMD-GPU LoRA fine-tuning config for the GDPR compliance judge.
+#
+# There are two different ways to get an AMD GPU involved, and this file
+# only covers one of them -- see judge/README.md's "Choosing a device
+# backend" section for the full comparison:
+#
+#   - ROCm (Linux or WSL2 only -- no native Windows build): a ROCm-built
+#     torch reports the GPU through the same torch.cuda API CUDA uses, so
+#     it needs NO separate config -- just install a ROCm torch build and
+#     use judge/config/qlora_judge.yaml with device.backend: rocm (or
+#     leave it at "auto"). bitsandbytes 4-bit quantization and bf16/fp16
+#     work there the same as on CUDA.
+#   - DirectML (native Windows, AMD or Intel GPU): what THIS file uses.
+#     It's a separate `torch-directml` package and is meaningfully more
+#     limited -- no bitsandbytes 4-bit quantization, no bf16/fp16, and HF
+#     Trainer's automatic device placement was written for CUDA/ROCm/XPU,
+#     not DirectML, so whether the model actually trains on the GPU
+#     (rather than silently falling back to CPU) depends on your
+#     installed `accelerate` version. Treat this as a best-effort, faster
+#     alternative to full CPU training -- not a guaranteed drop-in for the
+#     main GPU config.
+#
+# Install: `pip install torch-directml` (in addition to `uv sync --group
+# judge`; torch-directml pins its own compatible torch version).
+#
+# Like qlora_judge_cpu.yaml, this swaps in the small base model since
+# there's no 4-bit quantization to shrink memory use.
+
+model:
+  base_model: Qwen/Qwen2.5-0.5B-Instruct
+  trust_remote_code: false
+  max_seq_length: 1024
+  # Left unset: train_qlora.py places the model on the DirectML device
+  # itself once device.backend resolves it (accelerate's device_map="auto"
+  # dispatch doesn't know about DirectML).
+
+device:
+  backend: directml
+
+quantization:
+  # bitsandbytes 4-bit quantization requires a CUDA/ROCm GPU; disable it
+  # here and load the (small) base model at full precision instead.
+  enabled: false
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+data:
+  train_path: data/processed/judge_sft/train.jsonl
+  val_path: data/processed/judge_sft/val.jsonl
+  test_path: data/processed/judge_sft/test.jsonl
+  schema_path: judge/judge_schema.json
+
+training:
+  output_dir: judge/checkpoints/qwen2.5-0.5b-amd-lora-judge
+  num_train_epochs: 1
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_steps: 0.03
+  weight_decay: 0.0
+  max_grad_norm: 0.3
+  logging_steps: 10
+  eval_steps: 50
+  save_steps: 50
+  save_total_limit: 2
+  seed: 42
+  # paged_adamw_8bit needs bitsandbytes+CUDA/ROCm; plain AdamW runs on
+  # DirectML (train_qlora.build_training_args also defaults to this for
+  # any non-cuda/rocm backend even without setting it here explicitly).
+  optim: adamw_torch
+  # Not needed at this model size, and gradient checkpointing mostly just
+  # slows training down without the GPU memory pressure it's for.
+  gradient_checkpointing: false
+  bf16: false
+
+generation:
+  max_new_tokens: 256
+  do_sample: false
+
+metrics:
+  output_dir: judge/metrics
+  metrics_file: training_metrics_amd.jsonl
+  use_mlflow: false
+  mlflow_dir: judge/mlruns
+  run_name: qwen2.5-0.5b-amd-lora-judge
+  max_eval_generate_samples: 10
