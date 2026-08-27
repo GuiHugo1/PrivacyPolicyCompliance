@@ -9,6 +9,7 @@ run, not pytest -- see judge/README.md's testing note.
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -18,9 +19,15 @@ from judge.pipeline import (
     aggregate_articles,
     generate_verdict_with_repair,
     known_articles,
+    load_policy_text,
+    run_pipeline,
     segment_clauses,
 )
-from judge.schema_utils import DEFAULT_SCHEMA_PATH, load_schema
+from judge.schema_utils import DEFAULT_SCHEMA_PATH, load_schema, validate_against_schema
+from rag.retriever import RetrievedChunk
+
+EXAMPLES_DIR = Path(__file__).parent.parent / "examples"
+OUTPUT_SCHEMA_PATH = Path(__file__).parent.parent / "output_schema.json"
 
 VALID_VERDICT = {
     "article": "13",
@@ -35,6 +42,32 @@ VALID_VERDICT = {
 @pytest.fixture
 def schema():
     return load_schema(DEFAULT_SCHEMA_PATH)
+
+
+# ---------------------------------------------------------------------------
+# load_policy_text
+# ---------------------------------------------------------------------------
+
+
+def test_load_policy_text_reads_plain_text(tmp_path):
+    path = tmp_path / "policy.txt"
+    path.write_text("First paragraph.\n\nSecond paragraph.", encoding="utf-8")
+    assert load_policy_text(path) == "First paragraph.\n\nSecond paragraph."
+
+
+def test_load_policy_text_extracts_pdf():
+    pdf_text = load_policy_text(EXAMPLES_DIR / "sample_policy.pdf")
+    txt_text = (EXAMPLES_DIR / "sample_policy.txt").read_text(encoding="utf-8")
+
+    # Layout-mode extraction recovers the same paragraph breaks as the
+    # plain-text version, so segmenting either yields the same clauses.
+    assert segment_clauses(pdf_text) == segment_clauses(txt_text)
+    assert "Data Protection Officer" in pdf_text
+
+
+def test_load_policy_text_pdf_produces_multiple_clauses():
+    clauses = segment_clauses(load_policy_text(EXAMPLES_DIR / "sample_policy.pdf"))
+    assert len(clauses) > 1
 
 
 # ---------------------------------------------------------------------------
@@ -289,3 +322,82 @@ def test_known_articles_returns_distinct_article_numbers():
 
 def test_known_articles_empty_collection():
     assert known_articles(_FakeCollection([])) == set()
+
+
+# ---------------------------------------------------------------------------
+# run_pipeline end to end, against judge/output_schema.json
+# ---------------------------------------------------------------------------
+#
+# Retrieval and the judge model are faked out (they need a built Chroma
+# index and real model weights -- see this module's docstring), but
+# everything else -- PDF/text ingestion, segmentation, the retry/repair
+# wrapper's output shape, and aggregation -- is the real code. This is the
+# "perfect correspondence" check: judge/pipeline.py's module docstring
+# claims its output always matches judge/output_schema.json, and nothing
+# else in this repo actually verifies that end to end.
+
+
+class _FakeRetrieverContext:
+    """Same `.retrieve`/`.collection`/retrieval-settings shape as the real
+    `RetrieverContext` (see judge/pipeline.py), backed by a fixed chunk list
+    and a fake collection instead of a real Chroma index + embedder."""
+
+    def __init__(self, collection, chunks):
+        self.collection = collection
+        self.hybrid = True
+        self.rerank = True
+        self.fetch_k = None
+        self.rerank_top_n = 20
+        self._chunks = chunks
+
+    def retrieve(self, query: str, k: int) -> list[RetrievedChunk]:
+        return self._chunks[:k]
+
+
+class _FakeJudgeModel:
+    """Same `.judge` shape as the real `JudgeModel` (see judge/pipeline.py),
+    always returning one fixed schema-valid verdict instead of running the
+    actual base model + LoRA adapter."""
+
+    def __init__(self, verdict: dict):
+        self._verdict = verdict
+
+    def judge(self, clause_text: str, article_cite: str, article_text: str) -> dict:
+        return {**self._verdict, "article": article_cite}
+
+
+def test_run_pipeline_end_to_end_matches_output_schema():
+    policy_text = load_policy_text(EXAMPLES_DIR / "sample_policy.txt")
+
+    collection = _FakeCollection([{"source_type": "gdpr_article", "article_number": "13"}])
+    chunk = RetrievedChunk(
+        text="Article 13 -- Information to be provided...",
+        metadata={"source_type": "gdpr_article", "article_number": "13"},
+        score=0.9,
+        id="gdpr-article-13",
+    )
+    retriever_ctx = _FakeRetrieverContext(collection, chunks=[chunk])
+    judge_model = _FakeJudgeModel({**VALID_VERDICT, "retry_used": False, "error": None})
+
+    result = run_pipeline(
+        policy_text,
+        policy_source=str(EXAMPLES_DIR / "sample_policy.txt"),
+        retriever_ctx=retriever_ctx,
+        judge_model=judge_model,
+        judge_config_path="judge/config/qlora_judge.yaml",
+        adapter_path="judge/checkpoints/example-adapter",
+        k=1,
+    )
+
+    output_schema = load_schema(OUTPUT_SCHEMA_PATH)
+    assert validate_against_schema(result, output_schema) == []
+
+    # Every clause retrieved the same single fake chunk (k=1), so every
+    # clause got exactly one verdict, all under article 13.
+    assert result["policy"]["n_clauses"] == len(result["clauses"])
+    assert len(result["clause_verdicts"]) == len(result["clauses"])
+    assert {a["article"] for a in result["articles"]} == {"13"}
+    assert (
+        next(a for a in result["articles"] if a["article"] == "13")["best_compliance_status"]
+        == "compliant"
+    )

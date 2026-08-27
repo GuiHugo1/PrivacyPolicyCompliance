@@ -26,7 +26,9 @@ policy text --> [rag] --> relevant GDPR/EDPB context
 - **rag/** — retrieval pipeline over GDPR articles and EDPB guidelines;
   indexes source text and serves relevant context for a given policy.
 - **judge/** — fine-tuning and inference code for the LLM judge, built on
-  an open-source Qwen model.
+  an open-source Qwen model. See `judge/README.md`'s "End-to-end judge
+  pipeline" section to run the judge on a privacy policy (PDF or text) and
+  "Try it out" for a runnable example that needs no trained model or GPU.
 - **scoring/** — compliance scoring engine that turns judge output into
   structured scores and findings.
 - **ui/** — user-facing app (Streamlit, or FastAPI backend + React
