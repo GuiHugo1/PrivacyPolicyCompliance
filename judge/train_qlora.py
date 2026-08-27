@@ -145,8 +145,19 @@ class JsonValidityCallback(TrainerCallback):
         self.metrics_logger.log(record)
         print(f"[metrics] {record}")
 
+def resolve_mixed_precision(want_bf16: bool) -> tuple[bool, bool]:
+    """Returns (bf16, fp16), downgrading to fp16 when the GPU can't do bf16.
+
+    ``torch.cuda.is_bf16_supported()`` is False on pre-Ampere GPUs (T4, V100, most GTX/RTX 20-series) even though CUDA itself is available, and HF's
+    ``TrainingArguments`` raises rather than falling back on its own.
+    """
+    if want_bf16 and not (torch.cuda.is_available() and torch.cuda.is_bf16_supported()):
+        print("[train_qlora] bf16 requested but unsupported on this GPU; falling back to fp16.")
+        return False, True
+    return want_bf16, False
 
 def build_training_args(t_cfg: dict[str, Any]) -> TrainingArguments:
+    bf16, fp16 = resolve_mixed_precision(t_cfg.get("bf16", True))
     return TrainingArguments(
         output_dir=str(t_cfg["output_dir"]),
         num_train_epochs=t_cfg.get("num_train_epochs", 3),
@@ -155,7 +166,7 @@ def build_training_args(t_cfg: dict[str, Any]) -> TrainingArguments:
         gradient_accumulation_steps=t_cfg.get("gradient_accumulation_steps", 8),
         learning_rate=float(t_cfg.get("learning_rate", 2e-4)),
         lr_scheduler_type=t_cfg.get("lr_scheduler_type", "cosine"),
-        warmup_ratio=t_cfg.get("warmup_ratio", 0.03),
+        warmup_steps=t_cfg.get("warmup_steps", 0.03),
         weight_decay=t_cfg.get("weight_decay", 0.0),
         max_grad_norm=t_cfg.get("max_grad_norm", 0.3),
         logging_steps=t_cfg.get("logging_steps", 10),
@@ -167,7 +178,8 @@ def build_training_args(t_cfg: dict[str, Any]) -> TrainingArguments:
         seed=t_cfg.get("seed", 42),
         optim=t_cfg.get("optim", "paged_adamw_8bit"),
         gradient_checkpointing=t_cfg.get("gradient_checkpointing", True),
-        bf16=t_cfg.get("bf16", True),
+        bf16=bf16,
+        fp16=fp16,
         report_to=[],
         remove_unused_columns=False,
         label_names=["labels"],
