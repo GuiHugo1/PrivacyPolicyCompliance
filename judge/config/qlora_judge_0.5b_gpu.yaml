@@ -1,0 +1,84 @@
+# Fast GPU smoke-test config for the GDPR compliance judge: same QLoRA
+# training script and pipeline as judge/config/qlora_judge.yaml, but with
+# the small Qwen2.5-0.5B-Instruct base model instead of the 7B one.
+#
+# Use this to quickly validate the full training pipeline (data loading,
+# collator, LoRA wiring, 4-bit quantization, eval callback) end-to-end on
+# any CUDA GPU -- including small/free ones like a Colab T4 -- before
+# committing to a long 7B run. It is NOT a substitute for the 7B judge:
+# 0.5B is far weaker and this adapter should not be treated as a final
+# model. Once a bigger GPU (e.g. an A100/H100, or multi-GPU) is available,
+# switch to qlora_judge.yaml for the actual judge model -- both configs
+# share the same `model`/`quantization`/`lora`/`training` schema, so
+# scaling up is just picking a bigger `model.base_model` and adjusting
+# batch size/gradient accumulation for the available VRAM.
+
+model:
+  base_model: Qwen/Qwen2.5-0.5B-Instruct
+  trust_remote_code: false
+  max_seq_length: 1024
+
+device:
+  # Requires a CUDA GPU -- fails fast if none is visible. Use
+  # qlora_judge_cpu.yaml instead on hardware with no GPU at all.
+  backend: cuda
+
+quantization:
+  enabled: true
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+data:
+  train_path: data/processed/judge_sft/train.jsonl
+  val_path: data/processed/judge_sft/val.jsonl
+  test_path: data/processed/judge_sft/test.jsonl
+  schema_path: judge/judge_schema.json
+
+training:
+  output_dir: judge/checkpoints/qwen2.5-0.5b-gpu-qlora-judge
+  num_train_epochs: 1
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_steps: 0.03
+  weight_decay: 0.0
+  max_grad_norm: 0.3
+  logging_steps: 10
+  eval_steps: 50
+  save_steps: 50
+  save_total_limit: 2
+  seed: 42
+  optim: paged_adamw_8bit
+  gradient_checkpointing: true
+  bf16: true
+
+generation:
+  max_new_tokens: 256
+  do_sample: false
+
+metrics:
+  output_dir: judge/metrics
+  metrics_file: training_metrics_0.5b_gpu.jsonl
+  use_mlflow: false
+  mlflow_dir: judge/mlruns
+  run_name: qwen2.5-0.5b-gpu-qlora-judge
+  max_eval_generate_samples: 10

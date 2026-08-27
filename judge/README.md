@@ -154,9 +154,9 @@ held-out test-set metrics for the resulting adapter.
   QLoRA training script: 4-bit `bitsandbytes` quantization, `peft` LoRA
   adapter, HF `Trainer`. Only the LoRA adapter is saved
   (`PeftModel.save_pretrained`), not a merged model. `resolve_device_backend`
-  resolves the config's `device.backend` (`auto`/`cuda`/`rocm`/`directml`/
-  `cpu`) to a concrete device -- see "Choosing a device backend" below --
-  and gates quantization/bf16/fp16/`dataloader_pin_memory` on it.
+  resolves the config's `device.backend` (`auto`/`cuda`/`cpu`) to a concrete
+  device -- see "Choosing a device backend" below -- and gates
+  quantization/bf16/fp16/`dataloader_pin_memory` on it.
 - `judge/eval_qlora.py` -- loads a saved adapter, generates verdicts for
   the test split, and writes a JSON report of per-class precision/recall/F1
   + JSON-validity rate.
@@ -184,7 +184,17 @@ where `<json verdict>` matches `judge/judge_schema.json`.
 
 ```bash
 uv sync --group judge
+```
 
+`judge/train_qlora.py` and `judge/eval_qlora.py` always take `--config`, so
+which config you pass picks both the base model and the hardware path. Every
+possibility:
+
+**Full judge model, CUDA GPU (`judge/config/qlora_judge.yaml`).** The real
+target: `Qwen2.5-7B-Instruct`, 4-bit QLoRA, bf16/fp16. Needs a real GPU
+(e.g. an A100/H100, or multi-GPU) -- see "Choosing a device backend" below.
+
+```bash
 python -m judge.train_qlora --config judge/config/qlora_judge.yaml
 
 python -m judge.eval_qlora \
@@ -193,11 +203,42 @@ python -m judge.eval_qlora \
     --output judge/metrics/test_eval_report.json
 ```
 
+**Fast GPU smoke test (`judge/config/qlora_judge_0.5b_gpu.yaml`).** Same
+QLoRA pipeline as above but on `Qwen2.5-0.5B-Instruct`, so a training run
+completes in minutes instead of hours -- use this to validate the pipeline
+(data, collator, LoRA wiring, eval callback) end-to-end, or to iterate on
+config/data changes quickly, before committing to a full 7B run. Works on
+any CUDA GPU, including small/free ones (e.g. a Colab T4 -- see "Training on
+Google Colab" below). Not a substitute for the 7B judge; bigger base models
+need bigger hardware, per the table below.
+
+```bash
+python -m judge.train_qlora --config judge/config/qlora_judge_0.5b_gpu.yaml
+
+python -m judge.eval_qlora \
+    --config judge/config/qlora_judge_0.5b_gpu.yaml \
+    --adapter judge/checkpoints/qwen2.5-0.5b-gpu-qlora-judge \
+    --output judge/metrics/test_eval_report_0.5b_gpu.json
+```
+
+**CPU-only (`judge/config/qlora_judge_cpu.yaml`).** No GPU at all --
+`Qwen2.5-0.5B-Instruct` at full precision. Slower than the GPU smoke test
+above but needs no CUDA hardware; see "CPU training (limited)" below.
+
+```bash
+python -m judge.train_qlora --config judge/config/qlora_judge_cpu.yaml
+
+python -m judge.eval_qlora \
+    --config judge/config/qlora_judge_cpu.yaml \
+    --adapter judge/checkpoints/qwen2.5-0.5b-cpu-lora-judge \
+    --output judge/metrics/test_eval_report_cpu.json
+```
+
 All hyperparameters -- LoRA rank/alpha/target modules, quantization,
-learning rate, epochs, batch size, gradient accumulation -- live in
-`judge/config/qlora_judge.yaml`; edit that file rather than the scripts to
-sweep them. Training metrics (train/val loss + JSON-validity rate) are
-appended to `judge/metrics/training_metrics.jsonl` every eval step.
+learning rate, epochs, batch size, gradient accumulation -- live in each
+config's YAML file; edit that file rather than the scripts to sweep them.
+Training metrics (train/val loss + JSON-validity rate) are appended to
+`judge/metrics/<config's metrics.metrics_file>` every eval step.
 
 ### Choosing a device backend
 
@@ -206,47 +247,53 @@ appended to `judge/metrics/training_metrics.jsonl` every eval step.
 
 | `device.backend` | Hardware | Quantization / bf16-fp16 | Config |
 | --- | --- | --- | --- |
-| `auto` (default) | tries CUDA/ROCm, then DirectML, then CPU | depends on what's found | `qlora_judge.yaml` |
-| `cuda` | NVIDIA GPU | 4-bit QLoRA + bf16/fp16 | `qlora_judge.yaml` |
-| `rocm` | AMD GPU, **Linux/WSL2 only** | 4-bit QLoRA + bf16/fp16 | `qlora_judge.yaml` (`backend: rocm`) |
-| `directml` | AMD/Intel GPU, **native Windows** | neither (full precision, `adamw_torch`) | `qlora_judge_amd.yaml` |
+| `auto` (default) | tries CUDA, then CPU | depends on what's found | `qlora_judge.yaml` |
+| `cuda` | NVIDIA GPU | 4-bit QLoRA + bf16/fp16 | `qlora_judge.yaml` (7B), `qlora_judge_0.5b_gpu.yaml` (0.5B, fast test) |
 | `cpu` | no GPU | neither (full precision, `adamw_torch`) | `qlora_judge_cpu.yaml` |
 
 An explicitly requested backend that isn't actually available fails fast
-with a clear error (e.g. `backend: cuda` on a machine with no CUDA/ROCm
-GPU), rather than silently training on the wrong device.
+with a clear error (e.g. `backend: cuda` on a machine with no CUDA GPU),
+rather than silently training on the wrong device.
 
-**AMD GPU on Windows.** ROCm (the AMD equivalent of CUDA) has no Windows
-build, so a native Windows install can't use `backend: rocm`. The two
-options:
+`TrainingArguments.dataloader_pin_memory` is only enabled for the `cuda`
+backend, since pinned host memory only speeds up transfers to a CUDA device
+and does nothing on CPU (this also avoids PyTorch's `UserWarning:
+'pin_memory' argument is set as true but no accelerator is found`).
 
-1. **WSL2 + ROCm (recommended for real training).** Install a ROCm-built
-   `torch` inside WSL2, then just use `qlora_judge.yaml` unmodified (or set
-   `device.backend: rocm` explicitly) -- a ROCm `torch` reports the AMD GPU
-   through the exact same `torch.cuda.*` calls CUDA uses, so no other code
-   change is needed, and 4-bit quantization + bf16/fp16 both work.
-2. **DirectML on native Windows (no WSL2).** Install the extra dependency
-   and use the dedicated AMD config:
+### Training on Google Colab
+
+`judge/config/qlora_judge_0.5b_gpu.yaml` (see above) is sized to fit on a
+free Colab GPU runtime (e.g. a T4), so you don't need local GPU hardware to
+smoke-test the training pipeline:
+
+1. Open a new Colab notebook and set **Runtime -> Change runtime type ->
+   T4 GPU**.
+2. Clone this repo and install the judge dependency group:
 
    ```bash
-   uv sync --group judge-amd
-   python -m judge.train_qlora --config judge/config/qlora_judge_amd.yaml
+   !git clone <this-repo-url>
+   %cd PrivacyPolicyCompliance
+   !pip install uv && uv sync --group judge
    ```
 
-   This is more limited than ROCm: bitsandbytes 4-bit quantization needs
-   CUDA/ROCm, so `qlora_judge_amd.yaml` disables it and uses the same small
-   `Qwen2.5-0.5B-Instruct` base model as the CPU config, at full precision
-   (no bf16/fp16). HF `Trainer`'s automatic device placement was also
-   written for CUDA/ROCm/XPU, not DirectML, so whether training actually
-   runs on the GPU (versus silently falling back to CPU) depends on your
-   installed `accelerate` version -- `train_qlora.py` prints which backend
-   and device it resolved to at startup so you can check. If it doesn't
-   pick up the GPU, fall back to `qlora_judge_cpu.yaml`.
+3. Upload or generate the SFT JSONL splits (`judge/build_sft_dataset.py`,
+   see "Usage" above) under `data/processed/judge_sft/`, matching the paths
+   in `qlora_judge_0.5b_gpu.yaml`'s `data` section (or edit that section to
+   point at wherever you put them in the Colab filesystem/Drive).
+4. Run training:
 
-This is also what fixes PyTorch's `UserWarning: 'pin_memory' argument is
-set as true but no accelerator is found`: `TrainingArguments.dataloader_pin_memory`
-is now only enabled for `cuda`/`rocm` backends, since pinned host memory
-only speeds up transfers to those devices and does nothing on CPU/DirectML.
+   ```bash
+   !uv run python -m judge.train_qlora --config judge/config/qlora_judge_0.5b_gpu.yaml
+   ```
+
+5. Download the resulting adapter from `judge/checkpoints/qwen2.5-0.5b-gpu-qlora-judge`
+   (or `%cp` it to a mounted Google Drive) before the runtime recycles --
+   Colab storage is ephemeral.
+
+This is still the 0.5B smoke-test path, not the final judge: once real GPU
+hardware (an A100/H100, or a paid Colab/Kaggle tier with enough VRAM) is
+available, switch to `qlora_judge.yaml` for the actual `Qwen2.5-7B-Instruct`
+judge model.
 
 ### CPU training (limited)
 
