@@ -38,7 +38,6 @@ htmlcov/
 
 # --- Hugging Face / ML models ---
 *.bin
-*.safetensors
 *.ckpt
 *.pt
 *.pth
@@ -48,7 +47,6 @@ htmlcov/
 huggingface_hub/
 wandb/
 mlruns/
-checkpoints/
 outputs/
 
 # --- Data ---
