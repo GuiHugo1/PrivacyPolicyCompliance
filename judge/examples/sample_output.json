@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "generated_at": "2026-08-27T22:42:58.699894+00:00",
+    "pipeline_version": "0.1.0",
+    "judge_model": {
+      "config": "judge/config/qlora_judge.yaml",
+      "adapter": "judge/checkpoints/qwen2.5-7b-qlora-judge"
+    },
+    "retrieval": {
+      "k": 1,
+      "hybrid": true,
+      "rerank": true,
+      "fetch_k": null,
+      "rerank_top_n": 20
+    }
+  },
+  "policy": {
+    "source": "judge/examples/sample_policy.pdf",
+    "n_clauses": 7
+  },
+  "clauses": [
+    {
+      "id": "clause-0",
+      "index": 0,
+      "text": "Example Co. Privacy Policy"
+    },
+    {
+      "id": "clause-1",
+      "index": 1,
+      "text": "We collect your name, email address, and billing information when you create an account, so that we can provide and bill for the Service. We do not collect any data beyond what is needed to operate your account."
+    },
+    {
+      "id": "clause-2",
+      "index": 2,
+      "text": "You may access, correct, or delete the personal data we hold about you at any time by emailing privacy@example.com. We will respond to your request within 30 days."
+    },
+    {
+      "id": "clause-3",
+      "index": 3,
+      "text": "We retain your account data for as long as your account is active, and for up to 90 days afterward to allow you to reactivate it. Billing records are kept for 7 years to comply with our tax obligations."
+    },
+    {
+      "id": "clause-4",
+      "index": 4,
+      "text": "If you no longer wish to receive marketing emails from us, you may unsubscribe at any time using the link at the bottom of any marketing email, or by contacting privacy@example.com."
+    },
+    {
+      "id": "clause-5",
+      "index": 5,
+      "text": "We share your data with payment processors and cloud hosting providers strictly to operate the Service. We do not sell your personal data to third parties."
+    },
+    {
+      "id": "clause-6",
+      "index": 6,
+      "text": "For any questions about this policy or how we handle your data, contact our Data Protection Officer at dpo@example.com."
+    }
+  ],
+  "clause_verdicts": [
+    {
+      "clause_id": "clause-0",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "Example Co. Privacy Policy",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    },
+    {
+      "clause_id": "clause-1",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "We collect your name, email address, and billing information when you create an ",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    },
+    {
+      "clause_id": "clause-2",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "You may access, correct, or delete the personal data we hold about you at any ti",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    },
+    {
+      "clause_id": "clause-3",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "We retain your account data for as long as your account is active, and for up to",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    },
+    {
+      "clause_id": "clause-4",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "If you no longer wish to receive marketing emails from us, you may unsubscribe a",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    },
+    {
+      "clause_id": "clause-5",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "We share your data with payment processors and cloud hosting providers strictly ",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    },
+    {
+      "clause_id": "clause-6",
+      "article": "13",
+      "article_number": "13",
+      "source_type": "gdpr_article",
+      "chunk_id": "gdpr-article-13",
+      "retrieval_rank": 1,
+      "retrieval_score": 0.91,
+      "requirement_present": true,
+      "compliance_status": "compliant",
+      "evidence_span": "For any questions about this policy or how we handle your data, contact our Data",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict.",
+      "confidence": 0.9,
+      "retry_used": false,
+      "error": null
+    }
+  ],
+  "articles": [
+    {
+      "article": "13",
+      "clauses_addressing_it": [
+        {
+          "clause_id": "clause-0",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "Example Co. Privacy Policy",
+          "confidence": 0.9
+        },
+        {
+          "clause_id": "clause-1",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "We collect your name, email address, and billing information when you create an ",
+          "confidence": 0.9
+        },
+        {
+          "clause_id": "clause-2",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "You may access, correct, or delete the personal data we hold about you at any ti",
+          "confidence": 0.9
+        },
+        {
+          "clause_id": "clause-3",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "We retain your account data for as long as your account is active, and for up to",
+          "confidence": 0.9
+        },
+        {
+          "clause_id": "clause-4",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "If you no longer wish to receive marketing emails from us, you may unsubscribe a",
+          "confidence": 0.9
+        },
+        {
+          "clause_id": "clause-5",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "We share your data with payment processors and cloud hosting providers strictly ",
+          "confidence": 0.9
+        },
+        {
+          "clause_id": "clause-6",
+          "compliance_status": "compliant",
+          "requirement_present": true,
+          "evidence_span": "For any questions about this policy or how we handle your data, contact our Data",
+          "confidence": 0.9
+        }
+      ],
+      "best_compliance_status": "compliant",
+      "evidence": "Example Co. Privacy Policy",
+      "rationale": "Fake judge model: always returns a fixed compliant verdict."
+    }
+  ]
+}

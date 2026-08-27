@@ -1,12 +1,18 @@
 """End-to-end GDPR compliance-judging pipeline.
 
-Takes a full privacy-policy text and produces one JSON object matching
+Takes a full privacy policy -- a ``.pdf`` or a plain-text/``.txt`` file, see
+``load_policy_text`` -- and produces one JSON object matching
 ``judge/output_schema.json``: the text segmented into clauses, one judge
 verdict per (clause, retrieved-reference) pair, and a policy-level
 aggregation of those verdicts per GDPR article.
 
 Pipeline stages:
 
+0. ``load_policy_text`` -- reads the input file, extracting text from PDF
+   pages via ``pypdf`` (already a ``rag`` dependency-group requirement) when
+   ``--policy`` ends in ``.pdf``, or reading it as plain text otherwise --
+   most privacy policies are published as PDFs, so this is the common case,
+   not a fallback.
 1. ``segment_clauses`` -- paragraph + sentence-heuristic clause segmentation.
    See its docstring for why this is deliberately simple and where it's
    expected to be improved later.
@@ -70,16 +76,25 @@ Usage::
     uv sync --group rag --group judge
 
     python -m judge.pipeline \\
+        --policy path/to/policy.pdf \\
+        --adapter judge/checkpoints/qwen2.5-7b-qlora-judge \\
+        --out result.json
+
+    # a plain-text policy works the same way:
+    python -m judge.pipeline \\
         --policy path/to/policy.txt \\
         --adapter judge/checkpoints/qwen2.5-7b-qlora-judge \\
         --out result.json
 
     # against the 0.5B smoke-test adapter instead of the 7B judge:
     python -m judge.pipeline \\
-        --policy path/to/policy.txt \\
+        --policy path/to/policy.pdf \\
         --config judge/config/qlora_judge_0.5b_gpu.yaml \\
         --adapter judge/checkpoints/qwen2.5-0.5b-gpu-qlora-judge \\
         --out result.json
+
+See ``judge/README.md``'s "Try it out" walkthrough for a complete,
+runnable example against ``judge/examples/sample_policy.pdf``.
 """
 
 from __future__ import annotations
@@ -666,11 +681,50 @@ def load_config(path: Path | str) -> dict[str, Any]:
     return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
 
 
+def load_policy_text(path: Path | str) -> str:
+    """Reads the input privacy-policy document as plain text for
+    ``segment_clauses``, extracting it from PDF pages via ``pypdf`` (already
+    a ``rag`` dependency-group requirement -- see ``rag/parsers/edpb.py``,
+    which extracts EDPB guideline PDFs the same way) whenever ``path`` ends
+    in ``.pdf``, so a policy can be judged straight from the PDF a company
+    actually publishes instead of requiring a manually pre-extracted
+    ``.txt`` copy. Any other suffix (``.txt``, no suffix, etc.) is read as
+    plain UTF-8 text, unchanged from this function's previous behavior.
+
+    Uses pypdf's ``extraction_mode="layout"``, which reconstructs blank-line
+    paragraph gaps from the PDF's actual text layout, rather than the
+    default mode, which concatenates every visual line with a single ``\\n``
+    and loses paragraph boundaries entirely -- since ``segment_clauses``'s
+    primary split is on blank lines, that default mode would collapse a
+    whole multi-paragraph PDF into one paragraph, falling back entirely on
+    the cruder sentence-merge heuristic. Layout extraction is still a
+    heuristic (a PDF has no explicit paragraph markup, just glyph
+    positions), not a guarantee: an unusually laid-out PDF (multi-column,
+    tables, no vertical gap between paragraphs) can still lose or merge
+    paragraph breaks -- the same class of limitation ``segment_clauses``'s
+    own docstring already flags for hard-wrapped text.
+    """
+    path = Path(path)
+    if path.suffix.lower() != ".pdf":
+        return path.read_text(encoding="utf-8")
+
+    from pypdf import PdfReader
+
+    reader = PdfReader(str(path))
+    return "\n\n".join(page.extract_text(extraction_mode="layout") or "" for page in reader.pages)
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--policy", required=True, type=Path, help="Path to the policy text file.")
+    parser.add_argument(
+        "--policy",
+        required=True,
+        type=Path,
+        help="Path to the privacy policy to judge -- a .pdf (text extracted via pypdf) or "
+        "a plain-text/.txt file.",
+    )
     parser.add_argument("--out", required=True, type=Path, help="Path to write the result JSON to.")
     parser.add_argument(
         "--config",
@@ -706,7 +760,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    policy_text = args.policy.read_text(encoding="utf-8")
+    policy_text = load_policy_text(args.policy)
 
     cfg = load_config(args.config)
     schema = load_schema(cfg["data"].get("schema_path", DEFAULT_SCHEMA_PATH))
