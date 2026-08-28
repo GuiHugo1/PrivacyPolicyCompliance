@@ -49,3 +49,22 @@ dependency groups defined in `pyproject.toml`: `rag`, `judge`, `scoring`,
 uv sync --group dev
 pre-commit install
 ```
+
+## Running the UI
+
+`ui/app.py` is a Streamlit app: paste a privacy policy URL or upload a
+`.txt`/`.pdf`/`.html` file, run it through the `judge`/`scoring` pipeline, and
+view the resulting compliance score, chapter breakdown, and per-article
+findings (with JSON/PDF report downloads).
+
+```bash
+uv sync --group rag --group judge --group scoring --group ui
+streamlit run ui/app.py
+```
+
+Running a real assessment additionally needs a built RAG index and a trained
+judge adapter -- see `rag/README.md` and `judge/README.md`'s "QLoRA
+fine-tuning" section (the committed `qwen2.5-0.5b-gpu-qlora-judge` checkpoint
+plus `judge/config/qlora_judge_0.5b_gpu.yaml`, both selected by default in the
+app's sidebar, are enough to exercise it end to end on a CUDA GPU). Both are
+configurable from the sidebar without editing code.
