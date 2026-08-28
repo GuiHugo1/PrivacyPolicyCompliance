@@ -1,0 +1,122 @@
+# Default scoring configuration for scoring/score.py.
+#
+# Every article number below is a base GDPR article number (matches
+# judge/output_schema.json's `articles[].article` / `article_number`, e.g.
+# "13", not a pinpoint cite like "13(1)(a)"). Chapters/articles follow the
+# regulation's own structure (data/raw/gdpr.json), which is public and fixed
+# -- unlike the judge's RAG index (see judge/pipeline.py's `known_articles`
+# docstring), there is no reason this mapping needs to be derived at runtime.
+
+# status_scores: maps each judge/output_schema.json `compliance_status` /
+# `best_compliance_status` value to a per-article score in [0, 1].
+# `not_applicable` is NOT looked up here -- it is always excluded from the
+# denominator (see `excluded_statuses` below) regardless of any value that
+# might appear here for it.
+#
+# `non_compliant` and `not_addressed` are both 0.0 today, by design -- see
+# score.py's module docstring for why they are conceptually different
+# ("the policy violates this article" vs. "the policy never speaks to it")
+# and exactly which one line to change here to weight them differently.
+status_scores:
+  compliant: 1.0
+  partial: 0.5
+  non_compliant: 0.0
+  not_addressed: 0.0
+  # needs_review is the pipeline's own fallback for a verdict it could not
+  # get a schema-valid judge output for (see output_schema.json's
+  # `compliance_status` description) -- not a real compliance finding.
+  # Scored conservatively as 0.0 (same bucket as non_compliant/not_addressed)
+  # rather than excluded, so a policy can't improve its score by producing
+  # clauses the judge fails to parse.
+  needs_review: 0.0
+
+# Statuses excluded entirely from scoring: the article contributes neither
+# a score nor a weight to its chapter's denominator.
+excluded_statuses:
+  - not_applicable
+
+# Per-article weight overrides, applied within a chapter's weighted average.
+# Any article not listed under `overrides` uses `default` (equal weighting
+# across all in-scope articles, as specified).
+article_weights:
+  default: 1.0
+  overrides: {}
+  # Example override (weight Art. 17 "right to erasure" 1.5x within Ch. III):
+  # overrides:
+  #   "17": 1.5
+
+# Chapter definitions covering every GDPR article. Used to (a) group
+# per-article scores into a per-chapter breakdown and (b) decide which
+# chapters are "in scope" for compliance scoring of a privacy-policy
+# document -- a policy document only ever *speaks to* Ch. II-V (the
+# controller-facing substance: principles, data-subject rights, controller/
+# processor obligations, international transfers); Ch. I and VI-XI concern
+# the regulation's own scope, supervisory authorities, enforcement, and
+# procedure, which a privacy policy doesn't itself comply or fail to comply
+# with. Out-of-scope chapters/articles still appear in the per-article and
+# per-chapter breakdown for explainability -- they're just excluded from
+# the overall (and their own chapter) score.
+#
+# `weight` is each in-scope chapter's relative contribution to the overall
+# score; weights are renormalized over whichever in-scope chapters actually
+# have >=1 scored article in a given judge output (see score.py's
+# `_weighted_average`), so equal default weights here don't need to change
+# just because a given input happens to lack every chapter.
+chapters:
+  - id: "I"
+    name: General provisions
+    in_scope: false
+    weight: 1.0
+    articles: ["1", "2", "3", "4"]
+  - id: "II"
+    name: Principles
+    in_scope: true
+    weight: 1.0
+    articles: ["5", "6", "7", "8", "9", "10", "11"]
+  - id: "III"
+    name: Data subject rights
+    in_scope: true
+    weight: 1.0
+    articles: ["12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+  - id: "IV"
+    name: Controller and processor obligations
+    in_scope: true
+    weight: 1.0
+    articles:
+      ["24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43"]
+  - id: "V"
+    name: International transfers
+    in_scope: true
+    weight: 1.0
+    articles: ["44", "45", "46", "47", "48", "49", "50"]
+  - id: "VI"
+    name: Independent supervisory authorities
+    in_scope: false
+    weight: 1.0
+    articles: ["51", "52", "53", "54", "55", "56", "57", "58", "59"]
+  - id: "VII"
+    name: Cooperation and consistency
+    in_scope: false
+    weight: 1.0
+    articles:
+      ["60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76"]
+  - id: "VIII"
+    name: Remedies, liability and penalties
+    in_scope: false
+    weight: 1.0
+    articles: ["77", "78", "79", "80", "81", "82", "83", "84"]
+  - id: "IX"
+    name: Provisions relating to specific processing situations
+    in_scope: false
+    weight: 1.0
+    articles: ["85", "86", "87", "88", "89", "90", "91"]
+  - id: "X"
+    name: Delegated acts and implementing acts
+    in_scope: false
+    weight: 1.0
+    articles: ["92", "93"]
+  - id: "XI"
+    name: Final provisions
+    in_scope: false
+    weight: 1.0
+    articles: ["94", "95", "96", "97", "98", "99"]
