@@ -28,7 +28,16 @@ scoring = [
     "pyyaml>=6.0",
 ]
 ui = [
-    # Streamlit or FastAPI+React frontend
+    # Streamlit app (ui/app.py)
+    "streamlit>=1.38.0",
+    "requests>=2.31.0",
+    "pypdf>=4.0.0",
+    "trafilatura>=1.8.0",
+    "readability-lxml>=0.8.1",
+    "beautifulsoup4>=4.12.0",
+    "lxml_html_clean>=0.1.0",
+    "plotly>=5.20.0",
+    "reportlab>=4.0.0",
 ]
 dev = [
     "black",
