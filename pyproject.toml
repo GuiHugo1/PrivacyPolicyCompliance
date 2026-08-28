@@ -25,6 +25,7 @@ judge = [
 ]
 scoring = [
     # compliance scoring engine
+    "pyyaml>=6.0",
 ]
 ui = [
     # Streamlit or FastAPI+React frontend
